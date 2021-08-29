@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-Br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro das turmas</title>
+    <link rel="stylesheet" href="geral.css">
+</head>
+<body>
+    <div class=cabecalho>
+        <input type="checkbox" id="chec">
+        <label for="chec" class="lblMenuLateral"><div class="hamburguer" style="margin-left: 20px;"></div></label>
+
+        <nav>
+            <ul style="position: absolute; top: 50px; width: 100%; font-size: 1.2em;">
+                <li><a href="menus.html" class="menuLateral">Menus</a></li>
+                <li><a href="alunos.html" class="menuLateral">Alunos</a></li>
+                <li><a href="Disciplinas.html" class="menuLateral">Disciplinas</a></li>
+                <li><a href="frequencia.html" class="menuLateral">Frequência</a></li>
+                <li><a href="Funcionario.html" class="menuLateral">Funcionários</a></li>
+                <li><a href="horario.html" class="menuLateral">Horário</a></li>
+                <li><a href="responsavel.html" class="menuLateral">Responsável</a></li>
+                <li><a href="Turma.html" class="menuLateral">Turmas</a></li>
+            </ul>
+        </nav>
+
+        <div class="usuario">
+            <div style="color: white;">
+                <ul>
+                    <li style="font-size: 1.1em;">Usuário</li>
+                    <li><span class="circulo"></span></li>
+                </ul>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="divExterna">
+        <div class="divInterna">
+            <h2 style="width: 100%; text-align: center;">Cadastrar turma</h2>
+            <form name= "cadastrarTurma" action="" method="GET">
+                <div class="cadastro">
+                    <label for="txtNome">Nome</label>
+                    <input type="text" name="txtNome" id="txtNome" style="width: 670px; cursor: text;" required>
+                </div>
+                <div class="cadastro"  style="padding-top: 10px;">
+                    <label for="txtId">ID turma</label>
+                    <input type="text" name="txtId" id="txtId" style="width: 143px; cursor: text;" required>
+
+                    <label for="txtNumeroAlunos">N° alunos</label>
+                    <input type="number" name="txtNumeroAlunos" id="txtNumeroAlunos" style="width: 144px; cursor: text;" required>
+                
+                    <label for="txtAno">Ano</label>
+                    <input type="number" name="txtAno" id="txtAno" style="width: 143px; cursor: text;" required>
+                </div>   
+                <div class="adicionarLimpar">
+                    <input type="submit" value="Adicionar">
+                    <input type="reset" value="Limpar">
+                </div>           
+            </form>
+
+        </div>
+    </div>
+
+</body>
+</html>
