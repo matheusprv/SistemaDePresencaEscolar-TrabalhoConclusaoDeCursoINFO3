@@ -21,7 +21,7 @@
             <div style="margin: 20px;">
                 <h1 style="text-align: center;">Login</h2>
 
-                <form action="login">
+                <form action="" method="POST">
                     <label for="txtUsuario" style="font-size: 1.3em;">Email: </label><br>
                     <input type="text" name="txtUsuario" id="txtUsuario" required><br><br>
 
@@ -30,9 +30,14 @@
 
                     <input class="botaoEntrar" type="submit" value="Entrar">
                 </form>
-
-
+                
+                <div style="width: 100%;">
+                    <p style="text-align: center;"><a href="FuncionarioCadastro.php" style="text-decoration: none;"><u>Se cadastrar como funcionário</u></a></p>
+                    
+                </div>
+                
             </div>
+            
         </div>
     </div>
 

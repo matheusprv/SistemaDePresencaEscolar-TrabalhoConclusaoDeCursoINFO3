@@ -1,8 +1,8 @@
 /*Css do cabeçalho*/
 .cabecalho{
-    background-color: #036C1A;
+    background-color: #1D6AE3;
     width: 100%;
-    height: 60px;
+    height: 87px;
 }
 .hamburguer{
     width: 60px;
@@ -15,7 +15,7 @@
 .hamburguer::after{
     content: '';
     position: absolute;
-    top: 30%;
+    top: 50%;
     left: 15%;
     width: 70%;
     height: 8px;
@@ -25,18 +25,31 @@
 .hamburguer::before{
     content: '';
     position: absolute;
-    top: 60%;
+    top: 80%;
     left: 15%;
     width: 70%;
     height: 8px;
     background-color: white;
     border-radius: 10px;
 }
-
 a{
     text-decoration: none;
     color: black;
 }
+
+.divExternaLogoUsuario{
+    text-align: center;
+    width: 100%;
+}
+.divInternaLogoUsuario{
+    display: inline-block;
+}
+.usuario{
+    padding-right: 50px;
+    float: right;
+    padding-top: 4px;
+}
+
 /*Menu lateral*/
 ul{
     list-style: none;
@@ -48,9 +61,9 @@ input[type="checkbox"]:checked ~ nav{
     transform: translateX(350px);
 }
 nav{
-    background-color: #0d8628c0;
+    background-color: #1d69e3d3;
     width: 225px;
-    height: 100%;
+    height: 150%;
     left: -350px;
     position: absolute;
     transition: all .7s;
@@ -58,7 +71,7 @@ nav{
 .menuLateral{
     display: block;
     padding-top: 20px;
-    padding-bottom: 20px;
+    padding-bottom: 2000px;
     color: white;
     width: 150px;
 }
@@ -70,27 +83,6 @@ nav{
     z-index: 1;
 }
 
-/*Usuário*/
-.usuario{
-    padding-right: 50px;
-    float: right;
-}
-
-.circulo{
-    height: 25px;
-    width: 25px;
-    background-color: #bbb;
-    border-radius: 50%;
-    float: right;
-}
-
-.usuario ul li {
-    margin-left: 10px;
-    float: left;
-    list-style: none;
-}
-
-
 /*Css do corpo da página*/
 input{
     cursor: pointer;
@@ -100,7 +92,7 @@ body{
     width: 100%;
     height: 100%;
     margin: 0 auto;
-    background-image: url(Imagens/escola-2-640x340.jpg);
+    /*background-image: url(Imagens/escola-2-640x340.jpg);*/
     background-size: 100%;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 1.3em;
@@ -126,7 +118,7 @@ body{
 }
 .divInterna{
     display: inline-block;
-    background-color: #c9c9c9;
+    /*background-color: #c9c9c9;*/
 }
 
 
@@ -155,15 +147,15 @@ input, button, select{
 
 .divBotaoCadastro{
     margin-bottom: 20px; 
-    position: relative; 
-    float: left;
+    position: relative;
+    float: right;
 }
 .botaoCadastro{
     background-color: white;
     border-radius: 10px;
     border: black 2px solid;
     padding: 4px;
-    margin-left: 20px;
+    margin-right: 20px;
     margin-bottom: 20px;
     transition: .4s;
 }
@@ -174,7 +166,7 @@ input, button, select{
 }
 
 .BotaoEditar{
-    background-color: rgba(31, 177, 63, 0.747);
+    background-color: rgb(31, 177, 63);
     color: white;
     border-radius: 5px;
     transition: .2s;

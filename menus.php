@@ -31,26 +31,24 @@
 
         <nav>
             <ul style="position: absolute; top: 50px; width: 100%; font-size: 1.2em;">
-                <li><a href="menus.html" class="menuLateral">Menus</a></li>
-                <li><a href="alunos.html" class="menuLateral">Alunos</a></li>
-                <li><a href="Disciplinas.html" class="menuLateral">Disciplinas</a></li>
-                <li><a href="frequencia.html" class="menuLateral">Frequência</a></li>
-                <li><a href="Funcionario.html" class="menuLateral">Funcionários</a></li>
-                <li><a href="horario.html" class="menuLateral">Horário</a></li>
-                <li><a href="responsavel.html" class="menuLateral">Responsável</a></li>
-                <li><a href="Turma.html" class="menuLateral">Turmas</a></li>
+                <li><a href="menus.php" class="menuLateral">Menus</a></li>
+                <li><a href="alunos.php" class="menuLateral">Alunos</a></li>
+                <li><a href="Disciplinas.php" class="menuLateral">Disciplinas</a></li>
+                <li><a href="frequencia.php" class="menuLateral">Frequência</a></li>
+                <li><a href="Funcionario.php" class="menuLateral">Funcionários</a></li>
+                <li><a href="horario.php" class="menuLateral">Horário</a></li>
+                <li><a href="responsavel.php" class="menuLateral">Responsável</a></li>
+                <li><a href="Turma.php" class="menuLateral">Turmas</a></li>
             </ul>
         </nav>
-
-        <div class="usuario">
-            <div style="color: white;">
-                <ul>
-                    <li style="font-size: 1.1em;">Usuário</li>
-                    <li><span class="circulo"></span></li>
-                </ul>
-
+        
+        <div class="divExternaLogoUsuario">
+            <div class="divInternaLogoUsuario">
+                <img src="Imagens/logotipo.png" alt="Logotipo Ouro Branco" style="margin-top: 5px; padding-left: 133px;">
             </div>
+            <h4 class="usuario" style="color: white;">Usuário</h4>
         </div>
+        
     </div>
 
     <div class="divExterna">
@@ -58,27 +56,27 @@
             <div class="conteudo">
                 <ul>
                     <li class="opcoes">
-                        <a href="alunos.html"><img src="Imagens/aluno.jpg" alt="Alunos">
+                        <a href="alunos.php"><img class="imagem-menu" src="Imagens/aluno.jpg" alt="Alunos">
                             <br>
                             <div class="texto">Alunos</div>
                         </a>
                     </li>
                     <li class="menu-lado opcoes">
-                        <a href="Disciplinas.html"><img src="Imagens/disciplina.jpg" alt="Horários">
+                        <a href="Disciplinas.php"><img class="imagem-menu" src="Imagens/disciplina.jpg" alt="Horários">
                             <br>
                             <div class="texto">Disciplinas</div>
                         </a>
                     </li>
                     <li class="menu-lado opcoes">
-                        <a href="frequencia.html"><img src="Imagens/frequencia.jpg" alt="Frequência">
+                        <a href="frequencia.php"><img class="imagem-menu" src="Imagens/frequencia.jpg" alt="Frequência">
                             <br>
                             <div class="texto">Frequência</div>
                         </a>
                     </li>
                     <li class="menu-lado opcoes" style="margin-right: 40px;">
-                        <a href="Funcionario.html"><img src="Imagens/funcionario.jpg" alt="Funcionários">
+                        <a href="Funcionario.php"><img class="imagem-menu" src="Imagens/funcionario.jpg" alt="Funcionários">
                             <br>
-                            <div class="texto">Funcionáriosos</div>
+                            <div class="texto">Funcionários</div>
                         </a>
                     </li>
 
@@ -87,33 +85,25 @@
 
                 <ul>
                     <li class=" opcoes">
-                        <a href="horario.html"><img src="Imagens/horario.jpg" alt="Horários">
+                        <a href="horario.php"><img class="imagem-menu" src="Imagens/horario.jpg" alt="Horários">
                             <br>
                             <div class="texto">Horários</div>
                         </a>
                     </li>
                     <li class="menu-lado opcoes">
-                        <a href="responsavel.html"><img src="Imagens/responsaveis.jpg" alt="Responsáveis">
+                        <a href="responsavel.php"><img class="imagem-menu" src="Imagens/responsaveis.jpg" alt="Responsáveis">
                             <br>
                             <div class="texto">Responsáveis</div>
                         </a>
                     </li>
                     <li class="menu-lado opcoes">
-                        <a href="Turma.html"><img src="Imagens/turmas.jpg" alt="Turmas">
+                        <a href="Turma.php"><img class="imagem-menu" src="Imagens/turmas.jpg" alt="Turmas">
                             <br>
                             <div class="texto">Turmas</div>
                         </a>
                     </li>
-
-
                 </ul>
-
-
-
-
             </div>
-
-
         </div>
     </div>
 

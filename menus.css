@@ -7,16 +7,22 @@
     border-radius: 25px;
 }
 
-
-
-img{
+.imagem-menu{
     opacity: 100%;
-    transition: opacity 0.9s;   
+    transition: opacity 0.9s; 
+
+
 }
-img:hover{
+.imagem-menu:hover{
     opacity: 50%;
     transition: opacity 0.9s;
 }
+
+
+
+
+
+
 .texto{
     font-size: 1.3em;
     transition: 1s;
@@ -27,7 +33,7 @@ img:hover{
 .texto:hover{
     cursor: pointer;
     color: white;
-    background-color: gray;
+    background-color: #F6B931;
     transition: 0.4s;
 }
 
