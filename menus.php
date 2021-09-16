@@ -8,6 +8,7 @@
     <title>Menus</title>
     <link rel="stylesheet" href="menus.css">
     <link rel="stylesheet" href="geral.css">
+    <link rel="stylesheet" href="cabecalho.css">
 
     <style>
         @media screen and (max-with:1000px) {
@@ -23,6 +24,10 @@
 </head>
 
 <body>
+    <?php
+        include_once("cabecalho.php");
+    ?>
+    <!--
     <div class=cabecalho>
         <input type="checkbox" id="chec">
         <label for="chec" class="lblMenuLateral">
@@ -50,7 +55,7 @@
         </div>
         
     </div>
-
+    -->
     <div class="divExterna">
         <div class="divInterna" style="border-radius: 25px;">
             <div class="conteudo">

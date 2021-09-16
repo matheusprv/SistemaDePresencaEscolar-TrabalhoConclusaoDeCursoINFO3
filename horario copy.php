@@ -13,47 +13,14 @@
     <title>Horários</title>
     <link rel="stylesheet" href="horario.css">
     <link rel="stylesheet" href="geral.css">
+    <link rel="stylesheet" href="cabecalho.css">
 </head>
 
-<?php
-    function pegarDisciplinas(){
-        $sql = "SELECT idDisciplina, nome FROM Disciplina";
-
-        $disciplina = $conn -> query($sql);
-
-        while ($rowDisciplina = $disciplina->fetch_assoc()) {
-            ?>
-                <option value="<?php echo $rowDisciplina["idDisciplina"]; ?>"><?php echo $rowDisciplina["nome"]; ?></option>
-            <?php
-        }
-    }
-?>
 
 <body style="font-size: 1.1em;">
-    <div class=cabecalho>
-        <input type="checkbox" id="chec">
-        <label for="chec" class="lblMenuLateral"><div class="hamburguer" style="margin-left: 20px;"></div></label>
-
-        <nav>
-            <ul style="position: absolute; top: 50px; width: 100%; font-size: 1.2em;">
-                <li><a href="menus.php" class="menuLateral">Menus</a></li>
-                <li><a href="alunos.php" class="menuLateral">Alunos</a></li>
-                <li><a href="Disciplinas.php" class="menuLateral">Disciplinas</a></li>
-                <li><a href="frequencia.php" class="menuLateral">Frequência</a></li>
-                <li><a href="Funcionario.php" class="menuLateral">Funcionários</a></li>
-                <li><a href="horario.php" class="menuLateral">Horário</a></li>
-                <li><a href="responsavel.php" class="menuLateral">Responsável</a></li>
-                <li><a href="Turma.php" class="menuLateral">Turmas</a></li>
-            </ul>
-        </nav>
-
-        <div class="divExternaLogoUsuario">
-            <div class="divInternaLogoUsuario">
-                <img src="Imagens/logotipo.png" alt="Logotipo Ouro Branco" style="margin-top: 5px; padding-left: 133px;">
-            </div>
-            <h4 class="usuario" style="color: white;">Usuário</h4>
-        </div>
-    </div>
+    <?php
+        include_once("cabecalho.php");
+    ?>
     
     <div class="divExterna">
         <div class="divInterna">
@@ -102,11 +69,12 @@
 
                             $disciplina = $conn -> query($sql);
 
-                            while ($i <= 10) {
-                                # code...
+                            while ($rowDisciplina = $disciplina->fetch_assoc()) {
+                                $vetor [] = (object) $rowDisciplina;
                             }
-                            $vetor = array($disciplina->fetch_assoc());
-                        
+
+                            //print_r($vetor);                           
+                                                    
                             for ($i=1; $i <= 5 ; $i++) { 
                                 ?>
                                 <tr>
@@ -119,9 +87,9 @@
                                             <select name="disciplinaEscolhida" id="disciplinaEscolhida" style="font-size: 1em; ">
                                                 <option value="" selected disabled hidden>Selecionar</option>
                                                 <?php
-                                                    while ($rowDisciplina = $disciplina->fetch_assoc()) {
+                                                    foreach ($vetor as $key => $val) {
                                                         ?>
-                                                        <option value="<?php echo $rowDisciplina["idDisciplina"]; ?>" style="background-color: #ebebeb;"><?php echo $rowDisciplina["nome"]; ?></option>
+                                                        <option value="<?php print($vetor[$key]->idDisciplina) ?>"><?php print($vetor[$key]->nome) ?></option>
                                                         <?php
                                                     }
                                                 ?>
