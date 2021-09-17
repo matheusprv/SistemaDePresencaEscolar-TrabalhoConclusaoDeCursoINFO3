@@ -15,7 +15,7 @@
         <script>
             alert("Registro salvo com sucesso");
             //Envia para outra página
-            window.location = "../DisciplinasCadastro.html";
+            window.location = "../DisciplinasCadastro.php";
             //window.history.back();
         </script>
 

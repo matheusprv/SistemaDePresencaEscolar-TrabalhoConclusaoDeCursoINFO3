@@ -30,6 +30,7 @@ body{
 .divExterna{
     text-align: center;
     width: 100%;
+    
 }
 .divInterna{
     display: inline-block;
@@ -61,9 +62,11 @@ input, button, select{
 }
 
 .divBotaoCadastro{
+    margin-top: 20px;
     margin-bottom: 20px; 
     position: relative;
     float: right;
+    text-align: right;
 }
 .botaoCadastro{
     background-color: white;

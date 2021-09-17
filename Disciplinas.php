@@ -30,6 +30,34 @@
             
 
             <div class="tabela">
+                <?php
+                    // Determina o número de resultados por página
+                    $numResultadosPorPagina = 10;
+
+                    //Descobrir o número de dados no banco de dados
+                    $sql = "SELECT * FROM Disciplina";
+                    $disciplina = $conn->query($sql);
+                    $numeroDeResultados =  mysqli_num_rows($disciplina);
+
+                    //Determinar o total de páginas disponíveis 
+                    $numeroDePaginas = ceil($numeroDeResultados/$numResultadosPorPagina);
+                    
+                    //Determinar qual página o usuário está
+                    if (!isset($_GET['pagina'])) {
+                        $pagina =1;
+                    }
+                    else{
+                        $pagina = $_GET['pagina'];
+                    }
+
+                    //Determinar o limite inicial de dados mostrados na página
+                    $primeiroResultadoDaPagina = ($pagina-1)*$numResultadosPorPagina;
+
+                    //Recuperar dados para mostrar na página
+                    $sql = "SELECT * FROM Disciplina LIMIT " . $primeiroResultadoDaPagina. ',' . $numResultadosPorPagina;
+                    $disciplina = $conn->query($sql);
+                        
+                ?>
                 <table>
                     <tr>
                         <th style="width: 30%;">Nome</th>
@@ -39,64 +67,38 @@
                         <th style="width: 20%;">Ações</th>
                     </tr>
                     <?php
-                        $sql = "SELECT * FROM Disciplina";
-                        $dadosDisciplina = $conn->query($sql);
-
-                        if ($dadosDisciplina -> num_rows > 0) {
-                            while($exibir = $dadosDisciplina->fetch_assoc()){
-                                ?>
-                                <tr>
-                                    <td>
-                                        <?php echo $exibir["nome"]?>
-                                    </td>
-                                    <td>
-                                        <?php echo $exibir["professor"]?>
-                                    </td>
-                                    <td>
-                                        <?php echo $exibir["idDisciplina"]?>
-                                    </td>
-                                    <td>
-                                        <?php echo $exibir["numeroAulas"]?>
-                                    </td>
-                                    <td>
-                                        <input type="submit" value="Editar" class="BotaoEditar">
-                                        <input type="submit" value="Deletar"  class="BotaoDeletar">
-                                    </td>
-                                </tr>
-                                <?php
-                            }
+                        while($exibir = $disciplina->fetch_assoc()){
+                            ?>
+                            <tr>
+                                <td>
+                                    <?php echo $exibir["nome"]?>
+                                </td>
+                                <td>
+                                    <?php echo $exibir["professor"]?>
+                                </td>
+                                <td>
+                                    <?php echo $exibir["idDisciplina"]?>
+                                </td>
+                                <td>
+                                    <?php echo $exibir["numeroAulas"]?>
+                                </td>
+                                <td>
+                                    <input type="submit" value="Editar" class="BotaoEditar">
+                                    <input type="submit" value="Deletar"  class="BotaoDeletar">
+                                </td>
+                            </tr>
+                            <?php
                         }
                     ?>
-<!--
-                    <tr>
-                        <td>Matemática</td>
-                        <td>Alexandre</td>
-                        <td>MAT-2021</td>
-                        <td>
-                            <input type="submit" value="Editar" class="BotaoEditar">
-                            <input type="submit" value="Deletar" class="BotaoDeletar">
-                        </td>   
-                    </tr>
-                    <tr>
-                        <td>História</td>
-                        <td>Rodolpho</td>
-                        <td>HIST-2021</td>
-                        <td>
-                            <input type="submit" value="Editar" class="BotaoEditar">
-                            <input type="submit" value="Deletar" class="BotaoDeletar">
-                        </td>   
-                    </tr>
-                    <tr>
-                        <td>Português</td>
-                        <td>Ana Paula</td>
-                        <td>POR-2021</td>
-                        <td>
-                            <input type="submit" value="Editar" class="BotaoEditar">
-                            <input type="submit" value="Deletar"  class="BotaoDeletar">
-                        </td>   
-                    </tr>
--->
                 </table>  
+                <?php
+                    //Mostrar os links entre as páginas
+                    for ($pagina=1; $pagina <= $numeroDePaginas; $pagina++) { 
+                        ?>
+                        <a href="<?php echo 'Disciplinas.php?pagina='.$pagina; ?>"> <?php echo $pagina;?></a>
+                        <?php
+                    }
+                ?>
             </div>
             <div class="divBotaoCadastro">
                 <a href="DisciplinasCadastro.php" class="botaoCadastro">Cadastrar disciplina</a>

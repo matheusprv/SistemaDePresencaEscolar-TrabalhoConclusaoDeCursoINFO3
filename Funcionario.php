@@ -30,42 +30,81 @@
                 
             </form>
             
+            <div class="divExterna">
+                <div class="divInterna">
+                    <div class="tabela">
+                        <?php
+                            // Determina o número de resultados por página
+                            $numResultadosPorPagina = 10;
 
-            <div class="tabela">
-                <table>
-                    <tr>
-                        <!--<th style="width: 41%;">Nome</th>-->
-                        <th>Nome</th>
-                        <th>Email</th>  
-                        <th style="width: 18%;">Ações</th>  
-                    </tr>
-                    <?php
-                        $sql = "SELECT Nome, email FROM Funcionario WHERE verificado = 1 ";
-                        $dadosFunc = $conn->query($sql);
+                            //Descobrir o número de dados no banco de dados
+                            $sql = "SELECT * FROM Funcionario";
+                            $funcionarios = $conn->query($sql);
+                            $numeroDeResultados =  mysqli_num_rows($funcionarios);
 
-                        if ($dadosFunc -> num_rows > 0) {
-                            while($exibir = $dadosFunc->fetch_assoc()){
+                            //Determinar o total de páginas disponíveis 
+                            $numeroDePaginas = ceil($numeroDeResultados/$numResultadosPorPagina);
+                            
+                            //Determinar qual página o usuário está
+                            if (!isset($_GET['pagina'])) {
+                                $pagina =1;
+                            }
+                            else{
+                                $pagina = $_GET['pagina'];
+                            }
+
+                            //Determinar o limite inicial de dados mostrados na página
+                            $primeiroResultadoDaPagina = ($pagina-1)*$numResultadosPorPagina;
+
+                            //Recuperar dados para mostrar na página
+                            $sql = "SELECT * FROM Funcionario LIMIT " . $primeiroResultadoDaPagina. ',' . $numResultadosPorPagina;
+                            $funcionarios = $conn->query($sql);
+                            
+                        ?>
+                        <table>
+                            <tr>
+                                <!--<th style="width: 41%;">Nome</th>-->
+                                <th>Nome</th>
+                                <th>Email</th>  
+                                <th >Ações</th>  
+                            </tr>
+                            <?php
+                                $sql = "SELECT Nome, email FROM Funcionario WHERE verificado = 1 ";
+                                $dadosFunc = $conn->query($sql);
+
+                                if ($funcionarios -> num_rows > 0) {
+                                    while($exibir = $funcionarios->fetch_assoc()){
+                                        ?>
+                                        <tr>
+                                            <td>
+                                                <?php echo $exibir["Nome"]?>
+                                            </td>
+                                            <td>
+                                                <?php echo $exibir["email"]?>
+                                            </td>
+                                            <td>
+                                                <input type="submit" value="Editar" class="BotaoEditar">
+                                                <input type="submit" value="Deletar"  class="BotaoDeletar">
+                                            </td>
+                                        </tr>
+                                        <?php
+                                    }
+                                }
+                            ?>
+                        </table>
+                        <?php
+                            //Mostrar os links entre as páginas
+                            for ($pagina=1; $pagina <= $numeroDePaginas; $pagina++) { 
                                 ?>
-                                <tr>
-                                    <td>
-                                        <?php echo $exibir["Nome"]?>
-                                    </td>
-                                    <td>
-                                        <?php echo $exibir["email"]?>
-                                    </td>
-                                    <td>
-                                        <input type="submit" value="Editar" class="BotaoEditar">
-                                        <input type="submit" value="Deletar"  class="BotaoDeletar">
-                                    </td>
-                                </tr>
+                                <a href="<?php echo 'Turma.php?pagina='.$pagina; ?>"> <?php echo $pagina;?></a>
                                 <?php
                             }
-                        }
-                    ?>
-                </table>
+                        ?>
+                    </div>
+                </div>
             </div>
 
-            <div class="divBotaoCadastro" style="text-align: right;">
+            <div class="divBotaoCadastro" style="text-align: right; margin-top: 20px;">
                 <a href="FuncionarioCadastro.php" class="botaoCadastro">Cadastrar funcionário</a>
                 <a href="FuncionarioLiberarAcesso.php" class="botaoCadastro" style="margin-right: 10dp;">Liberar acesso de funcionário</a>
             </div>

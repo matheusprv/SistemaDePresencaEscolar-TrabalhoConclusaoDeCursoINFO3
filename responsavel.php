@@ -30,41 +30,80 @@
                 </div>
             </form>
 
-
-            <div class="tabela">
-                <table style="width: 960px;">
-                    <tr>
-                        <th style="width: 40%;">Nome</th>
-                        <th>Email</th>
-                        <th style="width: 20%;">Ações</th>
-                        
-                    </tr>
+            <div class="divExterna">
+                <div class="divInterna">
                     <?php
-                        $sql = "SELECT * FROM Responsavel";
-                        $dadosResponsavel = $conn->query($sql);
+                        // Determina o número de resultados por página
+                        $numResultadosPorPagina = 10;
 
-                        if ($dadosResponsavel -> num_rows > 0) {
-                            while($responsavel = $dadosResponsavel->fetch_assoc()){
+                        //Descobrir o número de dados no banco de dados
+                        $sql = "SELECT * FROM Responsavel";
+                        $responsavel = $conn->query($sql);
+                        $numeroDeResultados =  mysqli_num_rows($responsavel);
+
+                        //Determinar o total de páginas disponíveis 
+                        $numeroDePaginas = ceil($numeroDeResultados/$numResultadosPorPagina);
+                        
+                        //Determinar qual página o usuário está
+                        if (!isset($_GET['pagina'])) {
+                            $pagina =1;
+                        }
+                        else{
+                            $pagina = $_GET['pagina'];
+                        }
+
+                        //Determinar o limite inicial de dados mostrados na página
+                        $primeiroResultadoDaPagina = ($pagina-1)*$numResultadosPorPagina;
+
+                        //Recuperar dados para mostrar na página
+                        $sql = "SELECT * FROM Responsavel LIMIT " . $primeiroResultadoDaPagina. ',' . $numResultadosPorPagina;
+                        $responsavel = $conn->query($sql);
+                        
+                    ?>
+                    <div class="tabela">
+                        <table style="width: 960px;">
+                            <tr>
+                                <th style="width: 40%;">Nome</th>
+                                <th>Email</th>
+                                <th style="width: 20%;">Ações</th>
+                                
+                            </tr>
+                            <?php
+                                if ($responsavel -> num_rows > 0) {
+                                    while($exibir = $responsavel->fetch_assoc()){
+                                        ?>
+                                        <tr>
+                                            <td>
+                                                <?php echo $exibir["nome"]?>
+                                            </td>
+                                            <td>
+                                                <?php echo $exibir["email"]?>
+                                            </td>
+                                            <td>
+                                                <input type="submit" value="Editar" class="BotaoEditar">
+                                                <input type="submit" value="Deletar"  class="BotaoDeletar">
+                                            </td>
+                                        </tr>
+                                        <?php
+                                    }
+                                }
+                            ?>
+                        </table>
+
+                        <?php
+                            //Mostrar os links entre as páginas
+                            for ($pagina=1; $pagina <= $numeroDePaginas; $pagina++) { 
                                 ?>
-                                <tr>
-                                    <td>
-                                        <?php echo $responsavel["nome"]?>
-                                    </td>
-                                    <td>
-                                        <?php echo $responsavel["email"]?>
-                                    </td>
-                                    <td>
-                                        <input type="submit" value="Editar" class="BotaoEditar">
-                                        <input type="submit" value="Deletar"  class="BotaoDeletar">
-                                    </td>
-                                </tr>
+                                <a href="<?php echo 'Turma.php?pagina='.$pagina; ?>"> <?php echo $pagina;?></a>
                                 <?php
                             }
-                        }
-                    ?>
-
-                </table>
+                        ?>
+                    </div>
+                </div>
             </div>
+
+
+            
             <div class="divBotaoCadastro">
                 <a href="responsavelCadastrar.php" class="botaoCadastro">Cadastrar responsável</a>
             </div>
