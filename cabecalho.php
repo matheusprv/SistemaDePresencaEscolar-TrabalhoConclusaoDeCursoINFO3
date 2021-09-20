@@ -1,3 +1,6 @@
+<?php
+    include_once 'dados_login.php';
+?>
 <div class=cabecalho>
         <input type="checkbox" id="chec">
         <label for="chec" class="lblMenuLateral"><div class="hamburguer" style="margin-left: 20px;"></div></label>
@@ -19,6 +22,6 @@
             <div class="divInternaLogoUsuario">
                 <img src="Imagens/logotipo.png" alt="Logotipo Ouro Branco" style="margin-top: 5px; padding-left: 133px;">
             </div>
-            <h4 class="usuario" style="color: white;">Usuário</h4>
+            <h4 class="usuario" style="color: white;"><?php echo "Olá, {$_SESSION['usuario']}"; ?></h4>
         </div>
     </div>

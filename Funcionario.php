@@ -38,7 +38,7 @@
                             $numResultadosPorPagina = 10;
 
                             //Descobrir o número de dados no banco de dados
-                            $sql = "SELECT * FROM Funcionario";
+                            $sql = "SELECT * FROM Funcionario WHERE verificado = 1";
                             $funcionarios = $conn->query($sql);
                             $numeroDeResultados =  mysqli_num_rows($funcionarios);
 
@@ -57,7 +57,7 @@
                             $primeiroResultadoDaPagina = ($pagina-1)*$numResultadosPorPagina;
 
                             //Recuperar dados para mostrar na página
-                            $sql = "SELECT * FROM Funcionario LIMIT " . $primeiroResultadoDaPagina. ',' . $numResultadosPorPagina;
+                            $sql = "SELECT * FROM Funcionario WHERE verificado = 1 LIMIT " . $primeiroResultadoDaPagina. ',' . $numResultadosPorPagina;
                             $funcionarios = $conn->query($sql);
                             
                         ?>
@@ -69,9 +69,6 @@
                                 <th >Ações</th>  
                             </tr>
                             <?php
-                                $sql = "SELECT Nome, email FROM Funcionario WHERE verificado = 1 ";
-                                $dadosFunc = $conn->query($sql);
-
                                 if ($funcionarios -> num_rows > 0) {
                                     while($exibir = $funcionarios->fetch_assoc()){
                                         ?>
@@ -109,7 +106,6 @@
                 <a href="FuncionarioLiberarAcesso.php" class="botaoCadastro" style="margin-right: 10dp;">Liberar acesso de funcionário</a>
             </div>
 
-            
             
         </div>   
     </div>
