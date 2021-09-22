@@ -59,10 +59,10 @@
                                     </td>
                                     <td>
                                         <?
-                                            $sqlResponsavel = "SELECT * FROM Responsavel WHERE id = $alunos["Responsavel_id"] ";
+                                            $sqlResponsavel = "SELECT * FROM Responsavel WHERE id = $alunos['Responsavel_id'] ";
                                             $responsavel = $conn->query($sqlResponsavel);
 
-                                            echo $responsavel["id"]
+                                            echo $responsavel["id"];
                                         ?>
                                         <?php ?>
                                     </td>

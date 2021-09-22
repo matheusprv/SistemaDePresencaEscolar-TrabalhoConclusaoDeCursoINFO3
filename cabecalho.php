@@ -15,6 +15,7 @@
                 <li><a href="horario.php" class="menuLateral">Horário</a></li>
                 <li><a href="responsavel.php" class="menuLateral">Responsável</a></li>
                 <li><a href="Turma.php" class="menuLateral">Turmas</a></li>
+                <li><a href ="?logout=1" class="menuLateral" id="sair">Sair</a></li>
             </ul>
         </nav>
 
@@ -25,3 +26,4 @@
             <h4 class="usuario" style="color: white;"><?php echo "Olá, {$_SESSION['usuario']}"; ?></h4>
         </div>
     </div>
+

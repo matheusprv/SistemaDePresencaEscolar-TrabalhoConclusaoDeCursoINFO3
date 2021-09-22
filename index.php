@@ -25,7 +25,7 @@
                         <input class="inserir" type="text" name="txtUsuario" id="txtUsuario" required autofocus placeholder="Email"><br><br>
                         <input class="inserir" type="password" name="txtSenha" id="txtSenha" required placeholder="Senha"><br><br>
 
-                        <input class="botaoEntrar inserir" type="submit" value="Entrar">
+                        <input class="botaoEntrar inserir" type="submit" value="btnEntrar" name="Entrar">
                     </form>
                 </div>
             <?php

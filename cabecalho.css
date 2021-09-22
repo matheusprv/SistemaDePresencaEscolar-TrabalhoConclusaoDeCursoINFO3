@@ -78,6 +78,12 @@ nav{
 .menuLateral:hover{
     color: black
 }
+#sair{
+    color: #f08e6d;
+}
+#sair:hover{
+    color: black
+}
 .lblMenuLateral{
     position: absolute;
     z-index: 1;
