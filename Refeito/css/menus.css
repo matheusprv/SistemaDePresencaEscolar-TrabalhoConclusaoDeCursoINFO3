@@ -1,0 +1,47 @@
+.centro {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 0%);
+    border-radius: 20px;
+    padding-top: 25px;
+}
+a{
+    text-decoration: none;
+}
+.lista-link{
+    list-style: none;
+    margin-bottom: 20px;
+    
+}
+.link{
+    text-align: center;
+    background-color: royalblue;
+    border-radius: 20px;
+    width: 300px;
+    height: 60px;
+    transition: 0.5s;
+}
+.link:hover{
+    transition: 0.5s;
+    background-color: #F6B931;
+    cursor: pointer;
+}
+#sair-menu:hover{
+    transition: 0.5s;
+    background-color: red;
+}
+
+.link-texto{
+    color: white;
+    position: relative;
+    top: 30%;
+    font-size: 1.5em;
+}
+body{
+    /*
+    background: url("../imagens/turmas.jpg") no-repeat center center;
+    background-size: cover;
+    height: 92vh;*/
+}
+
+
