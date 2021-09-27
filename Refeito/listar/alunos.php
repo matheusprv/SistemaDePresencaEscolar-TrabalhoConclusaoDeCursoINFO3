@@ -11,7 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alunos</title>
 
-
+    <link rel="stylesheet" href="../cabecalho/styleCabecalho.css">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../pesquisa/pesquisa.css">
         
@@ -19,7 +19,7 @@
 
 <body>
     <?php
-        include_once("../cabecalho/cabecalho.html");
+        include_once("../cabecalho/cabecalho_listar.html");
     ?>
     <h1 style="text-align: center; margin-top: 20px;">Alunos</h1>
     <br>
@@ -41,9 +41,6 @@
                 </tr>
             </tr>
             <?php
-                $sql = "SELECT * FROM Aluno";
-                $dadosAlunos = $conn->query($sql);
-
                 if ($dadosAlunos -> num_rows > 0) {
                     while($alunos = $dadosAlunos->fetch_assoc()){
                         ?>

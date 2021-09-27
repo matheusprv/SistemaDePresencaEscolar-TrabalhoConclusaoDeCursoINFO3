@@ -1,3 +1,15 @@
+nav{
+    margin: 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #1D6AE3;
+    height: 8vh;
+    color: white;
+    font-size: 1.6em;
+}
+
 .centro {
     position: absolute;
     left: 50%;

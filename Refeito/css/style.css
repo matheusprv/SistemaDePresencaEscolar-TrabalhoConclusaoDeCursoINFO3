@@ -7,7 +7,7 @@
 }
 body{
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 1.1em;
+    font-size: 1em;
 }
 
 .divExterna{
@@ -41,6 +41,21 @@ table{
     width: 100%;
 }
 
+.editarDeletar{
+    padding: 3px;
+    cursor: pointer;
+}
+.botaoEditar{
+    background-color: rgba(153, 205, 50, 0.459);
+    border: none;
+    margin-right: 3px;
+}
+.botaoDeletar{
+    background-color: rgba(216, 19, 19, 0.589);
+    border: none;
+}
+
+
 label{
     font-size: 1.5em;
 }
@@ -64,15 +79,13 @@ select:hover{
     padding-bottom: 7px;
     transition: 0.4s;
     border-radius: 10px;
-}
-.formBtn:hover{
     cursor: pointer;
 }
 .adicionar{
     background-color: rgba(153, 205, 50, 0.459);
     border: none;
 }
-.adicionar:hover{
+.adicionar :hover{
     background-color: rgb(153, 205, 50);
     transition: 0.4s;
 }
@@ -80,7 +93,36 @@ select:hover{
     background-color: rgba(216, 19, 19, 0.589);
     border: none;
 }
-.limpar:hover{
+.limpar :hover{
     background-color: rgba(255, 0, 0, 0.664);
     transition: 0.4s;
+}
+
+
+
+
+.nums-paginacao{
+    margin-right: 7px;
+    margin-bottom: 20px;
+}
+
+
+.divBotaoCadastro{
+    margin-top: 20px;
+    margin-bottom: 20px; 
+}
+.botaoCadastro{
+    color: black;
+    text-decoration: none;
+    background-color: white;
+    border-radius: 10px;
+    border: black 2px solid;
+    padding: 4px;
+    margin-bottom: 20px;
+    transition: 1s;
+}
+.botaoCadastro:hover{
+    background-color: rgb(107, 107, 107);
+    transition: 1s;
+    color: rgb(243, 243, 243);
 }

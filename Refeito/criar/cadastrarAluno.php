@@ -19,7 +19,7 @@
 
 <body>
     <?php
-        include_once("../cabecalho/cabecalho.html");
+        include_once("../cabecalho/cabecalho_criar.html");
     ?>
     <h1 style="text-align: center; margin-top: 20px;">Cadastrar aluno</h1>
     <br>
