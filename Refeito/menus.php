@@ -1,9 +1,9 @@
 <?php
-include_once 'dados_login.php';
-$logged = $_SESSION['logged'] ?? null;
-if (!$logged) {
-    die(header("Location: index.php"));
-}
+    include_once 'dados_login.php';
+    $logged = $_SESSION['logged'] ?? null;
+    if (!$logged) {
+        die(header("Location: index.php"));
+    }
 ?>
 
 <!DOCTYPE html>
@@ -19,7 +19,7 @@ if (!$logged) {
     <link rel="stylesheet" href="css/menus.css">
 </head>
 
-<body style="margin: 0;">
+<body class="corpo-menus" style="margin: 0;">
     <nav>
         <p><?php echo "Olá, {$_SESSION['usuario']}"; ?></p>
         <img src="imagens/logotipo.png" alt="Prefeitura de Ouro Branco" style="height: 80%;">
@@ -57,7 +57,7 @@ if (!$logged) {
             </li>
 
             <li class="lista-link">
-                <a class="link-texto" href=""><button>Usuário</button></a>
+                <a class="link-texto" href="listar/usuario.php"><button>Usuário</button></a>
             </li>
 
             <li class="lista-link">

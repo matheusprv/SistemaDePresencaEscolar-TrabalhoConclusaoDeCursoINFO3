@@ -21,6 +21,7 @@
         if($usuario == $verificar['email'] && $senha == $verificar['senha']){
             $_SESSION['usuario'] = $verificar['Nome'];
             $_SESSION['senha'] = $verificar["senha"];
+            $_SESSION['email'] = $verificar["email"];
             $_SESSION['logged'] = True;
 
             header("Location: menus.php");

@@ -12,7 +12,7 @@
             
             <!--<img src="imagens/logotipo.png" alt="Prefeitura de Ouro Branco" style="height: 70%;">-->
 
-            <a href="" class="logo"><p><?php echo "Olá, {$_SESSION['usuario']}"; ?></p></a>
+            <a href="../listar/usuario.php" class="logo"><p><?php echo "Olá, {$_SESSION['usuario']}"; ?></p></a>
 
             <div class="mobile-menu">
                 <div class="line1"></div>
@@ -29,6 +29,7 @@
                 <li><a class="link-cabecalho" href="../listar/horarios.php" >Horário</a></li>
                 <li><a class="link-cabecalho" href="../listar/responsaveis.php" >Responsável</a></li>
                 <li><a class="link-cabecalho" href="../listar/turmas.php" >Turmas</a></li>
+                <li><a class="link-cabecalho" href="../listar/usuario.php" >Usuário</a></li>
                 <li><a class="link-cabecalho" href ="?logout=1"  id="sair">Sair</a></li>
             </ul>
         </nav>

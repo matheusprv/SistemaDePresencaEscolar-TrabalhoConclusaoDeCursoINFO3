@@ -3,9 +3,10 @@
     include_once ('../dados_login.php');
     $logged = $_SESSION['logged'] ?? null;
     if(!$logged){
-        die(header("Location: ../index.php"));
+        $logado =false;
     }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -22,18 +23,28 @@
         
 </head>
 
-<body>
+<body style="margin: 0;">
     <?php
-        include_once("../cabecalho/cabecalho_criar.php");
+        if($logado){
+            include_once("../cabecalho/cabecalho_criar.php");
+        }
+        else{
+            ?>
+            <link rel="stylesheet" href="../css/menus.css">
+            <nav>
+                <img src="../imagens/logotipo.png" alt="Prefeitura de Ouro Branco" style="height: 80%;">
+            </nav>
+            <?php
+        }
     ?>
-    <h1 style="text-align: center; margin-top: 20px;">Cadastrar responsável</h1>
+    <h1 style="text-align: center; margin-top: 20px;">Cadastrar funcionário</h1>
     <br>
 
 
 
     <div class="divCentralizada" style="width: 750px;">
 
-        <form action="../arquivosPHP/cadastrarResponsavel.php" method="POST">
+        <form action="../arquivosPHP/cadastrarFuncionario.php" method="POST">
             <label for="txtNome">Nome:</label>
             <input type="text" name="txtNome" id="txtNome" class="input-text" required>
             <br><br>
@@ -52,7 +63,6 @@
                 <input type="reset" value="Limpar" class="formBtn limpar">
             </div>
             
-
         </form>
 
     </div>

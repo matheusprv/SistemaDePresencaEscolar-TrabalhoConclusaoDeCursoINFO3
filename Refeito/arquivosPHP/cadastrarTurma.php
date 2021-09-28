@@ -15,7 +15,7 @@
         <script>
             alert("Registro salvo com sucesso");
             //Envia para outra página
-            window.location = "../TurmaCadastrar.php";
+            window.location = "../criar/cadastrarTurma.php";
             //window.history.back();
         </script>
 

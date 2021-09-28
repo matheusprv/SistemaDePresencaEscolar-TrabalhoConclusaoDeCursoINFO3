@@ -4,7 +4,7 @@
 
     $nome = $_POST["txtNome"];
     $professor = $_POST["txtProf"];
-    $numeroAulas = $_POST["txtCodigo"];
+    $numeroAulas = $_POST["numAulas"];
 
     //Inserindo valores no banco
     $sql = "INSERT INTO Disciplina (nome, professor, numeroAulas) VALUES ('$nome', '$professor', '$numeroAulas')";
@@ -15,7 +15,7 @@
         <script>
             alert("Registro salvo com sucesso");
             //Envia para outra página
-            window.location = "../DisciplinasCadastro.php";
+            window.location = "../criar/cadastrarDisciplina.php";
             //window.history.back();
         </script>
 

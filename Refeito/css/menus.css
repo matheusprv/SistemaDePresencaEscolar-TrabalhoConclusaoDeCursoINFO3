@@ -51,7 +51,7 @@ button:hover{
     top: 30%;
     font-size: 1.5em;
 }
-body{
+.corpo-menus{
     background: url("../imagens/turmas.jpg") no-repeat center center;
     background-size: cover;
     height: 92vh;

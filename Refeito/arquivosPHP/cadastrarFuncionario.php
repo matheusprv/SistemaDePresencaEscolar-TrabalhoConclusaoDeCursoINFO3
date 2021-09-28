@@ -1,4 +1,12 @@
 <?php
+
+    //Verificar se o usuário está logado ou se é um novo
+    include_once ('../dados_login.php');
+    $logged = $_SESSION['logged'] ?? null;
+    if(!$logged){
+        $logado =false;
+    }
+
     //Incluindo arquivo de conexão com o banco de dados
     include_once("conexao.php");
 
@@ -15,7 +23,13 @@
         <script>
             //alert("Registro salvo com sucesso");
             //Envia para outra página
-            window.location = "../FuncionarioCadastro.html";
+            if($logado){
+                window.location = "../criar/cadastrarFuncionario.php";
+            }
+            else{
+                window.location = "../index.php";
+            }
+            
 
             alert("Registro salvo com sucesso");
             //window.history.back();

@@ -15,7 +15,7 @@
         <script>
             alert("Registro salvo com sucesso");
             //Envia para outra página
-            window.location = "../responsavelCadastrar.php";
+            window.location = "../criar/cadastrarResponsavel.php";
             //window.history.back();
         </script>
 

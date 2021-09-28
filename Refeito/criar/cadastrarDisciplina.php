@@ -34,8 +34,8 @@
 
     <div class="divCentralizada" style="width: 750px;">
 
-        <form action="">
-            <label for="txtNome">Nome do aluno:</label>
+        <form action="../arquivosPHP/cadastrarDisciplina.php" method="POST">
+            <label for="txtNome">Nome:</label>
             <input type="text" name="txtNome" id="txtNome" class="input-text" required>
             <br><br>
 
