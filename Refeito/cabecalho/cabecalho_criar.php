@@ -1,4 +1,6 @@
-
+<?php
+    include_once '../dados_login.php';
+?>
 <link rel="stylesheet" href="../cabecalho/styleCabecalho.css">
 <link rel="stylesheet" href="cabecalho/styleCabecalho.css">
 <link rel="stylesheet" href="styleCabecalho.css">
@@ -10,7 +12,7 @@
             
             <!--<img src="imagens/logotipo.png" alt="Prefeitura de Ouro Branco" style="height: 70%;">-->
 
-            <a href="" class="logo">Olá, usuário</a>
+            <a href="" class="logo"><p><?php echo "Olá, {$_SESSION['usuario']}"; ?></p></a>
 
             <div class="mobile-menu">
                 <div class="line1"></div>

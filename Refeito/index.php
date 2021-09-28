@@ -1,3 +1,6 @@
+<?php
+    include_once 'dados_login.php';
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -6,21 +9,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <link rel="stylesheet" href="css/index.css">
-    
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body style="background-color: #1D6AE3;">
+    <?php
 
-    <div class="center" style="background-color: white;">
-        <img src="imagens/logo_PrefeituraOuroBranco.png" alt="Prefeitura de Ouro Branco" style="height: 300px;">
-        <br><br>
+        if(!$_SESSION['logged']){
+            
+            ?>
+                <div class="center" style="background-color: white;">
+                    <img src="imagens/logo_PrefeituraOuroBranco.png" alt="Prefeitura de Ouro Branco" style="height: 300px;">
+                    <br><br>
+                    
+                    <form action="dados_login.php" method="POST" style="text-align: center;">
+                        <input class="inserir" type="text" name="txtUsuario" id="txtUsuario" required autofocus placeholder="Email"><br><br>
+                        <input class="inserir" type="password" name="txtSenha" id="txtSenha" required placeholder="Senha"><br><br>
+
+                        <input class="botaoEntrar inserir" type="submit" name="Entrar" value="Entrar">
+                    </form>
+                </div>
+            <?php
         
-        <form action="menus.php" method="POST" style="text-align: center;">
-            <input class="inserir" type="text" name="txtUsuario" id="txtUsuario" required autofocus placeholder="Email"><br><br>
-            <input class="inserir" type="password" name="txtSenha" id="txtSenha" required placeholder="Senha"><br><br>
-
-            <input class="botaoEntrar inserir" type="submit" value="Entrar">
-        </form>
-    </div>
+        }
+        else{
+            header("Location: menus.php");
+            exit();
+        }
+        
+    ?>
+                
 
 </body>
 </html>

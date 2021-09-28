@@ -3,7 +3,7 @@
     $logged = $_SESSION['logged'] ?? null;
     if(!$logged){
         die();
-        header("Location: menus.php");
+        header("Location: index.php");
     }
 ?>
 <!DOCTYPE html>

@@ -1,5 +1,10 @@
 <?php
     include_once("../arquivosPHP/conexao.php");
+    include_once ('../dados_login.php');
+    $logged = $_SESSION['logged'] ?? null;
+    if(!$logged){
+        die(header("Location: ../index.php"));
+    }
 ?>
 
 <!DOCTYPE html>
@@ -19,7 +24,7 @@
 
 <body>
     <?php
-        include_once("../cabecalho/cabecalho_criar.html");
+        include_once("../cabecalho/cabecalho_criar.php");
     ?>
     <h1 style="text-align: center; margin-top: 20px;">Cadastrar responsável</h1>
     <br>

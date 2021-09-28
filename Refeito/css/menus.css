@@ -25,15 +25,17 @@ a{
     margin-bottom: 20px;
     
 }
-.link{
+button{
     text-align: center;
+    color: white;
     background-color: royalblue;
     border-radius: 20px;
     width: 300px;
     height: 60px;
     transition: 0.5s;
+    font-size: 1.3em;
 }
-.link:hover{
+button:hover{
     transition: 0.5s;
     background-color: #F6B931;
     cursor: pointer;
