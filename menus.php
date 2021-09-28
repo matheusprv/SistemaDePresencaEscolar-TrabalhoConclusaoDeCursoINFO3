@@ -18,9 +18,10 @@
     <link rel="stylesheet" href="geral.css">
     <link rel="stylesheet" href="cabecalho.css">
 
+
+
     <style>
         @media screen and (max-with:1000px) {
-
             .menu-lado,
             .opcoes {
                 margin-left: 0px;
@@ -35,6 +36,7 @@
     <?php
         include_once("cabecalho.php");
     ?>
+    
     <div class="divExterna">
         <div class="divInterna" style="border-radius: 25px;">
             <div class="conteudo">

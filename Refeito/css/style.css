@@ -126,3 +126,10 @@ select:hover{
     transition: 1s;
     color: rgb(243, 243, 243);
 }
+
+
+.scrollHorizontal{
+    width: 98%;
+    overflow-x: auto;
+    white-space: nowrap;
+}

@@ -31,7 +31,7 @@
             </li>
             <li class="lista-link">
                 <div class="link">
-                    <a class="link-texto" href="">Frequência</a> 
+                    <a class="link-texto" href="listar/frequencia.php">Frequência</a> 
                 </div>
             </li>
             <li class="lista-link">
@@ -41,17 +41,22 @@
             </li>
             <li class="lista-link">
                 <div class="link">
-                    <a class="link-texto" href="">Horários</a> 
+                    <a class="link-texto " href="listar/horarios.php">Horários</a> 
                 </div>
             </li>
             <li class="lista-link">
                 <div class="link">
-                    <a class="link-texto" href="">Resposnsavéis</a> 
+                    <a class="link-texto" href="listar/responsaveis.php">Resposnsavéis</a> 
                 </div>
             </li>
             <li class="lista-link">
                 <div class="link">
-                    <a class="link-texto" href="">Turmas</a> 
+                    <a class="link-texto" href="listar/turmas.php">Turmas</a> 
+                </div>
+            </li>
+            <li class="lista-link">
+                <div class="link">
+                    <a class="link-texto" href="">Usuário</a> 
                 </div>
             </li>
             <li class="lista-link">

@@ -67,7 +67,7 @@
                         <th>Email</th>
                         <th>Ações</th>
                     </tr>
-                </tr>
+                </thead>
                 <?php    
                     while($exibir = $funcionarios->fetch_assoc()){
                         ?>

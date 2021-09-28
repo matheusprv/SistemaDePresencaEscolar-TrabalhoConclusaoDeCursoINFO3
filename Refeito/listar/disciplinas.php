@@ -68,7 +68,7 @@
                         <th style="width: 10%;">Nº aulas</th>
                         <th style="width: 20%;">Ações</th>
                     </tr>
-                </tr>
+                </thead>
                 <?php
   
                     while($exibir = $disciplina->fetch_assoc()){

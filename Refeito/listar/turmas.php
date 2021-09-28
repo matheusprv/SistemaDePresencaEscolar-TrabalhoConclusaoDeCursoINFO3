@@ -67,7 +67,7 @@
                         <th>Ano</th>
                         <th>Ações</th>
                     </tr>
-                </tr>
+                </thead>
                 <?php
                     while($exibir = $turmas->fetch_assoc()){
                         ?>
