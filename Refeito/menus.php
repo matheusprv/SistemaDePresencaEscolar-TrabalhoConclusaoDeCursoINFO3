@@ -33,7 +33,7 @@
             </li>
 
             <li class="lista-link">
-                <a class="link-texto" href="listar/alunos.php"><button>Disciplina</button></a>
+                <a class="link-texto" href="listar/disciplinas.php"><button>Disciplina</button></a>
             </li>
 
             <li class="lista-link">

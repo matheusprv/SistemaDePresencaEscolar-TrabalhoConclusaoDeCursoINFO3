@@ -4,7 +4,11 @@
 
     $nome = $_POST["txtNome"];
     $email = $_POST["txtEmail"];
-    $senha = $_POST["txtSenha"];
+
+    //Criar senha aleatoria
+    $string = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    $senha = substr(str_shuffle($string),0,10);
+
 
     //Inserindo valores no banco
     $sql = "INSERT INTO Responsavel (nome, email, senha) VALUES ('$nome', '$email', '$senha')";

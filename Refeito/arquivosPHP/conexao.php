@@ -1,5 +1,4 @@
 <?php
-
     $servername = "200.18.128.50"; 
     $username = "presencaescolar"; 
     $password = "2021@Presencaescolar"; 

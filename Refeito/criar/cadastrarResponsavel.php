@@ -42,10 +42,11 @@
             <input type="email" name="txtEmail" id="txtEmail" class="input-text" required>
             <br><br>
 
+            <!--
             <label for="txtSenha">Senha:</label>
             <input type="password" name="txtSenha" id="txtSenha" class="input-text" style="margin-left: 10px; width: 86.7%;" required>
             <br><br>
-
+            -->
 
             <div style="text-align: center;">
                 <input type="submit" value="Adicionar" class="formBtn adicionar">

@@ -81,20 +81,20 @@ select:hover{
     border-radius: 10px;
     cursor: pointer;
 }
-.adicionar{
+input[type="submit"].adicionar{
     background-color: rgba(153, 205, 50, 0.459);
     border: none;
 }
-.adicionar :hover{
+input[type="submit"].adicionar:hover{
     background-color: rgb(153, 205, 50);
     transition: 0.4s;
 }
-.limpar{
+input[type="reset"].limpar{
     background-color: rgba(216, 19, 19, 0.589);
     border: none;
 }
-.limpar :hover{
-    background-color: rgba(255, 0, 0, 0.664);
+input[type=reset]:hover{
+    background-color: rgba(255, 0, 0, 0.856);
     transition: 0.4s;
 }
 

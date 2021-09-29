@@ -9,15 +9,14 @@
     $usuario = $_POST['txtUsuario'] ?? NULL;
     $senha = $_POST['txtSenha'] ?? NULL;
 
-    //Procurar dados no banco
-
+    
+    //Procurar usuário no banco de dados
     if(isset($_POST['Entrar'])){
         include_once("arquivosPHP/conexao.php");
         $sql = "SELECT * FROM Funcionario WHERE verificado = 1 AND email = '$usuario' ";
         $funcionarios = $conn->query($sql);
         $verificar = $funcionarios->fetch_assoc();
-
-
+        //Se encontrado, fazer login
         if($usuario == $verificar['email'] && $senha == $verificar['senha']){
             $_SESSION['usuario'] = $verificar['Nome'];
             $_SESSION['senha'] = $verificar["senha"];
@@ -28,20 +27,30 @@
             exit();
         }
         else{
-            echo "<p> Usuário não encontrado </p>";
+            ?>
+            <script>
+                /*
+                const errorElement = document.getElementById('error');
+
+                let messages = []
+                messages.push(' Email ou senha inválidos')
+                e.preventDefault();
+                errorElement.innerText = messages.join(', ');
+                */
+                
+            </script>
+            <?php
+            header("Location: indexErro.php");
+            exit();
+            
         }
     }
 
+    //Fazer logout
     if (isset($_GET['logout']) && $_GET['logout'] == 1) {
         $_SESSION = array();
         session_destroy();
-        header('Location: /');
+        header('Location: /index.php');
     }
-    /*
-    else if (isset($_GET['logout']) && $_GET['logout'] == 2) {
-        $_SESSION = array();
-        session_destroy();
-        header('Location: index.php');
-    }*/
     
 ?>

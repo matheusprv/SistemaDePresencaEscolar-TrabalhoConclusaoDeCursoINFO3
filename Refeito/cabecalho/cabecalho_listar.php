@@ -34,6 +34,6 @@
             </ul>
         </nav>
 
-    <script src="cabecalho/mobile-navbar.js"></script>
+    <script src="../cabecalho/mobile-navbar.js"></script>
 
 </body>

@@ -19,30 +19,24 @@
 
     //Executando o comando sql
     if($conn -> query($sql) === TRUE ){
-        ?>
-        <script>
-            //alert("Registro salvo com sucesso");
-            //Envia para outra página
-            if($logado){
-                window.location = "../criar/cadastrarFuncionario.php";
-            }
-            else{
-                window.location = "../index.php";
-            }
-            
+        
+        //Envia para a pagina inicial se não está logado
+        if($logado){
+            header("Location: ../criar/cadastrarFuncionario.php");
+            exit();
+        }
+        else{
+            header("Location: ../index.php");
+            exit();
+        }
 
-            alert("Registro salvo com sucesso");
-            //window.history.back();
-        </script>
-
-        <?php
     }
     else{
         ?>
         <script>
             alert("Erro ao inserir registro");
             //Envia para outra página
-            //window.history.back();
+            window.history.back();
         </script>
         
         <?php

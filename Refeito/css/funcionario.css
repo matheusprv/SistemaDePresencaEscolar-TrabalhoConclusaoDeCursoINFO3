@@ -1,0 +1,29 @@
+.respostasSenha{
+    background-color: #f8d7da;
+    text-align: center;
+    padding: 8px 0;
+    border-radius: 5px;
+    display: none;
+    font-size: 1.1em;
+}
+
+
+
+
+input[type=submit]{
+    cursor: no-drop;
+    background-color: rgba(153, 205, 50, 0.459);
+    border: none;
+}
+
+input[type=submit].active{
+    cursor: pointer;
+    opacity: 1;
+    transition: all 0.3s;
+}
+input[type=submit].active:hover{
+    background-color: rgb(153, 205, 50);
+    transition: 0.4s;
+}
+
+

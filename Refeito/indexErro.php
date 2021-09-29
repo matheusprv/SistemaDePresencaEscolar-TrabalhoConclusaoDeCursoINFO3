@@ -31,7 +31,6 @@
     }
 </script>
 
-
 <body style="background-color: #1D6AE3;">
     <?php
 
@@ -42,18 +41,22 @@
                     <img src="imagens/logo_PrefeituraOuroBranco.png" alt="Prefeitura de Ouro Branco" style="height: 300px;">
                     <br><br>
                     
-                    <form action="dados_login.php" method="POST" style="text-align: center;" class="formulario">
+                    <form action="dados_login.php" method="POST" style="text-align: center;">
                         <input class="inserir" type="text" name="txtUsuario" id="txtUsuario" required autofocus placeholder="Email"><br><br>
                         <!--
                         https://www.youtube.com/watch?v=kUpoxmSo82E&list=WL&index=8&ab_channel=CodingArtist
                         -->
                         <div class="wrapper">
                             <input class="inserir" type="password" name="txtSenha" id="txtSenha" placeholder="Senha">
-                            <span>
+                            <span style="top: 69.3%">
                                 <i class="fa fa-eye" aria-hidden="true" id="eye" onclick="toggle()"></i>
                             </span>
                         </div>
                         <br><br>
+
+                        <div style="color: red;">
+                            Email ou senha inválidos <br><br>
+                        </div>
 
                         <input class="botaoEntrar inserir" type="submit" name="Entrar" value="Entrar">
                     </form>
