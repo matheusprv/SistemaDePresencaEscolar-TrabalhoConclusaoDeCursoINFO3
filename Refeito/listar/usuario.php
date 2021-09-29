@@ -28,7 +28,7 @@
         include_once("../cabecalho/cabecalho_listar.php");
     ?>
 
-    <h1 style="text-align: center;"><?php echo "{$_SESSION['usuario']}"; ?></h1>
+    <h1 style="text-align: center; margin-top: 20px;"><?php echo "{$_SESSION['usuario']}"; ?></h1>
     <br>
     <form action="">
         <div class="divCentralizada" style="width: 750px;">

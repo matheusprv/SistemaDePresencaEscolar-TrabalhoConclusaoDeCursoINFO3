@@ -2,8 +2,9 @@
     include_once("../arquivosPHP/conexao.php");
     include_once ('../dados_login.php');
     $logged = $_SESSION['logged'] ?? null;
+    $logado = true;
     if(!$logged){
-        $logado =false;
+        $logado = false;
     }
 ?>
 
@@ -57,7 +58,7 @@
             
 
             <label for="txtSenha">Senha:</label>
-            <input type="password" name="txtSenha" id="txtSenha" class="input-text" style="margin-left: 10px; width: 87.9%;" required onkeyup="active()">
+            <input type="password" name="txtSenha" id="txtSenha" class="input-text" style="margin-left: 10px; width: 87.9%;" required onkeyup="senha1Escrita()">
             <br><br>
 
             <label for="txtSenhaConfirmar">Confirmar senha:</label>
@@ -82,7 +83,7 @@
         const respostaSenha = document.querySelector(".respostasSenha");
         const btn = document.querySelector("#botaoAdicionar");
 
-        function active(){
+        function senha1Escrita(){
             //Verifica se algo está escrito na primeira senha para depois liberar a escrita na segunda
             if(senha1.value.length >= 3){
                 //btn.removeAttribute("disabled", "");

@@ -2,6 +2,8 @@
     margin: 0;
     padding: 0;
 }
+
+
 a{
     text-decoration: none;
 }
@@ -58,14 +60,12 @@ nav{
 }
 
 @media (max-width: 1500px){
-    body{
-        overflow-y: hidden;
-    }
+    
     .nav-list{
         position:absolute;
         top: 8vh;
         right: 0;
-        width: 40vw;
+        width: 22vw;
         height: 92vh;
         background: #1D6AE3;
         flex-direction: column;
