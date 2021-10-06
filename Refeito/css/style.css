@@ -8,7 +8,6 @@
 body{
     font-family: Arial, Helvetica, sans-serif;
     font-size: 1em;
-    overflow-x: hidden;
 }
 
 .divExterna{
@@ -38,8 +37,7 @@ table, th, td{
     text-align: center;
 }
 table{
-    margin-top: 20px;
-    margin-bottom: 20px;
+    margin: 20px;
     width: 100%;
 }
 
@@ -61,11 +59,6 @@ table{
 label{
     font-size: 1.5em;
 }
-select{
-    padding-top: 5px;
-    padding-bottom: 5px;
-    padding-left: 7px;
-}
 input, select{
     font-size: 1.1em;
 }
@@ -76,8 +69,6 @@ select:hover{
     width: 100%; 
     cursor: text;
     padding-left: 10px;
-    padding-top: 5px;
-    padding-bottom: 5px;
 }
 
 .formBtn{

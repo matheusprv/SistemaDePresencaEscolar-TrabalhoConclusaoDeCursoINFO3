@@ -6,7 +6,7 @@
 <link rel="stylesheet" href="styleCabecalho.css">
 
 <body>
-        <nav id="navCabecalho">
+        <nav>
             <!--https://www.youtube.com/watch?v=bHRXRYTppHM&ab_channel=TigerCodes-->
 
             

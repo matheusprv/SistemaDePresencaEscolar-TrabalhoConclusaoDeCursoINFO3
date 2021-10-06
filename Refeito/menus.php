@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="css/menus.css">
 </head>
 
-<body class="corpo-menus imagem-menu" style="margin: 0;">
+<body class="corpo-menus" style="margin: 0;">
     <nav>
         <p><?php echo "Olá, {$_SESSION['usuario']}"; ?></p>
         <img src="imagens/logotipo.png" alt="Prefeitura de Ouro Branco" style="height: 80%;">
