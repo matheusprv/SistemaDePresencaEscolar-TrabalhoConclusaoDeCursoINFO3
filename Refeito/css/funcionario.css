@@ -5,6 +5,7 @@
     border-radius: 5px;
     display: none;
     font-size: 1.1em;
+    margin-bottom: 20px;
 }
 
 
@@ -26,4 +27,16 @@ input[type=submit].active:hover{
     transition: 0.4s;
 }
 
+/*Olho de verificar senha*/
+span{
+    position: relative;
+    bottom: 33px;
+    transform: translate(0, -50%);
+    left: 96.5%;
+    cursor: pointer;
+}
+.fa{
+    font-size: 1.1em;
+    color: black;
+}
 

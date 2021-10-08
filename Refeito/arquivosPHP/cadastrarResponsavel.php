@@ -10,30 +10,49 @@
     $senha = substr(str_shuffle($string),0,10);
 
 
-    //Inserindo valores no banco
-    $sql = "INSERT INTO Responsavel (nome, email, senha) VALUES ('$nome', '$email', '$senha')";
+    //verificar se o emai já está cadastrado
+    $sql = "SELECT * FROM Responsavel WHERE email = '$email' ";
+    $responsavel = $conn->query($sql);
+    $numeroDeResultados =  mysqli_num_rows($responsavel);
 
-    //Executando o comando sql
-    if($conn -> query($sql) === TRUE ){
+    if($numeroDeResultados>0){
         ?>
-        <script>
-            alert("Registro salvo com sucesso");
-            //Envia para outra página
-            window.location = "../criar/cadastrarResponsavel.php";
-            //window.history.back();
-        </script>
-
+            <script>
+                alert("ERRO! \nEmail já cadastrado");
+                window.history.back();
+                //const email = document.querySelector("#emailValidacao");
+                //email.style.display = "block";
+            </script>
         <?php
     }
     else{
-        ?>
-        <script>
-            alert("Erro ao inserir registro");
-            //Envia para outra página
-            //window.history.back();
-        </script>
-        
-        <?php
+        //Inserindo valores no banco
+        $sql = "INSERT INTO Responsavel (nome, email, senha) VALUES ('$nome', '$email', '$senha')";
+
+        //Executando o comando sql
+        if($conn -> query($sql) === TRUE ){
+            ?>
+            <script>
+                alert("Registro salvo com sucesso");
+                //Envia para outra página
+                window.location = "../criar/cadastrarResponsavel.php";
+                //window.history.back();
+            </script>
+
+            <?php
+        }
+        else{
+            ?>
+            <script>
+                alert("Erro ao inserir registro");
+                //Envia para outra página
+                //window.history.back();
+            </script>
+            
+            <?php
+        }
     }
+
+    
 
 ?>

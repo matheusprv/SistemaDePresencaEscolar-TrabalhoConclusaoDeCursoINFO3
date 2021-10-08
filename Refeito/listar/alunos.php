@@ -67,7 +67,7 @@
                 <table class="table table-bordered">
                 <thead class="thead-dark">
                     <tr>
-                        <th >Nome</th>
+                        <th>Nome</th>
                         <th>Nº Matrícula</th>
                         <th>Turma</th>
                         <th>Responsável</th>

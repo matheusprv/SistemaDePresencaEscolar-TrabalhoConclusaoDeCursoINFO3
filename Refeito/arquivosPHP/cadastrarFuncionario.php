@@ -14,32 +14,50 @@
     $email = $_POST["txtEmail"];
     $senha = $_POST["txtSenha"];
 
-    //Inserindo valores no banco
-    $sql = "INSERT INTO Funcionario (Nome, email, senha) VALUES ('$nome', '$email', '$senha')";
 
-    //Executando o comando sql
-    if($conn -> query($sql) === TRUE ){
-        
-        //Envia para a pagina inicial se não está logado
-        if($logado){
-            header("Location: ../criar/cadastrarFuncionario.php");
-            exit();
-        }
-        else{
-            header("Location: ../index.php");
-            exit();
-        }
+    //verificar se o emai já está cadastrado
+    $sql = "SELECT * FROM Funcionario WHERE email = '$email' ";
+    //$sql = "SELECT * FROM Funcionario WHERE verificado = 0";
+    $funcionarios = $conn->query($sql);
+    $numeroDeResultados =  mysqli_num_rows($funcionarios);
 
-    }
-    else{
+    if($numeroDeResultados>0){
         ?>
-        <script>
-            alert("Erro ao inserir registro");
-            //Envia para outra página
-            window.history.back();
-        </script>
-        
+            <script>
+                alert("ERRO! \nEmail já cadastrado");
+                window.history.back();
+                //const email = document.querySelector("#emailValidacao");
+                //email.style.display = "block";
+            </script>
         <?php
     }
+    else{
+        //Inserindo valores no banco
+        $sql = "INSERT INTO Funcionario (Nome, email, senha) VALUES ('$nome', '$email', '$senha')";
 
+        //Executando o comando sql
+        if($conn -> query($sql) === TRUE ){
+            //Continua na mesma tela
+            if($logado){
+                header("Location: ../criar/cadastrarFuncionario.php");
+                exit();
+            }
+            //Envia para a pagina inicial ao criar uma conta nova, se não está logado
+            else{
+                header("Location: ../index.php");
+                exit();
+            }
+
+        }
+        else{
+            ?>
+            <script>
+                alert("Erro ao inserir registro");
+                //Envia para outra página
+                window.history.back();
+            </script>
+            
+            <?php
+        }
+    }
 ?>

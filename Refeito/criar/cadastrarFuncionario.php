@@ -2,8 +2,9 @@
     include_once("../arquivosPHP/conexao.php");
     include_once ('../dados_login.php');
     $logged = $_SESSION['logged'] ?? null;
+    $logado = true;
     if(!$logged){
-        $logado =false;
+        $logado = false;
     }
 ?>
 
@@ -21,6 +22,8 @@
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../pesquisa/pesquisa.css">
     <link rel="stylesheet" href="../css/funcionario.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
 </head>
 
 <body style="margin: 0;">
@@ -51,14 +54,21 @@
 
             <label for="txtEmail">Email:</label>
             <input type="email" name="txtEmail" id="txtEmail" class="input-text" required>
+            <label style="font-size: medium; color: red; display: none;" class="emailValidacao" id="emailValidacao">Email em uso</label>
             <br><br>
 
             <div class="respostasSenha">O usuário saberá se a senha está correta<br></div>
             
-
             <label for="txtSenha">Senha:</label>
-            <input type="password" name="txtSenha" id="txtSenha" class="input-text" style="margin-left: 10px; width: 87.9%;" required onkeyup="active()">
-            <br><br>
+            <br>
+            <label for="" style="font-size: medium; font-weight: bold;">Tamano máximo: 10 caracteres</label>
+            <div class="wrapper">        
+                <input type="password" name="txtSenha" id="txtSenha" class="input-text" style="width: 100%;" required value="" onkeyup="senha1Escrita(); verificarSenhas()" maxlength="10">
+                <span>
+                    <i class="fa fa-eye" aria-hidden="true" id="eye" onclick="toggle()"></i>
+                </span>
+            </div>
+ 
 
             <label for="txtSenhaConfirmar">Confirmar senha:</label>
             <input type="password" name="txtSenhaConfirmar" id="txtSenhaConfirmar" class="input-text" style="margin-left: 10px; width: 72.5%;" required disabled onkeyup="verificarSenhas()"> 
@@ -82,7 +92,7 @@
         const respostaSenha = document.querySelector(".respostasSenha");
         const btn = document.querySelector("#botaoAdicionar");
 
-        function active(){
+        function senha1Escrita(){
             //Verifica se algo está escrito na primeira senha para depois liberar a escrita na segunda
             if(senha1.value.length >= 3){
                 //btn.removeAttribute("disabled", "");
@@ -118,6 +128,21 @@
                 }
             }
             
+        }
+
+        //Ver senha
+        var state = false;
+        function toggle(){
+            if(state){
+                document.getElementById("txtSenha").setAttribute("type", "password");
+                document.getElementById("eye").style.color="#7a797e";
+                state = false;
+            }
+            else{
+                document.getElementById("txtSenha").setAttribute("type", "text");
+                document.getElementById("eye").style.color="#5887ef";
+                state = true;
+            }
         }
     </script>
 

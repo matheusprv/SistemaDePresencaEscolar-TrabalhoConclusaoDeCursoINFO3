@@ -2,3 +2,46 @@ h1{
     margin-top: 20px;
     margin-bottom: 10px;
 }
+
+
+.respostasSenha{
+    background-color: #f8d7da;
+    text-align: center;
+    padding: 8px 0;
+    border-radius: 5px;
+    display: none;
+    font-size: 1.1em;
+    margin-bottom: 20px;
+}
+
+
+
+
+input[type=submit]{
+    cursor: no-drop;
+    background-color: rgba(153, 205, 50, 0.459);
+    border: none;
+}
+
+input[type=submit].active{
+    cursor: pointer;
+    opacity: 1;
+}
+input[type=submit].active:hover{
+    background-color: rgb(153, 205, 50);
+}
+
+
+/*Olho de verificar senha*/
+span{
+    position: relative;
+    bottom: 33px;
+    transform: translate(0, -50%);
+    left: 96.5%;
+    cursor: pointer;
+}
+.fa{
+    font-size: 1.1em;
+    color: black;
+}
+

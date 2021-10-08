@@ -6,8 +6,12 @@
     $turma = $_POST["listTurma"];
     $responsavel = $_POST["txtResponsavel"];
 
+    //Criar senha aleatoria
+    $string = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    $senha = substr(str_shuffle($string),0,10);
+
     //Inserindo valores no banco
-    $sql = "INSERT INTO Aluno (Responsavel_id, Turma_idTurma, nome, senha) VALUES ($responsavel, $turma, '$nome', '123456')";
+    $sql = "INSERT INTO Aluno (Responsavel_id, Turma_idTurma, nome, senha) VALUES ($responsavel, $turma, '$nome', ' $senha')";
     print($sql);
     //Executando o comando sql
     if($conn -> query($sql) === TRUE ){
