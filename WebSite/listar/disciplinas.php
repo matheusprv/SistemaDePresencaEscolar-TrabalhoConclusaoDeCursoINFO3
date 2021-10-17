@@ -15,7 +15,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Disciplinas</title>
-
+    <link rel="icon" href="../imagens/icone_PrefeituraOuroBranco.png">
 
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../pesquisa/pesquisa.css">
@@ -30,7 +30,7 @@
     <br>
 
     <?php
-        include_once("../pesquisa/pesquisa.html");
+        include_once("../filtroPesquisa/pesquisa.html");
         echo "<br>"
     ?>
 
@@ -93,7 +93,7 @@
                             </td>
                             <td>
                                 <input type="submit" value="Editar" class="botaoEditar editarDeletar">
-                                <input type="submit" value="Deletar"  class="botaoDeletar editarDeletar">
+                                <input type="submit" value="Deletar"  class="botaoDeletar editarDeletar" onclick="confirmarExclusao('<?php echo $exibir["idDisciplina"]?>', '<?php echo $exibir["nome"]?>')">
                             </td>
                         </tr>
                         <?php
@@ -127,6 +127,12 @@
     
 
 </body>
-
+<script>
+    function confirmarExclusao(idDisciplina, nome){
+        if(window.confirm("Deseja realmente excluir o registro: \nDisciplina: "+idDisciplina+"\nNome: " + nome)){
+            window.location = "../deletar/deletarDisciplinas.php?idDisciplina=" + idDisciplina;
+        }
+    }
+</script>
 
 </html>

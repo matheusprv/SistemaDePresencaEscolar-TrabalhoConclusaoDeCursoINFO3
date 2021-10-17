@@ -8,6 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
+    <link rel="icon" href="imagens/icone_PrefeituraOuroBranco.png">
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -39,7 +40,7 @@
             
             ?>
                 <div class="center" style="background-color: white;">
-                    <img src="imagens/logo_PrefeituraOuroBranco.png" alt="Prefeitura de Ouro Branco" style="height: 300px;">
+                    <img src="imagens/PresencaEscolar_PrefeituraOuroBranco.png" alt="Prefeitura de Ouro Branco" style="height: 300px;">
                     <br><br>
                     
                     <form action="dados_login.php" method="POST" style="text-align: center;" class="formulario">

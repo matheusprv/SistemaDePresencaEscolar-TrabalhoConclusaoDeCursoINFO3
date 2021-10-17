@@ -36,17 +36,25 @@
         <div class="divCentralizada" style="width: 750px;">
             <label for="txtNome">Nome:</label>
             <!--<input type="text" name="txtNome" id="txtNome" class="input-text" required value="<?php echo "{$_SESSION['usuario']}"; ?>">-->
-            <input type="text" name="txtNome" id="txtNome" class="input-text" required value="" readonly>
+            <input type="text" name="txtNome" id="txtNome" class="input-text" required value="<?php echo "{$_SESSION['usuario']}"; ?>" readonly>
             <br><br>
 
             <label for="txtEmail">Email:</label>
             <!--<input type="email" name="txtEmail" id="txtEmail" class="input-text" required value="<?php echo "{$_SESSION['email']}"; ?>">-->
-            <input type="email" name="txtEmail" id="txtEmail" class="input-text" required value="" readonly>
+            <input type="email" name="txtEmail" id="txtEmail" class="input-text" required value="<?php echo "{$_SESSION['email']}"; ?>" readonly>
             <br><br>
+
+
+            <label for="txtSenha">Senha atual:</label><br>
+            <!--<input type="password" name="txtSenha" id="txtSenha" class="input-text" style="width: 100%;" required value="<?php echo "{$_SESSION['senha']}"; ?>">-->
+            <div class="wrapper">        
+                <input type="password" name="txtSenhaAtual" id="txtSenhaAtual" class="input-text" style="width: 100%;" required value="" onkeyup="verificarSenhas()" maxlength="10" placeholder="Digite sua senha atual para alterá-la">
+            </div>
+            <br>
 
             <div class="respostasSenha">O usuário saberá se a senha está correta<br></div>
 
-            <label for="txtSenha">Senha:</label><br>
+            <label for="txtSenha">Nova senha:</label><br>
             <label for="" style="font-size: medium; font-weight: bold;">Tamano máximo: 10 caracteres</label>
             <!--<input type="password" name="txtSenha" id="txtSenha" class="input-text" style="width: 100%;" required value="<?php echo "{$_SESSION['senha']}"; ?>">-->
             <div class="wrapper">        
@@ -56,7 +64,6 @@
                 </span>
             </div>
                         
-
             <div class="confirmarSenha" >
                 <label for="txtSenha">Confirmar senha:</label>
                 <!--<input type="password" name="txtSenha" id="txtSenha" class="input-text" style="width: 100%;" required value="<?php echo "{$_SESSION['senha']}"; ?>">-->
@@ -74,6 +81,7 @@
     </div>
     
     <script>
+        const senha1 = document.querySelector("#txtSenhaAtual");
         const senha1 = document.querySelector("#txtSenha");
         const senha2 = document.querySelector("#txtSenhaConfirmar");
         const respostaSenha = document.querySelector(".respostasSenha");
@@ -101,6 +109,7 @@
                 }
             }
         }
+
 
         //Ver senha
         var state = false;

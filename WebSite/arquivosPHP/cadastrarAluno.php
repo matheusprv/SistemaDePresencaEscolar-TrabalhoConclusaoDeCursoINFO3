@@ -12,7 +12,7 @@
 
     //Inserindo valores no banco
     $sql = "INSERT INTO Aluno (Responsavel_id, Turma_idTurma, nome, senha) VALUES ($responsavel, $turma, '$nome', ' $senha')";
-    print($sql);
+
     //Executando o comando sql
     if($conn -> query($sql) === TRUE ){
         ?>
