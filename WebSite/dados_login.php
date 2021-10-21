@@ -12,7 +12,7 @@
     
     //Procurar usuário no banco de dados
     if(isset($_POST['Entrar'])){
-        include_once("arquivosPHP/conexao.php");
+        include_once("conexao.php");
         $sql = "SELECT * FROM Funcionario WHERE verificado = 1 AND email = '$usuario' ";
         $funcionarios = $conn->query($sql);
         $verificar = $funcionarios->fetch_assoc();

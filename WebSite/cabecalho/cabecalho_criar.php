@@ -22,14 +22,14 @@
 
             <ul class="nav-list">
                 <li><a class="link-cabecalho" href="../menus.php" >Menus</a></li>
-                <li><a class="link-cabecalho" href="../listar/alunos.php" >Alunos</a></li>
-                <li><a class="link-cabecalho" href="../listar/disciplinas.php" >Disciplinas</a></li>
-                <li><a class="link-cabecalho" href="../listar/frequencia.php" >Frequência</a></li>
-                <li><a class="link-cabecalho" href="../listar/funcionarios.php" >Funcionários</a></li>
-                <li><a class="link-cabecalho" href="../listar/horarios.php" >Horário</a></li>
-                <li><a class="link-cabecalho" href="../listar/responsaveis.php" >Responsável</a></li>
-                <li><a class="link-cabecalho" href="../listar/turmas.php" >Turmas</a></li>
-                <li><a class="link-cabecalho" href="../listar/usuario.php" >Usuário</a></li>
+                <li><a class="link-cabecalho" href="../tela_listar/alunos.php" >Alunos</a></li>
+                <li><a class="link-cabecalho" href="../tela_listar/disciplinas.php" >Disciplinas</a></li>
+                <li><a class="link-cabecalho" href="../tela_listar/frequencia.php" >Frequência</a></li>
+                <li><a class="link-cabecalho" href="../tela_listar/funcionarios.php" >Funcionários</a></li>
+                <li><a class="link-cabecalho" href="../tela_listar/horarios.php" >Horário</a></li>
+                <li><a class="link-cabecalho" href="../tela_listar/responsaveis.php" >Responsável</a></li>
+                <li><a class="link-cabecalho" href="../tela_listar/turmas.php" >Turmas</a></li>
+                <li><a class="link-cabecalho" href="../tela_listar/usuario.php" >Usuário</a></li>
                 <li><a class="link-cabecalho" href ="?logout=1"  id="sair">Sair</a></li>
             </ul>
         </nav>

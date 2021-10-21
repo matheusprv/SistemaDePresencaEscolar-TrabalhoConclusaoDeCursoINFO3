@@ -30,35 +30,35 @@
     <div class="centro">
         <ul>
             <li class="lista-link">
-                <a class="link-texto" href="listar/alunos.php" style="width: 100%;"><button>Alunos</button></a>
+                <a class="link-texto" href="tela_listar/alunos.php" style="width: 100%;"><button>Alunos</button></a>
             </li>
 
             <li class="lista-link">
-                <a class="link-texto" href="listar/disciplinas.php"><button>Disciplina</button></a>
+                <a class="link-texto" href="tela_listar/disciplinas.php"><button>Disciplina</button></a>
             </li>
 
             <li class="lista-link">
-                <a class="link-texto" href="listar/frequencia.php"><button>Frequência</button></a>
+                <a class="link-texto" href="tela_listar/frequencia.php"><button>Frequência</button></a>
             </li>
 
             <li class="lista-link">
-                <a class="link-texto" href="listar/funcionarios.php"><button>Funcionários</button></a>
+                <a class="link-texto" href="tela_listar/funcionarios.php"><button>Funcionários</button></a>
             </li>
 
             <li class="lista-link">
-                <a class="link-texto " href="listar/horarios.php"><button>Horários</button></a>
+                <a class="link-texto " href="tela_listar/horarios.php"><button>Horários</button></a>
             </li>
 
             <li class="lista-link">
-                <a class="link-texto" href="listar/responsaveis.php"><button>Responsáveis</button></a>
+                <a class="link-texto" href="tela_listar/responsaveis.php"><button>Responsáveis</button></a>
             </li>
 
             <li class="lista-link">
-                <a class="link-texto" href="listar/turmas.php"><button>Turmas</button></a>
+                <a class="link-texto" href="tela_listar/turmas.php"><button>Turmas</button></a>
             </li>
 
             <li class="lista-link">
-                <a class="link-texto" href="listar/usuario.php"><button>Usuário</button></a>
+                <a class="link-texto" href="tela_listar/usuario.php"><button>Usuário</button></a>
             </li>
 
             <li class="lista-link">
