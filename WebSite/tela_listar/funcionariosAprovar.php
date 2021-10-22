@@ -14,11 +14,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Funcionários</title>
+    <title>Aprovar funcionários</title>
     <link rel="icon" href="../imagens/icone_PrefeituraOuroBranco.png">
 
     <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../filtroPesquisa/pesquisa.css">
         
 </head>
 
@@ -26,7 +25,7 @@
     <?php
         include_once("../cabecalho/cabecalho_listar.php");
     ?>
-    <h1 style="text-align: center; margin-top: 20px;">Funcionários</h1>
+    <h1 style="text-align: center; margin-top: 20px;"> Aprovar funcionários</h1>
     <br>
 
     <?php
@@ -83,8 +82,8 @@
                                 <?php echo $exibir["email"]?>
                             </td>
                             <td>
-                                <input type="submit" value="Aprovar" class="botaoEditar editarDeletar">
-                                <input type="submit" value="Deletar"  class="botaoDeletar editarDeletar">
+                                <input type="submit" value="Aprovar" class="botaoEditar editarDeletar" onclick="confirmarAprovação('<?php echo $exibir["id"]?>', '<?php echo $exibir["email"]?>', '<?php echo $exibir["Nome"]?>')">
+                                <input type="submit" value="Deletar"  class="botaoDeletar editarDeletar" onclick="confirmarExclusao('<?php echo $exibir["id"]?>', '<?php echo $exibir["email"]?>', '<?php echo $exibir["Nome"]?>')">
                             </td>
                         </tr>
                         <?php
@@ -116,9 +115,21 @@
             <a href="../tela_criar/cadastrarFuncionario.php" class="botaoCadastro">Adicionar funcionário</a>
         </div>
     </div>
-    
 
 </body>
+
+<script>
+    function confirmarExclusao(id, email, nome){
+        if(window.confirm("Deseja realmente excluir o registro: \nEmail: "+email+"\nNome: " + nome)){
+            window.location = "../php_deletar/deletarFuncionario.php?id=" + id +"&telaAprovar=1";
+        }
+    }
+    function confirmarAprovação(id, email, nome){
+        if(window.confirm("Deseja realmente aprovar o registro: \nEmail: "+email+"\nNome: " + nome)){
+            window.location = "../php_atualizar/atualizarAprovarFuncionario.php?id=" + id ;
+        }
+    }
+</script>
 
 
 </html>

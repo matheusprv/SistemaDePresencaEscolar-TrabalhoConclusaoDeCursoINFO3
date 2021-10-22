@@ -18,7 +18,6 @@
     <link rel="icon" href="../imagens/icone_PrefeituraOuroBranco.png">
 
     <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../filtroPesquisa/pesquisa.css">
 
 </head>
 
@@ -91,6 +90,9 @@
                             <th>Sexta-feira</th>
                         </tr>
                         <?php   
+
+                            $arrayOpcoesSelect = array();
+                            
                             for ($i=1; $i <= 5 ; $i++) { 
                                 ?>
                                 <tr>
@@ -145,7 +147,7 @@
         var arrayValores = [];
         
         //Loop por cada linha da tabela após o cabeçalho
-        for (i = 1; i < tabela.rows.length; i++){
+        for (i = 2; i < tabela.rows.length; i++){
             //Pegar dados das celulas da linha atual 
             var celulas = tabela.rows.item(i).cells;
 
@@ -154,7 +156,7 @@
                 if(j>1){
                     let select = document.getElementById('disciplinaEscolhida');
                     let value = select.options[select.selectedIndex].value;
-                    info.innerHTML = info.innerHTML + ' - ' + value;
+                    info.innerHTML = info.innerHTML  + value + ' - ';
                 }
             }
             

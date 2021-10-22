@@ -11,7 +11,7 @@ a{
     color: #fff;
     text-decoration: none;
     transition:  0.3s;
-    font-size: 1em!important;
+    font-size: 1.2em!important;
 }
 .link-cabecalho:hover{
     opacity: 0.3;

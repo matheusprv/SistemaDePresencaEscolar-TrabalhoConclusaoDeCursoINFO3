@@ -18,8 +18,6 @@
     <link rel="icon" href="../imagens/icone_PrefeituraOuroBranco.png">
     
     <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../filtroPesquisa/pesquisa.css">
-    <link rel="stylesheet" href="../cabecalho/styleCabecalho.css">
     <link rel="stylesheet" href="../css/usuario.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>

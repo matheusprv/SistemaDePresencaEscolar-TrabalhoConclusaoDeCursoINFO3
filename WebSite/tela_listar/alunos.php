@@ -16,9 +16,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alunos</title>
     <link rel="icon" href="../imagens/icone_PrefeituraOuroBranco.png">
-    <link rel="stylesheet" href="../cabecalho/styleCabecalho.css">
+    
     <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../filtroPesquisa/pesquisa.css">
+    
         
 </head>
 

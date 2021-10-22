@@ -18,8 +18,6 @@
     <link rel="icon" href="../imagens/icone_PrefeituraOuroBranco.png">
     
     <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../filtroPesquisa/pesquisa.css">
-    <link rel="stylesheet" href="../cabecalho/styleCabecalho.css">
     
 </head>
 
@@ -123,8 +121,7 @@
 <script>
     function confirmarExclusao(id, email, nome){
         if(window.confirm("Deseja realmente excluir o registro: \nEmail: "+email+"\nNome: " + nome)){
-            alert(id)
-            window.location = "../php_deletar/deletarFuncionario.php?id=" +id;
+            window.location = "../php_deletar/deletarFuncionario.php?id=" +id+"&telaAprovar=0";
         }
     }
 </script>

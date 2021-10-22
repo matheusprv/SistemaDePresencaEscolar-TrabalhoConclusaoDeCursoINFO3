@@ -35,7 +35,7 @@ input[type=submit].active:hover{
 /*Olho de verificar senha*/
 span{
     position: relative;
-    bottom: 33px;
+    bottom: 28px;
     transform: translate(0, -50%);
     left: 96.5%;
     cursor: pointer;

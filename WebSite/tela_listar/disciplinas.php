@@ -18,7 +18,6 @@
     <link rel="icon" href="../imagens/icone_PrefeituraOuroBranco.png">
 
     <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../filtroPesquisa/pesquisa.css">
         
 </head>
 
