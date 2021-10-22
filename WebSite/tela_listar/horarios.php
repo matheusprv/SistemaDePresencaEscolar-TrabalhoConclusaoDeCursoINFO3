@@ -75,7 +75,7 @@
 
         <form>
             <div class="scrollHorizontal">
-                <table class="table-bordered" style="width: 98%; margin-left: 15px;">
+                <table class="table-bordered" id="tabelaHorarios"style="width: 98%; margin-left: 15px;">
                     <thead class="thead-dark">
                         <tr>
                             <th colspan="2">Horários</th>
@@ -90,7 +90,7 @@
                             <th>Quinta-feira</th>
                             <th>Sexta-feira</th>
                         </tr>
-                        <?php                       
+                        <?php   
                             for ($i=1; $i <= 5 ; $i++) { 
                                 ?>
                                 <tr>
@@ -124,14 +124,46 @@
                     </thead>
                 </table>
             </div>
-
+            <div style="text-align: center;">
+                
+                <input type="submit" value="Adicionar" class="formBtn adicionar" onclick="recuperarDadosTabela()">
+                <input type="reset" value="Limpar" class="formBtn limpar">
+            </div>
         </form>
-        
-
+        <button onclick="recuperarDadosTabela()">Adicionar </button>
+        <p id="info"></p>
     </div>
 
-
 </body>
+
+<script>
+    function recuperarDadosTabela(){
+        //https://www.encodedna.com/javascript/practice-ground/default.htm?pg=read_data_from_an_table_in_javascript  (21/10/2021)
+        //https://ricardometring.com/getting-the-value-of-a-select-in-javascript (21/10/2021)
+        document.getElementById('info').innerHTML = "";
+        var tabela = document.getElementById('tabelaHorarios');
+        var arrayValores = [];
+        
+        //Loop por cada linha da tabela após o cabeçalho
+        for (i = 1; i < tabela.rows.length; i++){
+            //Pegar dados das celulas da linha atual 
+            var celulas = tabela.rows.item(i).cells;
+
+            //Ler os valores de cada célula da linha atual
+            for (var j = 0; j < celulas.length; j++) {
+                if(j>1){
+                    let select = document.getElementById('disciplinaEscolhida');
+                    let value = select.options[select.selectedIndex].value;
+                    info.innerHTML = info.innerHTML + ' - ' + value;
+                }
+            }
+            
+        }
+        
+    }
+</script>
+
+
 
 
 </html>

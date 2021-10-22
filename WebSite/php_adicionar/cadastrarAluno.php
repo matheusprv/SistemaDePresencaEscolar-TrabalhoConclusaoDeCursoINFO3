@@ -1,6 +1,6 @@
 <?php
     //Incluindo arquivo de conexão com o banco de dados
-    include_once("conexao.php");
+    include_once("../conexao.php");
 
     $nome = $_POST["txtNome"];
     $turma = $_POST["listTurma"];
@@ -18,8 +18,7 @@
         ?>
         <script>
             alert("Registro salvo com sucesso");
-            //Envia para outra página
-            //window.location = "cadPessoa.php";
+            window.location = "../tela_criar/cadastrarAluno.php";
         </script>
 
         <?php
@@ -29,8 +28,7 @@
         ?>
         <script>
             alert("Erro ao inserir registro");
-            //Envia para outra página
-            //window.history.back();
+            window.location = "../tela_criar/cadastrarAluno.php";
         </script>
         
         <?php

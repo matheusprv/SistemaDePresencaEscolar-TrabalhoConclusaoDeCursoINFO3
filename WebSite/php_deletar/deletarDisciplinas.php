@@ -1,5 +1,5 @@
 <?php
-    include_once("../arquivosPHP/conexao.php");
+    include_once("../conexao.php");
 
     //verificar se foi setado algum valor para a exclusao
     if(isset($_GET["idDisciplina"])){
@@ -10,15 +10,15 @@
             ?>
                 <script>
                     alert("Registro excluído com sucesso")
-                    window.location= "../listar/disciplinas.php"
+                    window.location= "../tela_listar/disciplinas.php"
                 </script>
             <?php
         }
         else{
             ?>
                 <script>
-                    //alert("Erro ao excluir o registro")
-                    //window.location= "../listar/disciplinas.php"
+                    alert("Erro ao excluir o registro")
+                    window.location= "../tela_listar/disciplinas.php"
                 </script>
             <?php
         }

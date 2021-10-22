@@ -1,0 +1,15 @@
+Sessão:
+https://www.youtube.com/watch?v=Gc72ZYSZPSc&t=1632s&ab_channel=Ot%C3%A1vioMiranda (20/09/2021)
+
+Cabeçalho:
+https://www.youtube.com/watch?v=bHRXRYTppHM (16/09/2021)
+
+Filtro de pesquisa:
+https://www.youtube.com/watch?v=UOGvJhvLUg0&ab_channel=CodingMarket (25/09/2021)
+
+Confirmar senha no login:
+https://www.youtube.com/watch?v=J-P_rzGb9-A&t=0s&ab_channel=CodingNepal (28/09/2021)
+https://www.youtube.com/watch?v=wqlxbPJV_NM&ab_channel=CodingNepal (28/09/2021)
+
+Saber se a sessão está logada
+https://stackoverflow.com/questions/6249707/check-if-php-session-has-already-started (21/10/2021)

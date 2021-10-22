@@ -1,6 +1,6 @@
 <?php
     //Incluindo arquivo de conexão com o banco de dados
-    include_once("conexao.php");
+    include_once("../conexao.php");
 
     $nome = $_POST["txtNome"];
     $professor = $_POST["txtProf"];

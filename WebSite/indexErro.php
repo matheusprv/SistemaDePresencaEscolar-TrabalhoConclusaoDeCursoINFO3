@@ -63,7 +63,7 @@
                     </form>
                     <br>
                     <div style="margin: 0 auto; text-align: center;">
-                        <a href="criar/cadastrarFuncionario.php">Cadastrar</a>
+                        <a href="tela_criar/cadastrarFuncionario.php">Cadastrar</a>
                     </div>
                 </div>
                 

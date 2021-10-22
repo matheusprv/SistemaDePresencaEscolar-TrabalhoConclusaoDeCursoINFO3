@@ -46,7 +46,7 @@
 
     <div class="divCentralizada" style="width: 750px;">
 
-        <form action="../arquivosPHP/cadastrarFuncionario.php" method="POST">
+        <form action="../php_adicionar/cadastrarFuncionario.php" method="POST">
             <label for="txtNome">Nome:</label>
             <input type="text" name="txtNome" id="txtNome" class="input-text" required>
             <br><br>
@@ -70,7 +70,7 @@
  
 
             <label for="txtSenhaConfirmar">Confirmar senha:</label>
-            <input type="password" name="txtSenhaConfirmar" id="txtSenhaConfirmar" class="input-text" style="margin-left: 10px; width: 72.5%;" required disabled onkeyup="verificarSenhas()"> 
+            <input type="password" name="txtSenhaConfirmar" id="txtSenhaConfirmar" class="input-text" style="width: 100%;" required disabled onkeyup="verificarSenhas()"> 
             <br><br>
 
 
@@ -94,8 +94,6 @@
         function senha1Escrita(){
             //Verifica se algo está escrito na primeira senha para depois liberar a escrita na segunda
             if(senha1.value.length >= 3){
-                //btn.removeAttribute("disabled", "");
-                //btn.classList.add('active');
                 senha2.removeAttribute("disabled", "")
             }
             else{

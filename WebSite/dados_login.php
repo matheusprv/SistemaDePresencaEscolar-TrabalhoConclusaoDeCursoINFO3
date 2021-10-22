@@ -48,10 +48,16 @@
 
     //Fazer logout
     if (isset($_GET['logout']) && $_GET['logout'] == 1) {
+        ?>
+            <script>
+                alert("Logout 1")
+            </script>
+        <?php
         $_SESSION = array();
         session_destroy();
         header('Location: /index.php');
     }
+
 
     
 ?>

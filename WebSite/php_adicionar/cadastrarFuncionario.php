@@ -3,12 +3,9 @@
     //Verificar se o usuário está logado ou se é um novo
     include_once ('../dados_login.php');
     $logged = $_SESSION['logged'] ?? null;
-    if(!$logged){
-        $logado =false;
-    }
 
     //Incluindo arquivo de conexão com o banco de dados
-    include_once("conexao.php");
+    include_once("../conexao.php");
 
     $nome = $_POST["txtNome"];
     $email = $_POST["txtEmail"];
@@ -26,8 +23,6 @@
             <script>
                 alert("ERRO! \nEmail já cadastrado");
                 window.history.back();
-                //const email = document.querySelector("#emailValidacao");
-                //email.style.display = "block";
             </script>
         <?php
     }
@@ -37,15 +32,14 @@
 
         //Executando o comando sql
         if($conn -> query($sql) === TRUE ){
-            //Continua na mesma tela
-            if($logado){
-                header("Location: ../criar/cadastrarFuncionario.php");
-                exit();
-            }
             //Envia para a pagina inicial ao criar uma conta nova, se não está logado
-            else{
+            if(session_status() === PHP_SESSION_NONE){
                 header("Location: ../index.php");
                 exit();
+            }
+            
+            else{
+                header("Location: ../tela_criar/cadastrarFuncionario.php");
             }
 
         }
@@ -53,7 +47,6 @@
             ?>
             <script>
                 alert("Erro ao inserir registro");
-                //Envia para outra página
                 window.history.back();
             </script>
             
