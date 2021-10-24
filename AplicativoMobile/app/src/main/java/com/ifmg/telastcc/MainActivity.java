@@ -13,6 +13,8 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import objetos.Disciplina;
+
 public class MainActivity extends AppCompatActivity {
     private Button login;
     private EditText emailMatricula, senhaUsuario;

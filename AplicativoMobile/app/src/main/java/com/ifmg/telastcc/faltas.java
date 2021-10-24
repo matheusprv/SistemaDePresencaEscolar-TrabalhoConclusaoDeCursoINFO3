@@ -7,10 +7,19 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ListView;
+
+import java.util.ArrayList;
+
+import objetos.Disciplina;
 
 public class faltas extends AppCompatActivity {
     private Button horariosBtn, usuarioBtn;
     private ImageButton sairBtn;
+    private ListView listaPresenca;
+
+    private ArrayList<Disciplina> disciplinas;
+    private lista_presenca_disciplina adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,11 +29,14 @@ public class faltas extends AppCompatActivity {
         //Criando Link entre componentes java e XML
         horariosBtn = (Button) findViewById(R.id.horaiosBtn);
         usuarioBtn = (Button) findViewById(R.id.usuarioBtn);
+        listaPresenca = (ListView) findViewById(R.id.listaPresenca);
 
         sairBtn = (ImageButton) findViewById(R.id.sairBtn);
 
         //Implementa eventos dos botões
         eventos();
+
+        carregaDisciplinasFaltas();
     }
     private void eventos(){
         //Ir para a tela de horários
@@ -65,6 +77,21 @@ public class faltas extends AppCompatActivity {
     private void sair(){
         Intent sair = new Intent(this, MainActivity.class);
         startActivity(sair);
+    }
+
+    private void carregaDisciplinasFaltas(){
+        disciplinas = new ArrayList<>();
+
+        disciplinas.add(new Disciplina ("Matemática", 0));
+        disciplinas.add(new Disciplina ("Português", 1));
+        disciplinas.add(new Disciplina ("História", 2));
+        disciplinas.add(new Disciplina ("Geografia", 0));
+        disciplinas.add(new Disciplina ("Inglês", 1));
+        disciplinas.add(new Disciplina ("Filosofia", 2));
+
+        adapter = new lista_presenca_disciplina(getApplicationContext(), disciplinas);
+        listaPresenca.setAdapter(adapter);
+
     }
 
 }
