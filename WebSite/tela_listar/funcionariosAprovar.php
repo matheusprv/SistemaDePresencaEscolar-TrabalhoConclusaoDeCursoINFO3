@@ -3,7 +3,7 @@
     include_once ('../dados_login.php');
     $logged = $_SESSION['logged'] ?? null;
     if(!$logged){
-        die(header("Location: /..index"));
+        die(header("Location: ../index"));
     }
 ?>
 
@@ -116,20 +116,19 @@
         </div>
     </div>
 
+    <script>
+        function confirmarExclusao(id, email, nome){
+            if(window.confirm("Deseja realmente excluir o registro: \nEmail: "+email+"\nNome: " + nome)){
+                window.location = "../php_deletar/deletarFuncionario.php?id=" + id +"&telaAprovar=1";
+            }
+        }
+        function confirmarAprovação(id, email, nome){
+            if(window.confirm("Deseja realmente aprovar o registro: \nEmail: "+email+"\nNome: " + nome)){
+                window.location = "../php_atualizar/atualizarAprovarFuncionario.php?id=" + id ;
+            }
+        }
+    </script>
+
 </body>
-
-<script>
-    function confirmarExclusao(id, email, nome){
-        if(window.confirm("Deseja realmente excluir o registro: \nEmail: "+email+"\nNome: " + nome)){
-            window.location = "../php_deletar/deletarFuncionario.php?id=" + id +"&telaAprovar=1";
-        }
-    }
-    function confirmarAprovação(id, email, nome){
-        if(window.confirm("Deseja realmente aprovar o registro: \nEmail: "+email+"\nNome: " + nome)){
-            window.location = "../php_atualizar/atualizarAprovarFuncionario.php?id=" + id ;
-        }
-    }
-</script>
-
 
 </html>

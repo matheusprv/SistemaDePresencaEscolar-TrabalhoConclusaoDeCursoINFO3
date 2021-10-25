@@ -3,7 +3,7 @@
     include_once ('../dados_login.php');
     $logged = $_SESSION['logged'] ?? null;
     if(!$logged){
-        die(header("Location: /..index"));
+        die(header("Location: ../index"));
     }
 ?>
 
@@ -92,7 +92,7 @@
                         <?php   
 
                             $arrayOpcoesSelect = array();
-                            
+                            $repeticoes = 0;
                             for ($i=1; $i <= 5 ; $i++) { 
                                 ?>
                                 <tr>
@@ -118,7 +118,7 @@
                                     ?>
                                 </tr>
                                 <?php
-
+                                $repeticoes++;
                             }
                         ?>
                     </thead>

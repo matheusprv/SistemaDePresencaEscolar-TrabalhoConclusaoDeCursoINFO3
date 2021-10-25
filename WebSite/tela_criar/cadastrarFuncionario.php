@@ -4,7 +4,7 @@
     $logged = $_SESSION['logged'] ?? null;
     $logado = true;
     if(!$logged){
-        $logado = false;
+        die(header("Location: ../index.php"));
     }
 ?>
 

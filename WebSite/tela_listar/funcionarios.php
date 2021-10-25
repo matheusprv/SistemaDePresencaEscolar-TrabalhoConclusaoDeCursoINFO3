@@ -3,7 +3,7 @@
     include_once ('../dados_login.php');
     $logged = $_SESSION['logged'] ?? null;
     if(!$logged){
-        die(header("Location: /..index"));
+        die(header("Location: ../index"));
     }
 ?>
 
@@ -115,15 +115,17 @@
             <a href="../tela_criar/cadastrarFuncionario.php" class="botaoCadastro">Adicionar funcionário</a>
         </div>
     </div>
-    
+    <script>
+
+        
+    function confirmarExclusao(id, email, nome){
+            if(window.confirm("Deseja realmente excluir o registro: \nEmail: "+email+"\nNome: " + nome)){
+                window.location = "../php_deletar/deletarFuncionario.php?id=" +id+"&telaAprovar=0";
+            }
+        }
+    </script>
 
 </body>
-<script>
-    function confirmarExclusao(id, email, nome){
-        if(window.confirm("Deseja realmente excluir o registro: \nEmail: "+email+"\nNome: " + nome)){
-            window.location = "../php_deletar/deletarFuncionario.php?id=" +id+"&telaAprovar=0";
-        }
-    }
-</script>
+
 
 </html>

@@ -3,7 +3,7 @@
     include_once ('../dados_login.php');
     $logged = $_SESSION['logged'] ?? null;
     if(!$logged){
-        die(header("Location: /..index"));
+        die(header("Location: ../index"));
     }
 ?>
 
@@ -114,15 +114,15 @@
             <a href="../tela_criar/cadastrarResponsavel.php" class="botaoCadastro">Adicionar responsavel</a>
         </div>
     </div>
-    
 
-</body>
-<script>
-    function confirmarExclusao(id, email, nome){
-        if(window.confirm("Deseja realmente excluir o registro: \nEmail: "+email+"\nNome: " + nome)){
-            window.location = "../php_deletar/deletarResponsavel.php?id=" + id;
+    <script>
+        function confirmarExclusao(id, email, nome){
+            if(window.confirm("Deseja realmente excluir o registro: \nEmail: "+email+"\nNome: " + nome)){
+                window.location = "../php_deletar/deletarResponsavel.php?id=" + id;
+            }
         }
-    }
-</script>
+    </script>
+    
+</body>
 
 </html>

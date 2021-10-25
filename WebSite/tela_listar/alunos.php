@@ -3,7 +3,7 @@
     include_once ('../dados_login.php');
     $logged = $_SESSION['logged'] ?? null;
     if(!$logged){
-        die(header("Location: /..index"));
+        die(header("Location: ../index"));
     }
 ?>
 
@@ -145,15 +145,17 @@
     </div>
     
 
+    <script>
+        function confirmarExclusao(matricula, nome){
+            if(window.confirm("Deseja realmente excluir o registro: \nMatrícula: "+matricula+"\nNome: " + nome)){
+                window.location = "../php_deletar/deletarAluno.php?matricula=" + matricula;
+            }
+        }
+    </script>
+
 </body>
 
-<script>
-    function confirmarExclusao(matricula, nome){
-        if(window.confirm("Deseja realmente excluir o registro: \nMatrícula: "+matricula+"\nNome: " + nome)){
-            window.location = "../php_deletar/deletarAluno.php?matricula=" + matricula;
-        }
-    }
-</script>
+
 
 
 </html>
