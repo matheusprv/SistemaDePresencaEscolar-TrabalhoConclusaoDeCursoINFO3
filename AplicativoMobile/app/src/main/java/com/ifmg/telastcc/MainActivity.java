@@ -13,12 +13,14 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import banco_de_dados.BancoDeDados;
 import objetos.Disciplina;
+import objetos.Usuario;
 
 public class MainActivity extends AppCompatActivity {
-    private Button login;
+    private Button login, testarBD;
     private EditText emailMatricula, senhaUsuario;
-    private String email, senhaStr;
+    private String emailMatriculaStr, senhaStr;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
         emailMatricula = (EditText) findViewById(R.id.matriculaEmail);
 
         login = (Button) findViewById(R.id.login);
+        testarBD = (Button) findViewById(R.id.testarBd);
 
         senhaUsuario = (EditText) findViewById(R.id.senha);
         senhaStr = senhaUsuario.getText().toString().trim();
@@ -54,19 +57,40 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
         });
+        testarBD.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                BancoDeDados bd = new BancoDeDados(MainActivity.this);
+                bd = new BancoDeDados(MainActivity.this);
+                bd.insereResponsavel();
+                bd.insereAluno();
+
+                Toast.makeText(MainActivity.this, bd.getDatabaseName(), Toast.LENGTH_LONG).show();
+            }
+        });
 
     }
         
     private void abrirPresenca(){
+        BancoDeDados bd = new BancoDeDados(MainActivity.this);
+
         //O link é feito aqui para que, caso o usuário reescreva os dados, eles sejam atualizados
         emailMatricula = (EditText) findViewById(R.id.matriculaEmail);
-        email = emailMatricula.getText().toString().trim();
+        emailMatriculaStr = emailMatricula.getText().toString().trim();
         senhaUsuario = (EditText) findViewById(R.id.senha);
         senhaStr = senhaUsuario.getText().toString().trim();
 
-        //Verifica se os dados nao sao nulos
-        if(email.length()==0 || senhaStr.length()==0){
-            Toast.makeText(this, "Preencha os campos corretamente", Toast.LENGTH_LONG).show();
+        Usuario usuario = null;
+        //Caso no campo de email contenha o @, significa, então, que quem está tentando acessar é o responsavel
+        if(emailMatriculaStr.contains("@")){
+            usuario = bd.pesquisarResponsavel(emailMatriculaStr, senhaStr);
+        }
+        else{
+            usuario = bd.pesquisarAluno(emailMatriculaStr, senhaStr);
+        }
+
+        if(usuario == null){
+            Toast.makeText(this, "usuário ou senha inválidos", Toast.LENGTH_LONG).show();
         }
         else{
             Intent abrir = new Intent(this, faltas.class);
