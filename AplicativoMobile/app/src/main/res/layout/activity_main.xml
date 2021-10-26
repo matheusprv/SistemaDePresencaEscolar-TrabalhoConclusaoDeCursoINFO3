@@ -64,6 +64,15 @@
                 android:backgroundTint="@color/botaoLogin"
                 android:textSize="32dp"/>
 
+            <Button
+                android:id="@+id/testarEmail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Teste"
+                android:gravity="center"
+                android:backgroundTint="@color/botaoLogin"
+                android:textSize="32dp"/>
+
             <!--Botao Esqueceu a senha -->
             <Button
                 android:id="@+id/testarBd"

@@ -25,10 +25,10 @@ public class BancoDeDados extends SQLiteOpenHelper {
         final String criaTabelaResponsavel = "CREATE TABLE IF NOT EXISTS Responsavel(id INTEGER PRIMARY KEY AUTOINCREMENT, nome TEXT," +
                 "email TEXT, senha TEXT)";
         db.execSQL(criaTabelaResponsavel);
-
+/*
         final String criaTabelaAluno = "CREATE TABLE IF NOT EXISTS Aluno (matricula INTEGER PRIMARY KEY AUTOINCREMENT, nome TEXT," +
                 "senha TEXT, FOREIGN KEY (Responsavel_id) REFERENCES Responsavel(id))";
-        db.execSQL(criaTabelaAluno);
+        db.execSQL(criaTabelaAluno);*/
     }
 
     public void insereResponsavel(){
@@ -69,11 +69,12 @@ public class BancoDeDados extends SQLiteOpenHelper {
 
 
     public Usuario pesquisarResponsavel(String email, String senha){
-        String sql = "SELECT * FROM Responsavel WHERE email = "+email+" AND senha = "+senha;
+        //System.out.println("Email: "+email+"  Senha: "+senha+" asadbajdsha");
+        String sql = "SELECT * FROM Responsavel WHERE email = '"+email+"' AND senha = '"+senha+"'";
 
         Usuario usuario = null;
 
-        try(SQLiteDatabase db = this.getWritableDatabase()) {
+        try(SQLiteDatabase db = this.getReadableDatabase()) {
             Cursor tuplas = db.rawQuery(sql, null);
             if(tuplas.moveToFirst()){
 
