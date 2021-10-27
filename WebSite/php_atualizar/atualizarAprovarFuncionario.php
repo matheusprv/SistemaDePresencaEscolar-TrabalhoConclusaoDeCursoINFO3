@@ -1,7 +1,7 @@
 <?php
     include_once("../conexao.php");
 
-    //verificar se foi setado algum valor para a exclusao
+
     if(isset($_GET["id"], $_GET["telaAprovar"])){
         $id = $_GET["id"];
         

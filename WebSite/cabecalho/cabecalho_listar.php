@@ -12,7 +12,7 @@
             
             <!--<img src="imagens/logotipo.png" alt="Prefeitura de Ouro Branco" style="height: 70%;">-->
 
-            <a href="usuario.php" class="logo"><p><?php echo "Olá, {$_SESSION['usuario']}"; ?></p></a>
+            <a href="../tela_listar/usuario.php" class="logo"><p><?php echo "Olá, {$_SESSION['usuario']}"; ?></p></a>
 
             <div class="mobile-menu">
                 <div class="line1"></div>
@@ -22,14 +22,14 @@
 
             <ul class="nav-list">
                 <li><a class="link-cabecalho" href="../menus.php" >Menus</a></li>
-                <li><a class="link-cabecalho" href="alunos.php" >Alunos</a></li>
-                <li><a class="link-cabecalho" href="disciplinas.php" >Disciplinas</a></li>
-                <li><a class="link-cabecalho" href="frequencia.php" >Frequência</a></li>
-                <li><a class="link-cabecalho" href="funcionarios.php" >Funcionários</a></li>
-                <li><a class="link-cabecalho" href="horarios.php" >Horário</a></li>
-                <li><a class="link-cabecalho" href="responsaveis.php" >Responsável</a></li>
-                <li><a class="link-cabecalho" href="turmas.php" >Turmas</a></li>
-                <li><a class="link-cabecalho" href="usuario.php" >Usuário</a></li>
+                <li><a class="link-cabecalho" href="../tela_listar/alunos.php" >Alunos</a></li>
+                <li><a class="link-cabecalho" href="../tela_listar/disciplinas.php" >Disciplinas</a></li>
+                <li><a class="link-cabecalho" href="../tela_listar/frequencia.php" >Frequência</a></li>
+                <li><a class="link-cabecalho" href="../tela_listar/funcionarios.php" >Funcionários</a></li>
+                <li><a class="link-cabecalho" href="../tela_listar/horarios.php" >Horário</a></li>
+                <li><a class="link-cabecalho" href="../tela_listar/responsaveis.php" >Responsável</a></li>
+                <li><a class="link-cabecalho" href="../tela_listar/turmas.php" >Turmas</a></li>
+                <li><a class="link-cabecalho" href="../tela_listar/usuario.php" >Usuário</a></li>
                 <!--
                 <li><a class="link-cabecalho" href ="?logout=2"  id="sair">Sair</a></li>
                 -->

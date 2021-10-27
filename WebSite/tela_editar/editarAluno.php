@@ -5,6 +5,8 @@
     if(!$logged){
         die(header("Location: ../index.php"));
     }
+
+
 ?>
 
 
@@ -15,7 +17,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastrar Aluno</title>
+    <title>Editar Aluno</title>
     <link rel="icon" href="../imagens/icone_PrefeituraOuroBranco.png">
 
     <link rel="stylesheet" href="../css/style.css">
@@ -24,18 +26,27 @@
 
 <body>
     <?php
-        include_once("../cabecalho/cabecalho_listar.php");
+        include_once("../cabecalho/cabecalho_criar.php");
+
+        //Buscar dados do objeto a ser editado no banco
+        if(isset($_GET["matricula"])){
+            $matricula = $_GET["matricula"];
+            $sql = "SELECT * from Aluno where matricula = $matricula"; 
+            $consulta = $conn->query($sql);
+            $exibir = $consulta->fetch_assoc();
+        }
+
     ?>
-    <h1 style="text-align: center; margin-top: 20px;">Cadastrar aluno</h1>
+    <h1 style="text-align: center; margin-top: 20px;">Editar aluno</h1>
     <br>
 
 
 
     <div class="divCentralizada" style="width: 750px;">
 
-        <form action="../php_adicionar/cadastrarAluno.php" method="POST">
+        <form action="../php_atualizar/atualizarAluno.php?matricula=<?php echo $_GET['matricula'] ?>" method="POST">
             <label for="txtNome">Nome do aluno:</label>
-            <input type="text" name="txtNome" id="txtNome" class="input-text" required>
+            <input type="text" name="txtNome" id="txtNome" class="input-text" required value="<?php echo $exibir["nome"] ?>">
             <br><br>
 
             <label for="listTurma">Turma do aluno:</label>
@@ -49,7 +60,7 @@
 
                     while ($rowTurma = $turma->fetch_assoc()) {
                         ?>
-                            <option value="<?php echo $rowTurma["idTurma"]; ?>"><?php echo $rowTurma["nome"]; ?></option>
+                            <option value="<?php echo $rowTurma["idTurma"]; ?>" <?php echo($rowTurma["idTurma"] == $exibir["Turma_idTurma"])?"selected":"" ?>> <?php echo $rowTurma["nome"]; ?></option>
                         <?php
                     }
 
@@ -68,7 +79,7 @@
 
                     while ($responsavel = $dadosResponsavel->fetch_assoc()) {
                         ?>
-                            <option value="<?php echo $responsavel["id"]; ?>"><?php echo $responsavel["nome"]; ?> - <?php echo $responsavel["email"]?></option>
+                            <option value="<?php echo $responsavel["id"]; ?>"  <?php echo($responsavel["id"] == $exibir["Responsavel_id"])?"selected":"" ?>  ><?php echo $responsavel["nome"]; ?> - <?php echo $responsavel["email"]?> </option>
                         <?php
                     }
 
@@ -77,7 +88,7 @@
             <br><br>
 
             <div style="text-align: center;">
-                <input type="submit" value="Adicionar" class="formBtn adicionar">
+                <input type="submit" value="Salvar" class="formBtn adicionar">
                 <input type="reset" value="Limpar" class="formBtn limpar">
             </div>
             

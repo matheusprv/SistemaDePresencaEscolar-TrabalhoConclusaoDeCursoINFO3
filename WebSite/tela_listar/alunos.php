@@ -111,7 +111,7 @@
                                     ?>
                                 </td>
                                 <td>
-                                    <input type="submit" value="Editar" class="botaoEditar editarDeletar">
+                                    <a href="../tela_editar/editarAluno.php?matricula=<?php echo $exibir["matricula"]?>"><input type="submit" value="Editar" class="botaoEditar editarDeletar"></a>
                                     <input type="submit" value="Deletar"  class="botaoDeletar editarDeletar" onclick="confirmarExclusao('<?php echo $exibir["matricula"]?>', '<?php echo $exibir["nome"]?>')">
                                 </td>
                             </tr>

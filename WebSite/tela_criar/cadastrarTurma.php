@@ -24,7 +24,7 @@
 
 <body>
     <?php
-        include_once("../cabecalho/cabecalho_criar.php");
+        include_once("../cabecalho/cabecalho_listar.php");
     ?>
     <h1 style="text-align: center; margin-top: 20px;">Cadastrar turma</h1>
     <br>

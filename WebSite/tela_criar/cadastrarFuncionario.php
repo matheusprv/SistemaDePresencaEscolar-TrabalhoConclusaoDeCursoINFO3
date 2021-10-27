@@ -28,7 +28,7 @@
 <body style="margin: 0;">
     <?php
         if($logado){
-            include_once("../cabecalho/cabecalho_criar.php");
+            include_once("../cabecalho/cabecalho_listar.php");
         }
         else{
             ?>

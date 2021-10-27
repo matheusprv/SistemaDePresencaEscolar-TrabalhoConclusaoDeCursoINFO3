@@ -91,7 +91,7 @@
                                 <?php echo $exibir["numeroAulas"]?>
                             </td>
                             <td>
-                                <input type="submit" value="Editar" class="botaoEditar editarDeletar">
+                            <a href="../tela_editar/editarDisciplina.php?idDisciplina=<?php echo $exibir["idDisciplina"]?>"><input type="submit" value="Editar" class="botaoEditar editarDeletar"></a>
                                 <input type="submit" value="Deletar"  class="botaoDeletar editarDeletar" onclick="confirmarExclusao('<?php echo $exibir["idDisciplina"]?>', '<?php echo $exibir["nome"]?>')">
                             </td>
                         </tr>

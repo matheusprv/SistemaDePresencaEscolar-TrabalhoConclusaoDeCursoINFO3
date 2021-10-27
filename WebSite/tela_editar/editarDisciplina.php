@@ -25,6 +25,14 @@
 <body>
     <?php
         include_once("../cabecalho/cabecalho_listar.php");
+
+        //Buscar dados do objeto a ser editado no banco
+        if(isset($_GET["idDisciplina"])){
+            $idDisciplina = $_GET["idDisciplina"];
+            $sql = "SELECT * from Disciplina where idDisciplina = $idDisciplina"; 
+            $consulta = $conn->query($sql);
+            $exibir = $consulta->fetch_assoc();
+        }
     ?>
     <h1 style="text-align: center; margin-top: 20px;">Cadastrar disciplina</h1>
     <br>
@@ -33,17 +41,17 @@
 
     <div class="divCentralizada" style="width: 750px;">
 
-        <form action="../php_adicionar/cadastrarDisciplina.php" method="POST">
+        <form action="../php_atualizar/atualizarDisciplina.php?idDisciplina=<?php echo $_GET['idDisciplina'] ?>" method="POST">
             <label for="txtNome">Nome:</label>
-            <input type="text" name="txtNome" id="txtNome" class="input-text" required>
+            <input type="text" name="txtNome" id="txtNome" class="input-text" required value="<?php echo $exibir["nome"] ?>">
             <br><br>
 
             <label for="txtProf">Professor:</label>
-            <input type="text" name="txtProf" id="txtProf" class="input-text" required>
+            <input type="text" name="txtProf" id="txtProf" class="input-text" required value="<?php echo $exibir["professor"] ?>">
             <br><br>
 
             <label for="numAulas">Número de aulas:</label>
-            <input type="number" name="numAulas" id="numAulas" class="input-text" style="margin-left: 10px; width: 69.5%;" required>
+            <input type="number" name="numAulas" id="numAulas" class="input-text" style="margin-left: 10px; width: 69.5%;" required value="<?php echo $exibir["numeroAulas"] ?>">
             <br><br>
 
 
