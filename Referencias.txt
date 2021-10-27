@@ -13,3 +13,4 @@ https://www.youtube.com/watch?v=wqlxbPJV_NM&ab_channel=CodingNepal (28/09/2021)
 
 Saber se a sessão está logada
 https://stackoverflow.com/questions/6249707/check-if-php-session-has-already-started (21/10/2021)
+

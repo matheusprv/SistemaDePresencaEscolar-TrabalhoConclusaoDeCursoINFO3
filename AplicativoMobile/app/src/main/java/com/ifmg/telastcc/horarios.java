@@ -7,10 +7,15 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.*;
 
+import objetos.ResponsavelAluno;
+
 public class horarios extends AppCompatActivity {
     private TextView diaDaSemana, horario1, horario2, horario3, horario4, horario5, horario6;
     private ImageButton anteriorBtn, proxBtn, sairBtn;
     private Button faltasBtn, usuarioBtn;
+
+    private ResponsavelAluno usuario =null;
+    private TextView nomeUsuario;
 
     String vetorDiasDaSemana[] = {"Segunda-feira", "Terça-feira", "Quarta-feira", "Quinta-feira", "Sexta-feira"};
     private int diaDaSemanaAtual=0;
@@ -36,6 +41,11 @@ public class horarios extends AppCompatActivity {
 
         faltasBtn = (Button) findViewById(R.id.faltasBtn);
         usuarioBtn = (Button) findViewById(R.id.usuarioBtn);
+
+        nomeUsuario = (TextView) findViewById(R.id.nomeUsuario);
+        //Pegando dados dos usuario vindos do login e colocando o nome no canto superior direito
+        usuario  = getIntent().getParcelableExtra("usuario");
+        nomeUsuario.setText(usuario.getNome());
 
         //Implementa eventos dos botões
         eventos();
@@ -100,11 +110,13 @@ public class horarios extends AppCompatActivity {
     //Abre a tela de faltas
     private void abrirFaltas(){
         Intent abrir = new Intent(this, faltas.class);
+        abrir.putExtra("usuario", usuario);
         startActivity(abrir);
     }
     //Abre a tela de perfil d usuário
     private void abrirUsuario(){
         Intent abrir = new Intent(this, usuario.class);
+        abrir.putExtra("usuario", usuario);
         startActivity(abrir);
     }
 

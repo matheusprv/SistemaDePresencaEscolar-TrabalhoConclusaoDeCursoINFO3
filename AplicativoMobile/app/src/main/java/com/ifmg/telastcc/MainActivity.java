@@ -4,23 +4,22 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 import banco_de_dados.BancoDeDados;
-import objetos.Disciplina;
-import objetos.Usuario;
+import objetos.ResponsavelAluno;
 
 public class MainActivity extends AppCompatActivity {
-    private Button login, testarBD, testarEmail;
+    private Button login, testarBD;
     private EditText emailMatricula, senhaUsuario;
     private String emailMatriculaStr, senhaStr;
+    private ArrayList<ResponsavelAluno> responsvaelAlunos = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +31,6 @@ public class MainActivity extends AppCompatActivity {
 
         login = (Button) findViewById(R.id.login);
         testarBD = (Button) findViewById(R.id.testarBd);
-        testarEmail = (Button) findViewById(R.id.testarEmail);
 
         senhaUsuario = (EditText) findViewById(R.id.senha);
         senhaStr = senhaUsuario.getText().toString().trim();
@@ -64,31 +62,18 @@ public class MainActivity extends AppCompatActivity {
                 BancoDeDados bd;
                 bd = new BancoDeDados(MainActivity.this);
                 bd.insereResponsavel();
-                //bd.insereAluno();
+                bd.insereAluno();
 
                 Toast.makeText(MainActivity.this, bd.getDatabaseName(), Toast.LENGTH_SHORT).show();
 
-                Usuario teste = bd.pesquisarResponsavel("matheus@email.com", "123");
+                ResponsavelAluno teste = bd.pesquisarResponsavel("matheus@email.com", "123");
                 System.out.println(teste.toString());
             }
         });
 
-        testarEmail.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                testarOEmailEscrito();
-            }
-        });
 
     }
 
-    private void testarOEmailEscrito(){
-        emailMatricula = (EditText) findViewById(R.id.matriculaEmail);
-        emailMatriculaStr = emailMatricula.getText().toString().trim();
-        senhaUsuario = (EditText) findViewById(R.id.senha);
-        senhaStr = senhaUsuario.getText().toString().trim();
-        Toast.makeText(this, emailMatriculaStr+"\n"+senhaStr, Toast.LENGTH_SHORT).show();
-    }
     private void abrirPresenca(){
         BancoDeDados bd = new BancoDeDados(MainActivity.this);
 
@@ -98,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
         senhaUsuario = (EditText) findViewById(R.id.senha);
         senhaStr = senhaUsuario.getText().toString().trim();
 
-        Usuario usuario = null;
+        ResponsavelAluno usuario = null;
         //Caso no campo de email contenha o @, significa, então, que quem está tentando acessar é o responsavel
         if(emailMatriculaStr.contains("@")){
             usuario = bd.pesquisarResponsavel(emailMatriculaStr, senhaStr);
@@ -108,12 +93,13 @@ public class MainActivity extends AppCompatActivity {
         }
 
         if(usuario == null){
-            Toast.makeText(this, "usuário ou senha inválidos", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Usuário ou senha inválidos", Toast.LENGTH_SHORT).show();
         }
         else{
             Intent abrir = new Intent(this, faltas.class);
+            abrir.putExtra("usuario", usuario);
             startActivity(abrir);
         }
-
     }
+
 }
