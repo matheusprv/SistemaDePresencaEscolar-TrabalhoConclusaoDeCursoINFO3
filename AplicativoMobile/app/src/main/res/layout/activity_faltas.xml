@@ -100,7 +100,7 @@
                     android:layout_height="wrap_content"
                     android:background="?android:attr/selectableItemBackground"
                     android:textColor="@color/menuSelecionado"
-                    android:text="Faltas do aluno"
+                    android:text="Faltas"
                     android:layout_marginRight="10dp"
                     android:textSize="15dp"/>
 

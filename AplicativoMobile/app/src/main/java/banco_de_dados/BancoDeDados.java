@@ -34,17 +34,22 @@ public class BancoDeDados extends SQLiteOpenHelper {
 
     }
 
+    //Dados ficticios para responsavel
     public void insereResponsavel(){
 
         try{
             SQLiteDatabase db = this.getWritableDatabase();
 
             ContentValues valores = new ContentValues();
-
             valores.put("nome", "Matheus");
             valores.put("email", "matheus@email.com");
             valores.put("senha", "123");
+            db.insert("Responsavel", null, valores);
 
+            valores = new ContentValues();
+            valores.put("nome", "Pedro");
+            valores.put("email", "pedro@email.com");
+            valores.put("senha", "123");
             db.insert("Responsavel", null, valores);
 
         }catch(SQLiteException ex){
@@ -52,17 +57,27 @@ public class BancoDeDados extends SQLiteOpenHelper {
         }
 
     }
-
+    //Dados ficticios para aluno
     public void insereAluno(){
         try{
             SQLiteDatabase db = this.getWritableDatabase();
 
             ContentValues valores = new ContentValues();
-
             valores.put("nome", "Pedro");
             valores.put("Responsavel_id", "1");
             valores.put("senha", "123");
+            db.insert("Aluno", null, valores);
 
+            valores = new ContentValues();
+            valores.put("nome", "Matheus");
+            valores.put("Responsavel_id", "1");
+            valores.put("senha", "123");
+            db.insert("Aluno", null, valores);
+
+            valores = new ContentValues();
+            valores.put("nome", "João");
+            valores.put("Responsavel_id", "2");
+            valores.put("senha", "123");
             db.insert("Aluno", null, valores);
 
         }catch(SQLiteException ex){
@@ -70,8 +85,8 @@ public class BancoDeDados extends SQLiteOpenHelper {
         }
     }
 
-    public ResponsavelAluno pesquisarResponsavel(String email, String senha){
-        //System.out.println("Email: "+email+"  Senha: "+senha+" asadbajdsha");
+    //Pesquisa no banco de dados informações para Login de um responsavel
+    public ResponsavelAluno pesquisarResponsavelLogin(String email, String senha){
         String sql = "SELECT * FROM Responsavel WHERE email = '"+email+"' AND senha = '"+senha+"'";
 
         ResponsavelAluno usuario = null;
@@ -95,8 +110,8 @@ public class BancoDeDados extends SQLiteOpenHelper {
 
         return usuario;
     }
-
-    public ResponsavelAluno pesquisarAluno(String matricula, String senha){
+    //Pesquisa no banco de dados informações para Login de um aluno
+    public ResponsavelAluno pesquisarAlunoLogin(String matricula, String senha){
         String sql = "SELECT * FROM Aluno WHERE matricula = "+matricula+" AND senha = "+senha;
 
         ResponsavelAluno usuario = null;
@@ -119,6 +134,7 @@ public class BancoDeDados extends SQLiteOpenHelper {
         return usuario;
     }
 
+    //Pesquisa no banco de dados alunos relacionados ao responsavel
     public ArrayList<ResponsavelAluno> alunosDoResponsvel(int idResponsavel){
         ArrayList<ResponsavelAluno> resultados = new ArrayList<>();
 
@@ -133,8 +149,8 @@ public class BancoDeDados extends SQLiteOpenHelper {
                     String senhaUsuario = tuplas.getString(2);
 
                     ResponsavelAluno temporario = new ResponsavelAluno(nome,matricula+"", senhaUsuario, true, matricula);
-
                     resultados.add(temporario);
+
                 }while(tuplas.moveToNext());
             }
 
@@ -146,11 +162,9 @@ public class BancoDeDados extends SQLiteOpenHelper {
         return resultados;
     }
 
+    //Altera a senha do responsavel conectado
     public void updateSenhaResponsavel(int id, String senha){
         try(SQLiteDatabase db = this.getWritableDatabase()){
-
-            //String sql = "UPDATE Responsavel SET senha = "+ senha+" WHERE id = "+ id;
-            //db.execSQL(sql);
 
             ContentValues valores = new ContentValues();
             valores.put("senha", senha);
@@ -162,6 +176,7 @@ public class BancoDeDados extends SQLiteOpenHelper {
             ex.printStackTrace();
         }
     }
+    //Altera a senha do aluno  conectado
     public void updateSenhaAluno(String matricula, String senha){
         try(SQLiteDatabase db = this.getWritableDatabase()){
 

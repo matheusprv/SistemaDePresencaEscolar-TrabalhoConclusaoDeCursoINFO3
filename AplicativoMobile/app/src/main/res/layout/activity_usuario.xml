@@ -103,7 +103,7 @@
                     android:background="?android:attr/selectableItemBackground"
                     android:textColor="@color/black"
                     android:layout_marginRight="10dp"
-                    android:text="Faltas do aluno"
+                    android:text="Faltas "
                     android:textSize="15dp"/>
                 <!--Horários-->
                 <Button
@@ -147,7 +147,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_gravity="center"
                 android:layout_marginVertical="10dp"
                 android:layout_marginHorizontal="30dp">
 

@@ -56,6 +56,8 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
         });
+
+        //Gera algumas informações a serem usadas pelo banco de dados local
         testarBD.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -66,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
 
                 Toast.makeText(MainActivity.this, bd.getDatabaseName(), Toast.LENGTH_SHORT).show();
 
-                ResponsavelAluno teste = bd.pesquisarResponsavel("matheus@email.com", "123");
+                ResponsavelAluno teste = bd.pesquisarResponsavelLogin("matheus@email.com", "123");
                 System.out.println(teste.toString());
             }
         });
@@ -86,10 +88,10 @@ public class MainActivity extends AppCompatActivity {
         ResponsavelAluno usuario = null;
         //Caso no campo de email contenha o @, significa, então, que quem está tentando acessar é o responsavel
         if(emailMatriculaStr.contains("@")){
-            usuario = bd.pesquisarResponsavel(emailMatriculaStr, senhaStr);
+            usuario = bd.pesquisarResponsavelLogin(emailMatriculaStr, senhaStr);
         }
         else{
-            usuario = bd.pesquisarAluno(emailMatriculaStr, senhaStr);
+            usuario = bd.pesquisarAlunoLogin(emailMatriculaStr, senhaStr);
         }
 
         if(usuario == null){
