@@ -48,7 +48,7 @@
     
     //Inserindo valores no banco
     //https://www.mysqltutorial.org/mysql-insert-multiple-rows/
-    $sql = "INSERT INTO Aula 
+    $sql = "UPDATE Aula 
         (Disciplina_idDisciplina, Turma_idTurma, horasInicio, horaFim, diaSemana) 
         VALUES 
         ($segunda1, $turma, '$inicio1', ' $fim1', 1),

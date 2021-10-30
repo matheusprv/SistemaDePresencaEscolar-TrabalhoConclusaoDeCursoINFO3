@@ -35,29 +35,6 @@
 
     <div style="margin: 20px; text-align: center;">
 
-        <div style="margin: 0 auto;">
-            <label for="listTurma">Turma:</label>
-            <select name="listTurma" id="listTurma" required style="margin-left: 5px;">
-                <option value="" selected disabled hidden>Selecionar</option>
-                <?php
-
-                $sql = "SELECT idTurma, nome FROM Turma";
-
-                $turma = $conn->query($sql);
-
-                while ($rowTurma = $turma->fetch_assoc()) {
-                ?>
-                    <option value="<?php echo $rowTurma["idTurma"]; ?>"><?php echo $rowTurma["nome"]; ?></option>
-                <?php
-                }
-
-                ?>
-            </select>
-
-
-                
-        </div>
-
         <?php
             //Procurar as Disciplinas no banco de dados
             $sql = "SELECT idDisciplina, nome FROM Disciplina ORDER BY nome";
@@ -66,14 +43,34 @@
 
             while ($rowDisciplina = $disciplina->fetch_assoc()) {
                 $vetor[] = (object) $rowDisciplina;
-            }
-
-            
+            }         
 
         ?>
 
         <form>
             <div class="scrollHorizontal">
+                <div style="margin: 0 auto;">
+                    <label for="listTurma">Turma:</label>
+                    <select name="listTurma" id="listTurma" required style="margin-left: 5px;">
+                        <option value="" selected disabled hidden>Selecionar</option>
+                        <?php
+
+                        $sql = "SELECT idTurma, nome FROM Turma";
+
+                        $turma = $conn->query($sql);
+
+                        while ($rowTurma = $turma->fetch_assoc()) {
+                        ?>
+                            <option value="<?php echo $rowTurma["idTurma"]; ?>"><?php echo $rowTurma["nome"]; ?></option>
+                        <?php
+                        }
+
+                        ?>
+                    </select>
+        
+                </div>
+
+
                 <table class="table-bordered" id="tabelaHorarios"style="width: 98%; margin-left: 15px;">
                     <thead class="thead-dark">
                         <tr>
@@ -91,6 +88,13 @@
                         </tr>
                         <?php   
 
+                            if(isset($_GET["idTurmaAtual"])){
+                                $idTurmaAtual = $_GET["idTurmaAtual"];
+                                $consultaSQL = "SELECT * FROM Aula WHERE Disciplina_idDisciplina = 13";
+                                $resultados = $conn->query($consultaSQL);
+                                $exibirDisciplinas = $resultados->fetch_assoc();
+                                print_r($exibirDisciplinas);
+                            }
                             $arrayOpcoesSelect = array();
                             $repeticoes = 0;
                             for ($i=1; $i <= 5 ; $i++) { 
