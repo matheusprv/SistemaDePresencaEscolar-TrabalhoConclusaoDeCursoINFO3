@@ -1,4 +1,5 @@
 <?php
+/*
     //Incluindo arquivo de conexão com o banco de dados
     include_once("../conexao.php");
 
@@ -101,5 +102,7 @@
         
         <?php
     }
-
+*/
+echo "<h1 style='color: red; text-align: center;'>Atualização de dados dos horários ainda não implementada</h1>";
+echo "<a href='../tela_listar/horarios.php'  style='display:block;text-align:center; font-size: 1.5em;'>Clique aqui para voltar para a tela de horários</a>";
 ?>
