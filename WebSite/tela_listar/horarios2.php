@@ -65,35 +65,27 @@
                 }
                 
             }
-            echo $atualizar;
+            
         ?>
 
         <form action= <?php echo ($atualizar==0)?"../php_adicionar/cadastrarHorario.php":"../php_atualizar/atualizarHorario.php" ?> method="POST">
+            <!--Selecionar turma-->
             <div style="margin: 0 auto;">
                 <label for="listTurma">Turma:</label>
-                <select name="listTurma" id="listTurma" required style="margin-left: 5px;">
+                <select name="listTurma" id="listTurma" required style="margin-left: 5px;" onchange="pegarTurma()">
                     <option value="" selected disabled hidden>Selecionar</option>
                     <?php
 
                     $sql = "SELECT idTurma, nome FROM Turma";
                     $turma = $conn->query($sql);
                     while ($rowTurma = $turma->fetch_assoc()) {
-                        if($atualizar==0){
-                            ?>
-                                <option value="<?php echo $rowTurma["idTurma"]; ?>">  <?php echo $rowTurma["nome"]; ?></option>
-                            <?php
-                        }
-                        else{
-                            ?>
-                                <option value="<?php echo $rowTurma["idTurma"]; ?>" <?php echo($rowTurma["idTurma"] == $idTurma)?"selected":"" ?>>  <?php echo $rowTurma["nome"]; ?></option>
-                            <?php
-                        }
-                    
+                        ?>
+                            <option value="<?php echo $rowTurma["idTurma"]; ?>" <?php echo($rowTurma["idTurma"] == $idTurma)?"selected":"" ?>>  <?php echo $rowTurma["nome"]; ?></option>
+                        <?php                    
                     }
 
                     ?>
                 </select>  
-                <a href="horarios2.php?idTurma=listTurma">Recarregar</a>  
             </div>
             <div class="scrollHorizontal">
                 <table class="table-bordered" id="tabelaHorarios"style="width: 98%; margin-left: 15px;">
@@ -627,7 +619,7 @@
                 <input type="reset" value="Limpar" class="formBtn limpar">
             </div>
         </form>
-        <button onclick="recuperarDadosTabela()">Adicionar </button>
+        <!-- <button onclick="recuperarDadosTabela()">Adicionar </button> -->
         <p id="info"></p>
     </div>
 
@@ -635,8 +627,14 @@
 
 <script>
 
-    function pegarTurma(idTurma){
-        alert("Recarregar tela");
+    function pegarTurma(){
+        let turma = document.getElementById("listTurma");
+        let opcaoTurma = turma.options[turma.selectedIndex].value;
+        let nomeTurma = turma.options[turma.selectedIndex].text;
+        if(window.confirm("Deseja ir para os dados da turma "+nomeTurma+"?\n\n OBS: Todos os dados não salvos serão perdidos.")){
+            window.location = "horarios2.php?idTurma="+opcaoTurma;
+        }
+        
     }
     
     function recuperarDadosTabela(){
