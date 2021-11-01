@@ -43,7 +43,7 @@
                 <option value="" selected disabled hidden>Selecionar</option>
                 <?php
                     
-                    $sql = "SELECT idTurma, nome FROM Turma";
+                    $sql = "SELECT idTurma, nome FROM Turma ORDER BY nome";
 
                     $turma = $conn -> query($sql);
 
@@ -62,7 +62,7 @@
                 <option value="" selected disabled hidden>Selecionar</option>
                 <?php
                     
-                    $sql = "SELECT id, nome, email FROM Responsavel";
+                    $sql = "SELECT id, nome, email FROM Responsavel ORDER BY nome";
 
                     $dadosResponsavel = $conn -> query($sql);
 

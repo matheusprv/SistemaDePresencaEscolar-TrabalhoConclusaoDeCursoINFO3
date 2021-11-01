@@ -14,7 +14,7 @@
         ?>
         <script>
             alert("Registro salvo com sucesso");
-            window.location = "../tela_criar/cadastrarTurma.php";
+            window.location = "../tela_listar/turmas.php";
         </script>
 
         <?php
@@ -23,7 +23,7 @@
         ?>
         <script>
             alert("Erro ao inserir registro");
-            window.location = "../tela_criar/cadastrarTurma.php";
+            window.location = "../tela_listar/turmas.php";
         </script>
         
         <?php

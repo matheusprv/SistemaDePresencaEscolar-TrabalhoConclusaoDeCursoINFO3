@@ -2,7 +2,7 @@
     include_once("../conexao.php");
 
 
-    if(isset($_GET["id"], $_GET["telaAprovar"])){
+    if(isset($_GET["id"])){
         $id = $_GET["id"];
         
 

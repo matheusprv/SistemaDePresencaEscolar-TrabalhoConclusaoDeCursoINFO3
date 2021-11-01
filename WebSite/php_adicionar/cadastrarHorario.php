@@ -191,7 +191,7 @@
         ?>
         <script>
             alert("Registro salvo com sucesso");
-            window.location = "../tela_listar/horarios.php?idTurma=<?php $turma ?>";
+            window.location = "../tela_listar/horarios.php?idTurma=<?php echo $turma ?>";
         </script>
 
         <?php
@@ -201,6 +201,7 @@
         ?>
         <script>
             alert("Erro ao inserir registro");
+            window.location = "../tela_listar/horarios.php";
         </script>
         
         <?php

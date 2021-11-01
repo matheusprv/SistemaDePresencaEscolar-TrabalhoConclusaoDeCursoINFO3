@@ -39,7 +39,7 @@
             }
             
             else{
-                header("Location: ../tela_criar/cadastrarFuncionario.php");
+                header("Location: ../tela_listar/funcionarios.php");
             }
 
         }

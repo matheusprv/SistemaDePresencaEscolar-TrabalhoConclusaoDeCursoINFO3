@@ -30,9 +30,9 @@
                 <li><a class="link-cabecalho" href="../tela_listar/responsaveis.php" >Responsável</a></li>
                 <li><a class="link-cabecalho" href="../tela_listar/turmas.php" >Turmas</a></li>
                 <li><a class="link-cabecalho" href="../tela_listar/usuario.php" >Usuário</a></li>
-                <!--
+                
                 <li><a class="link-cabecalho" href ="?logout=2"  id="sair">Sair</a></li>
-                -->
+                
             </ul>
         </nav>
 

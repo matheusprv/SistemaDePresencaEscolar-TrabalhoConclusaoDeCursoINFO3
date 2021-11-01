@@ -11,12 +11,9 @@
     if($conn -> query($sql) === TRUE ){
         ?>
         <script>
-            //alert("Registro salvo com sucesso");
             //Envia para outra página
-            window.location = "../FuncionarioLiberarAcesso.php";
-
             alert("Registro salvo com sucesso");
-            //window.history.back();
+            window.location = "../FuncionarioLiberarAcesso.php";
         </script>
 
         <?php
@@ -25,8 +22,7 @@
         ?>
         <script>
             alert("Erro ao inserir registro");
-            //Envia para outra página
-            //window.history.back();
+            window.location = "../FuncionarioLiberarAcesso.php";
         </script>
         
         <?php

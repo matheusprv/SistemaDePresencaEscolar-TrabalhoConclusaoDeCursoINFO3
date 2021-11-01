@@ -17,7 +17,7 @@
         else{
             ?>
                 <script>
-                    alert("Erro ao excluir o registro")
+                    alert("Erro ao excluir o registro\n\nVerifique se há algum aluno relacionado a esse responsável")
                     window.location= "../tela_listar/responsaveis.php"
                 </script>
             <?php

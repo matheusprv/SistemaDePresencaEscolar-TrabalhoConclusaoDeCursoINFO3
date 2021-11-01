@@ -34,7 +34,7 @@
             ?>
             <script>
                 alert("Registro salvo com sucesso");
-                window.location = "../tela_criar/cadastrarResponsavel.php";
+                window.location = "../tela_listar/responsaveis.php";
             </script>
 
             <?php
@@ -43,7 +43,7 @@
             ?>
             <script>
                 alert("Erro ao inserir registro");
-                window.location = "../tela_criar/cadastrarResponsavel.php";
+                window.location = "../tela_listar/responsaveis.php";
             </script>
             
             <?php

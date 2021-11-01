@@ -3,7 +3,7 @@
     include_once ('../dados_login.php');
     $logged = $_SESSION['logged'] ?? null;
     if(!$logged){
-        die(header("Location: ../index"));
+        die(header("Location: ../index.php"));
     }
 ?>
 
@@ -51,7 +51,7 @@
             //Buscar horários no banco caso tenha sido passado algum id de turma
             if(isset($_GET["idTurma"])){
                 $idTurma = $_GET["idTurma"];
-                $sql = "SELECT * FROM Aula WHERE Turma_idTurma = $idTurma";
+                $sql = "SELECT * FROM Aula WHERE Turma_idTurma = $idTurma ORDER BY nome";
                 $resultados = $conn->query($sql);
                 //Verifica se o ID passado já possui dados no sistema, se sim, adapta a página para editar o conteúdo
                 $numeroDeResultados =  mysqli_num_rows($resultados);
@@ -76,7 +76,7 @@
                     <option value="" selected disabled hidden>Selecionar</option>
                     <?php
 
-                    $sql = "SELECT idTurma, nome FROM Turma";
+                    $sql = "SELECT idTurma, nome FROM Turma ORDER BY nome ";
                     $turma = $conn->query($sql);
                     while ($rowTurma = $turma->fetch_assoc()) {
                         //Verifica se algum valor foi dado para o idTurma. Se estiver nulo, define um valor default pedindo ao usuário que selecione uma turma

@@ -16,7 +16,6 @@
             alert("Registro salvo com sucesso");
             //Envia para outra página
             window.location = "../DisciplinasCadastro.html";
-            //window.history.back();
         </script>
 
         <?php
@@ -25,8 +24,7 @@
         ?>
         <script>
             alert("Erro ao inserir registro");
-            //Envia para outra página
-            //window.history.back();
+            window.location = "../DisciplinasCadastro.html";
         </script>
         
         <?php

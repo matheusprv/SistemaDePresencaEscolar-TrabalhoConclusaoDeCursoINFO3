@@ -3,7 +3,7 @@
     include_once ('../dados_login.php');
     $logged = $_SESSION['logged'] ?? null;
     if(!$logged){
-        die(header("Location: ../index"));
+        die(header("Location: ../index.php"));
     }
 ?>
 
@@ -59,7 +59,7 @@
                 $primeiroResultadoDaPagina = ($pagina-1)*$numResultadosPorPagina;
 
                 //Recuperar dados para mostrar na página
-                $sql = "SELECT * FROM Funcionario WHERE verificado = 0 LIMIT " . $primeiroResultadoDaPagina. ',' . $numResultadosPorPagina;
+                $sql = "SELECT * FROM Funcionario WHERE verificado = 0 ORDER BY Nome LIMIT " . $primeiroResultadoDaPagina. ',' . $numResultadosPorPagina;
                 $funcionarios = $conn->query($sql);
 
                 ?>

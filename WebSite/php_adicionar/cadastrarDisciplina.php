@@ -15,8 +15,7 @@
         <script>
             alert("Registro salvo com sucesso");
             //Envia para outra página
-            window.location = "../tela_criar/cadastrarDisciplina.php";
-            //window.history.back();
+            window.location = "../tela_listar/disciplinas.php";
         </script>
 
         <?php
@@ -25,7 +24,7 @@
         ?>
         <script>
             alert("Erro ao inserir registro");
-            window.location = "../tela_criar/cadastrarDisciplina.php";
+            window.location = "../tela_listar/disciplinas.php";
         </script>
         
         <?php

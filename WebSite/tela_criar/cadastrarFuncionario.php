@@ -2,10 +2,6 @@
     include_once("../conexao.php");
     include_once ('../dados_login.php');
     $logged = $_SESSION['logged'] ?? null;
-    $logado = true;
-    if(!$logged){
-        die(header("Location: ../index.php"));
-    }
 ?>
 
 
@@ -27,7 +23,7 @@
 
 <body style="margin: 0;">
     <?php
-        if($logado){
+        if(session_status() == PHP_SESSION_ACTIVE){
             include_once("../cabecalho/cabecalho_listar.php");
         }
         else{
