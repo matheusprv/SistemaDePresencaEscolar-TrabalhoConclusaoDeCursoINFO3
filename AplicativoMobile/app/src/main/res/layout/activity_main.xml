@@ -18,7 +18,7 @@
             android:layout_width="350dp"
             android:layout_height="350dp"
             android:layout_gravity="center"
-            android:background="@mipmap/emblema"
+            android:background="@mipmap/presenca_escolar"
             android:layout_marginTop="20dp"/>
 
         <LinearLayout
@@ -74,7 +74,7 @@
                 android:backgroundTint="@color/botaoLogin"
                 android:textSize="32dp"/>
             -->
-            <!--Botao Esqueceu a senha -->
+            <!--Gera alguns dados padrão para testes do banco de dados local -->
             <Button
                 android:id="@+id/testarBd"
                 android:layout_width="wrap_content"
