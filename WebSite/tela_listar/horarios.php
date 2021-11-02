@@ -51,7 +51,7 @@
             //Buscar horários no banco caso tenha sido passado algum id de turma
             if(isset($_GET["idTurma"])){
                 $idTurma = $_GET["idTurma"];
-                $sql = "SELECT * FROM Aula WHERE Turma_idTurma = $idTurma ORDER BY nome";
+                $sql = "SELECT * FROM Aula WHERE Turma_idTurma = $idTurma ";
                 $resultados = $conn->query($sql);
                 //Verifica se o ID passado já possui dados no sistema, se sim, adapta a página para editar o conteúdo
                 $numeroDeResultados =  mysqli_num_rows($resultados);
@@ -60,7 +60,10 @@
                         $exibirDisciplina[] = $rowAulas["Disciplina_idDisciplina"];
                         $exibirHorarioInicio[] = $rowAulas["horasInicio"];
                         $exibirHorarioFim[] = $rowAulas["horaFim"];
+                        $idAulas[] = $rowAulas["idAula"];
                     }
+                    $primeiroValorIdAulas = $idAulas[0];
+                    $ultimoValorIdAulas = end($idAulas);
                     $atualizar = 1;
                 }
                 
@@ -68,7 +71,7 @@
             
         ?>
 
-        <form action= <?php echo ($atualizar==0)?"../php_adicionar/cadastrarHorario.php":"../php_atualizar/atualizarHorario.php" ?> method="POST">
+        <form action= <?php echo ($atualizar==0)?"../php_adicionar/cadastrarHorario.php":"../php_atualizar/atualizarHorario.php?idAula1=$primeiroValorIdAulas&idAulaFim=$ultimoValorIdAulas" ?> method="POST">
             <!--Selecionar turma-->
             <div style="margin: 0 auto;">
                 <label for="listTurma">Turma:</label>
@@ -114,13 +117,25 @@
                         </tr>
                         
                         <?php
+                            $horasInicioPadrao = array ('07:00:00', '07:50:00', '08:40:00', '09:50:00', '10:40:00');
+                            $horasFinalPadrao = array ('07:50:00', '08:40:00', '09:30:00', '10:40:00', '11:30:00');
                             $repeticoes = 0;
                             for ($i=1; $i <= 5 ; $i++) { 
                                 ?>
                                 <tr>
-                                <td><input type="time" value="07:00" id="inicio<?php echo $i ?>" name="inicio<?php echo $i ?>"></td>
-                                <td><input type="time" value="07:50" id="fim<?php echo $i ?>" name="fim<?php echo $i ?>"></td>
-                                    <?php
+                                <?php
+                                    if($atualizar==1){
+                                        ?>
+                                            <td><input type="time" value="<?php echo $exibirHorarioInicio[$repeticoes] ?>" id="inicio<?php echo $i ?>" name="inicio<?php echo $i ?>"></td>
+                                            <td><input type="time" value="<?php echo $exibirHorarioFim[$repeticoes] ?>" id="fim<?php echo $i ?>" name="fim<?php echo $i ?>"></td>
+                                        <?php
+                                    }
+                                    else{
+                                        ?>
+                                            <td><input type="time" value="<?php echo $horasInicioPadrao[$i-1] ?>" id="inicio<?php echo $i ?>" name="inicio<?php echo $i ?>"></td>
+                                            <td><input type="time" value="<?php echo $horasFinalPadrao[$i-1] ?>" id="fim<?php echo $i ?>" name="fim<?php echo $i ?>"></td>
+                                        <?php
+                                    }
                                     for ($cont=1; $cont <= 5 ; $cont++) { 
                                         ?>
                                         <td>
@@ -172,7 +187,7 @@
         let opcaoTurma = turma.options[turma.selectedIndex].value;
         let nomeTurma = turma.options[turma.selectedIndex].text;
         if(window.confirm("Deseja ir para os dados da turma "+nomeTurma+"?\n\n OBS: Todos os dados não salvos serão perdidos.")){
-            window.location = "horarios3.php?idTurma="+opcaoTurma;
+            window.location = "horarios.php?idTurma="+opcaoTurma;
         }
         
     }

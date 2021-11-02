@@ -1,39 +1,51 @@
 <?php
-/*
+
     //Incluindo arquivo de conexão com o banco de dados
     include_once("../conexao.php");
 
-    $turma = $_POST["listTurma"];
+    $primeiroIdAula = $_GET["idAula1"];
+    print_r($primeiroIdAula);
+
+    $ultimoValorIdAulas = $_GET["idAulaFim"];
+    echo "<br>";
+    print_r($ultimoValorIdAulas);
     
-    $segunda1 = $_POST["segunda1"];
-    $terca1 = $_POST["terca1"];
-    $quarta1 = $_POST["quarta1"];
-    $quinta1 = $_POST["quinta1"];
-    $sexta1 = $_POST["sexta1"];
+    echo "<br>";
+    $diferenca = $ultimoValorIdAulas-$primeiroIdAula;
+    echo "($diferenca)";
 
-    $segunda2 = $_POST["segunda2"];
-    $terca2 = $_POST["terca2"];
-    $quarta2 = $_POST["quarta2"];
-    $quinta2 = $_POST["quinta2"];
-    $sexta2 = $_POST["sexta2"];
 
-    $segunda3 = $_POST["segunda3"];
-    $terca3 = $_POST["terca3"];
-    $quarta3 = $_POST["quarta3"];
-    $quinta3 = $_POST["quinta3"];
-    $sexta3 = $_POST["sexta3"];
+    $turma = $_POST["listTurma"];
 
-    $segunda4 = $_POST["segunda4"];
-    $terca4 = $_POST["terca4"];
-    $quarta4 = $_POST["quarta4"];
-    $quinta4 = $_POST["quinta4"];
-    $sexta4 = $_POST["sexta4"];
+    $segunda1 = $_POST["disciplinaEscolhida0"];
+    $terca1 = $_POST["disciplinaEscolhida1"];
+    $quarta1 = $_POST["disciplinaEscolhida2"];
+    $quinta1 = $_POST["disciplinaEscolhida3"];
+    $sexta1 = $_POST["disciplinaEscolhida4"];
 
-    $segunda5 = $_POST["segunda5"];
-    $terca5 = $_POST["terca5"];
-    $quarta5 = $_POST["quarta5"];
-    $quinta5 = $_POST["quinta5"];
-    $sexta5 = $_POST["sexta5"];
+    $segunda2 = $_POST["disciplinaEscolhida5"];
+    $terca2 = $_POST["disciplinaEscolhida6"];
+    $quarta2 = $_POST["disciplinaEscolhida7"];
+    $quinta2 = $_POST["disciplinaEscolhida8"];
+    $sexta2 = $_POST["disciplinaEscolhida19"];
+
+    $segunda3 = $_POST["disciplinaEscolhida10"];
+    $terca3 = $_POST["disciplinaEscolhida11"];
+    $quarta3 = $_POST["disciplinaEscolhida12"];
+    $quinta3 = $_POST["disciplinaEscolhida13"];
+    $sexta3 = $_POST["disciplinaEscolhida14"];
+
+    $segunda4 = $_POST["disciplinaEscolhida15"];
+    $terca4 = $_POST["disciplinaEscolhida16"];
+    $quarta4 = $_POST["disciplinaEscolhida17"];
+    $quinta4 = $_POST["disciplinaEscolhida18"];
+    $sexta4 = $_POST["disciplinaEscolhida19"];
+
+    $segunda5 = $_POST["disciplinaEscolhida20"];
+    $terca5 = $_POST["disciplinaEscolhida21"];
+    $quarta5 = $_POST["disciplinaEscolhida22"];
+    $quinta5 = $_POST["disciplinaEscolhida23"];
+    $sexta5 = $_POST["disciplinaEscolhida24"];
 
     $inicio1 = $_POST["inicio1"];
     $inicio2 = $_POST["inicio2"];
@@ -47,47 +59,48 @@
     $fim4 = $_POST["fim4"];
     $fim5 = $_POST["fim5"];
     
-    //Inserindo valores no banco
-    //https://www.mysqltutorial.org/mysql-insert-multiple-rows/
-    $sql = "UPDATE Aula 
-        (Disciplina_idDisciplina, Turma_idTurma, horasInicio, horaFim, diaSemana) 
-        VALUES 
-        ($segunda1, $turma, '$inicio1', ' $fim1', 1),
-        ($terca1, $turma, '$inicio1', ' $fim1', 2),
-        ($quarta1, $turma, '$inicio1', ' $fim1', 3),
-        ($quinta1, $turma, '$inicio1', ' $fim1', 4),
-        ($sexta1, $turma, '$inicio1', ' $fim1', 5),
+    $sql = array (
+        "UPDATE Aula SET Disciplina_idDisciplina = $segunda1, horasInicio = '$inicio1', horaFim = '$fim1' WHERE idAula=$primeiroIdAula",
+        "UPDATE Aula SET Disciplina_idDisciplina = $terca1, horasInicio = '$inicio1', horaFim = '$fim1' WHERE idAula=$primeiroIdAula+1",
+        "UPDATE Aula SET Disciplina_idDisciplina = $quarta1, horasInicio = '$inicio1', horaFim = '$fim1' WHERE idAula=$primeiroIdAula+2",
+        "UPDATE Aula SET Disciplina_idDisciplina = $quinta1, horasInicio = '$inicio1', horaFim = '$fim1' WHERE idAula=$primeiroIdAula+3",
+        "UPDATE Aula SET Disciplina_idDisciplina = $sexta1, horasInicio = '$inicio1', horaFim = '$fim1' WHERE idAula=$primeiroIdAula+4",
+        "UPDATE Aula SET Disciplina_idDisciplina = $segunda2, horasInicio = '$inicio2', horaFim = '$fim2' WHERE idAula=$primeiroIdAula+5",
+        "UPDATE Aula SET Disciplina_idDisciplina = $terca2, horasInicio = '$inicio2', horaFim = '$fim2' WHERE idAula=$primeiroIdAula+6",
+        "UPDATE Aula SET Disciplina_idDisciplina = $quarta2, horasInicio = '$inicio2', horaFim = '$fim2' WHERE idAula=$primeiroIdAula+7",
+        "UPDATE Aula SET Disciplina_idDisciplina = $quinta2, horasInicio = '$inicio2', horaFim = '$fim2' WHERE idAula=$primeiroIdAula+8",
+        "UPDATE Aula SET Disciplina_idDisciplina = $sexta2, horasInicio = '$inicio2', horaFim = '$fim2' WHERE idAula=$primeiroIdAula+9",
+        "UPDATE Aula SET Disciplina_idDisciplina = $segunda3, horasInicio = '$inicio3', horaFim = '$fim3' WHERE idAula=$primeiroIdAula+10",
+        "UPDATE Aula SET Disciplina_idDisciplina = $terca3, horasInicio = '$inicio3', horaFim = '$fim3' WHERE idAula=$primeiroIdAula+11",
+        "UPDATE Aula SET Disciplina_idDisciplina = $quarta3, horasInicio = '$inicio3', horaFim = '$fim3' WHERE idAula=$primeiroIdAula+12",
+        "UPDATE Aula SET Disciplina_idDisciplina = $quinta3, horasInicio = '$inicio3', horaFim = '$fim3' WHERE idAula=$primeiroIdAula+13",
+        "UPDATE Aula SET Disciplina_idDisciplina = $sexta3, horasInicio = '$inicio3', horaFim = '$fim3' WHERE idAula=$primeiroIdAula+14",
+        "UPDATE Aula SET Disciplina_idDisciplina = $segunda4, horasInicio = '$inicio4', horaFim = '$fim4' WHERE idAula=$primeiroIdAula+15",
+        "UPDATE Aula SET Disciplina_idDisciplina = $terca4, horasInicio = '$inicio4', horaFim = '$fim4' WHERE idAula=$primeiroIdAula+16",
+        "UPDATE Aula SET Disciplina_idDisciplina = $quarta4, horasInicio = '$inicio4', horaFim = '$fim4' WHERE idAula=$primeiroIdAula+17",
+        "UPDATE Aula SET Disciplina_idDisciplina = $quinta4, horasInicio = '$inicio4', horaFim = '$fim4' WHERE idAula=$primeiroIdAula+18",
+        "UPDATE Aula SET Disciplina_idDisciplina = $sexta4, horasInicio = '$inicio4', horaFim = '$fim4' WHERE idAula=$primeiroIdAula+19",
+        "UPDATE Aula SET Disciplina_idDisciplina = $segunda5, horasInicio = '$inicio5', horaFim = '$fim5' WHERE idAula=$primeiroIdAula+20",
+        "UPDATE Aula SET Disciplina_idDisciplina = $terca5, horasInicio = '$inicio5', horaFim = '$fim5' WHERE idAula=$primeiroIdAula+21",
+        "UPDATE Aula SET Disciplina_idDisciplina = $quarta5, horasInicio = '$inicio5', horaFim = '$fim5' WHERE idAula=$primeiroIdAula+22",
+        "UPDATE Aula SET Disciplina_idDisciplina = $quinta5, horasInicio = '$inicio5', horaFim = '$fim5' WHERE idAula=$primeiroIdAula+23",
+        "UPDATE Aula SET Disciplina_idDisciplina = $sexta5, horasInicio = '$inicio5', horaFim = '$fim5' WHERE idAula=$primeiroIdAula+24",
 
-        ($segunda2, $turma, '$inicio2', ' $fim2', 1),
-        ($terca2, $turma, '$inicio2', ' $fim2', 2),
-        ($quarta2, $turma, '$inicio2', ' $fim2', 3),
-        ($quinta2, $turma, '$inicio2', ' $fim2', 4),
-        ($sexta2, $turma, '$inicio2', ' $fim2', 5),
+    );
 
-        ($segunda3, $turma, '$inicio3', ' $fim3', 1),
-        ($terca3, $turma, '$inicio3', ' $fim3', 2),
-        ($quarta3, $turma, '$inicio3', ' $fim3', 3),
-        ($quinta3, $turma, '$inicio3', ' $fim3', 4),
-        ($sexta3, $turma, '$inicio3', ' $fim3', 5),
-
-        ($segunda4, $turma, '$inicio4', ' $fim4', 1),
-        ($terca4, $turma, '$inicio4', ' $fim4', 2),
-        ($quarta4, $turma, '$inicio4', ' $fim4', 3),
-        ($quinta4, $turma, '$inicio4', ' $fim4', 4),
-        ($sexta4, $turma, '$inicio4', ' $fim4', 5),
-
-        ($segunda5, $turma, '$inicio5', ' $fim5', 1),
-        ($terca5, $turma, '$inicio5', ' $fim5', 2),
-        ($quarta5, $turma, '$inicio5', ' $fim5', 3),
-        ($quinta5, $turma, '$inicio5', ' $fim5', 4),
-        ($sexta5, $turma, '$inicio5', ' $fim5', 5) ;";
+    $todosValoresAtualizados = TRUE;
+    for($i=0; $i<25; $i++){
+        if($conn -> query($sql[$i]) === FALSE ){
+            $todosValoresAtualizados = FALSE;
+        }
+    }
 
     //Executando o comando sql
-    if($conn -> query($sql) === TRUE ){
+    if($todosValoresAtualizados){
         ?>
         <script>
             alert("Registro salvo com sucesso");
-            window.location = "../tela_listar/horarios2.php";
+            window.location = "../tela_listar/horarios.php?idTurma=<?php echo $turma ?>";
         </script>
 
         <?php
@@ -97,12 +110,10 @@
         ?>
         <script>
             alert("Erro ao inserir registro");
-            //window.location = "../tela_listar/horarios2";
+            window.location = "../tela_listar/horarios.php?idTurma=<?php echo $turma ?>";
         </script>
         
         <?php
     }
-*/
-echo "<h1 style='color: red; text-align: center;'>Atualização de dados dos horários ainda não implementada</h1>";
-echo "<a href='../tela_listar/horarios.php'  style='display:block;text-align:center; font-size: 1.5em;'>Clique aqui para voltar para a tela de horários</a>";
+
 ?>

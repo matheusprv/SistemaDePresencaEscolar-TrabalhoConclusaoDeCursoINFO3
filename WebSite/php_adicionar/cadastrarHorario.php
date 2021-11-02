@@ -139,17 +139,17 @@
     $quinta5 = $_POST["disciplinaEscolhida23"];
     $sexta5 = $_POST["disciplinaEscolhida24"];
 
-    $inicio1 = $_POST["inicio0"];
-    $inicio2 = $_POST["inicio1"];
-    $inicio3 = $_POST["inicio2"];
-    $inicio4 = $_POST["inicio3"];
-    $inicio5 = $_POST["inicio4"];
+    $inicio1 = $_POST["inicio1"];
+    $inicio2 = $_POST["inicio2"];
+    $inicio3 = $_POST["inicio3"];
+    $inicio4 = $_POST["inicio4"];
+    $inicio5 = $_POST["inicio5"];
 
-    $fim1 = $_POST["fim0"];
-    $fim2 = $_POST["fim1"];
-    $fim3 = $_POST["fim2"];
-    $fim4 = $_POST["fim3"];
-    $fim5 = $_POST["fim4"];
+    $fim1 = $_POST["fim1"];
+    $fim2 = $_POST["fim2"];
+    $fim3 = $_POST["fim3"];
+    $fim4 = $_POST["fim4"];
+    $fim5 = $_POST["fim5"];
 
     //Inserindo múltiplo valores no banco
     //https://www.mysqltutorial.org/mysql-insert-multiple-rows/
