@@ -169,14 +169,12 @@
 
                 </table>
             </div>
+
             <div style="text-align: center;">
-                
                 <input type="submit" value="<?php echo ($atualizar==1)?'Atualizar':'Adicionar' ?>" class="formBtn adicionar" onclick="recuperarDadosTabela()">
-                <input type="reset" value="Limpar" class="formBtn limpar">
+                <input type="reset" value="Deletar" class="formBtn limpar" onclick="deletarHorario()"> 
             </div>
         </form>
-        <!-- <button onclick="recuperarDadosTabela()">Adicionar </button> -->
-        <p id="info"></p>
     </div>
 
 </body>
@@ -189,7 +187,14 @@
         if(window.confirm("Deseja ir para os dados da turma "+nomeTurma+"?\n\n OBS: Todos os dados não salvos serão perdidos.")){
             window.location = "horarios.php?idTurma="+opcaoTurma;
         }
-        
+    }
+
+    function deletarHorario(){
+        let turma = document.getElementById("listTurma");
+        let opcaoTurma = turma.options[turma.selectedIndex].value;
+        if(window.confirm("Deseja realmente deletar os horários dessa turma?")){
+            window.location = "../php_deletar/deletarHorario.php?idTurma="+opcaoTurma;
+        }
     }
 </script>
 
