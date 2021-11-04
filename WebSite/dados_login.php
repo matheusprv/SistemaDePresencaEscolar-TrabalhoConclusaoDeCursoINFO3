@@ -40,7 +40,7 @@
                 
             </script>
             <?php
-            header("Location: indexErro.php");
+            header("Location: index.php?exibirErro=1");
             exit();
             
         }

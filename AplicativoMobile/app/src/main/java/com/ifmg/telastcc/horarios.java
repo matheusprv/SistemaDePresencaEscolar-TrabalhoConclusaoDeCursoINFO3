@@ -36,6 +36,8 @@ public class horarios extends AppCompatActivity {
         horario6 = (TextView) findViewById(R.id.horario6);
 
         anteriorBtn = (ImageButton) findViewById(R.id.anteriorBtn);
+        //Deixar o botao invisivel
+        anteriorBtn.setVisibility(View.INVISIBLE);
         proxBtn = (ImageButton) findViewById(R.id.proximoBtn);
         sairBtn = (ImageButton) findViewById(R.id.sairBtn);
 
@@ -103,6 +105,19 @@ public class horarios extends AppCompatActivity {
         }
         else if(diaDaSemanaAtual>4){
             diaDaSemanaAtual=4;
+        }
+        //deixar setas invisiveis
+        if(diaDaSemanaAtual != 0 && diaDaSemanaAtual != 4 ){
+            proxBtn.setVisibility(View.VISIBLE);
+            anteriorBtn.setVisibility(View.VISIBLE);
+        }
+        else{
+            if(diaDaSemanaAtual== 0){
+                anteriorBtn.setVisibility(View.INVISIBLE);
+            }
+            else{
+                proxBtn.setVisibility(View.INVISIBLE);
+            }
         }
         diaDaSemana.setText(vetorDiasDaSemana[diaDaSemanaAtual]);
     }

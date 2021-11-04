@@ -35,8 +35,12 @@
 
 <body style="background-color: #1D6AE3;">
     <?php
-
         if(!$_SESSION['logged']){
+
+            $erro=0;
+            if(isset($_GET["exibirErro"])){
+                $erro = $_GET["exibirErro"];
+            }
             
             ?>
                 <div class="center" style="background-color: white;">
@@ -50,12 +54,37 @@
                         -->
                         <div class="wrapper">
                             <input class="inserir" type="password" name="txtSenha" id="txtSenha" placeholder="Senha">
-                            <span>
+                            <?php
+                                //Ajustar a posição do icone de exibir senha
+                                if($erro==0){
+                                    ?>
+                                        <span>
+                                    <?php
+                                }
+                                else{
+                                    ?>
+                                        <span style="top: 69.3%">
+                                    <?php
+                                }
+                            ?>
                                 <i class="fa fa-eye" aria-hidden="true" id="eye" onclick="toggle()"></i>
                             </span>
                         </div>
                         <br><br>
 
+                        <?php
+                            if(isset($_GET["exibirErro"])){
+                                $erro = $_GET["exibirErro"];
+                                if($erro == 1){
+                                    ?>
+                                        <div style="color: red;">
+                                            Email ou senha inválidos <br><br>
+                                        </div>
+                                    <?php
+                                }
+                            }
+                        ?>
+                    
                         <input class="botaoEntrar inserir" type="submit" name="Entrar" value="Entrar">
                     </form>
                     <br>

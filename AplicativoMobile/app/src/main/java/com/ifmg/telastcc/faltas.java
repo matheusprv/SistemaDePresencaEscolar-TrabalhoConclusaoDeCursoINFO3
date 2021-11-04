@@ -130,12 +130,12 @@ public class faltas extends AppCompatActivity {
 
     //Carrega as informações do usuario e os alunos referentes a ele, se for responsavel
     private void carregarDadosUsuario(){
+        anteriorBtn.setVisibility(View.INVISIBLE);
+        proximoBtn.setVisibility(View.INVISIBLE);
         //Se o usuário for um aluno somente seus dados precisam ser carregados, caso contrário, é necessário pegar os dados dos alunos relacionados
         if(usuario.isAluno()){
             nomeAluno.setText(usuario.getNome());
             numeroMatricula.setText(usuario.getEmailMatricula());
-            anteriorBtn.setVisibility(View.GONE);
-            proximoBtn.setVisibility(View.GONE);
         }
 
         else{
@@ -144,6 +144,7 @@ public class faltas extends AppCompatActivity {
             totalDeAlunos = alunos.size()-1;
             nomeAluno.setText(alunos.get(0).getNome());
             numeroMatricula.setText(alunos.get(0).getEmailMatricula());
+            proximoBtn.setVisibility(View.VISIBLE);
         }
     }
 
@@ -151,10 +152,21 @@ public class faltas extends AppCompatActivity {
         // 1 --> Próximo aluno  | -1 --> Aluno anteriror
         if(opcao==1 && alunoAtual<totalDeAlunos){
             alunoAtual++;
+            //Desativar botão ao chegar no limite
+            if (alunoAtual==totalDeAlunos){
+                proximoBtn.setVisibility(View.INVISIBLE);
+                anteriorBtn.setVisibility(View.VISIBLE);
+            }
         }
         else if (opcao==-1 && alunoAtual>0){
             alunoAtual--;
+            //Desativar botão ao chegar no limite
+            if (alunoAtual==0){
+                proximoBtn.setVisibility(View.VISIBLE);
+                anteriorBtn.setVisibility(View.INVISIBLE);
+            }
         }
+
         nomeAluno.setText(alunos.get(alunoAtual).getNome());
         numeroMatricula.setText(alunos.get(alunoAtual).getEmailMatricula());
 
