@@ -16,7 +16,7 @@ import banco_de_dados.BancoDeDados;
 import objetos.ResponsavelAluno;
 
 public class MainActivity extends AppCompatActivity {
-    private Button login, testarBD;
+    private Button login;
     private EditText emailMatricula, senhaUsuario;
     private String emailMatriculaStr, senhaStr;
     private ArrayList<ResponsavelAluno> responsvaelAlunos = null;
@@ -30,13 +30,13 @@ public class MainActivity extends AppCompatActivity {
         emailMatricula = (EditText) findViewById(R.id.matriculaEmail);
 
         login = (Button) findViewById(R.id.login);
-        testarBD = (Button) findViewById(R.id.testarBd);
 
         senhaUsuario = (EditText) findViewById(R.id.senha);
         senhaStr = senhaUsuario.getText().toString().trim();
 
         //Implementa eventos dos botões
         eventos();
+        gerarDadosBD();
     }
 
     private void eventos(){
@@ -56,26 +56,6 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
         });
-
-        //Gera algumas informações a serem usadas pelo banco de dados local
-        testarBD.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                BancoDeDados bd;
-                bd = new BancoDeDados(MainActivity.this);
-                bd.insereTurma();
-                bd.insereDisciplina();
-                bd.inserirHorarioAula();
-                bd.insereResponsavel();
-                bd.insereAluno();
-
-                Toast.makeText(MainActivity.this, bd.getDatabaseName(), Toast.LENGTH_SHORT).show();
-
-                ResponsavelAluno teste = bd.pesquisarResponsavelLogin("matheus@email.com", "123");
-                //System.out.println(teste.toString());
-            }
-        });
-
 
     }
 
@@ -105,6 +85,33 @@ public class MainActivity extends AppCompatActivity {
             abrir.putExtra("usuario", usuario);
             startActivity(abrir);
         }
+    }
+
+    //Gera dados no banco de dados local para fim de testes
+    private void gerarDadosBD(){
+        BancoDeDados bd;
+        bd = new BancoDeDados(MainActivity.this);
+
+        //Verifica se há algum dado no BD, se não possuir, eles são criados
+        ArrayList<ResponsavelAluno> teste = bd.alunosDoResponsvel(1);
+        if(teste.size() !=0){
+            Toast.makeText(MainActivity.this, "Dados cadastrados previamente", Toast.LENGTH_SHORT).show();
+        }
+        else{
+            bd.insereTurma();
+            bd.insereDisciplina();
+            bd.inserirHorarioAula();
+            bd.insereResponsavel();
+            bd.insereAluno();
+
+            Toast.makeText(MainActivity.this, bd.getDatabaseName(), Toast.LENGTH_SHORT).show();
+
+            ResponsavelAluno teste2 = bd.pesquisarResponsavelLogin("matheus@email.com", "123");
+            System.out.println(teste2.toString());
+
+            Toast.makeText(MainActivity.this, "Novos dados criados", Toast.LENGTH_SHORT).show();
+        }
+
     }
 
 }
