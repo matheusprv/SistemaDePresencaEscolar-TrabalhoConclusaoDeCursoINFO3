@@ -8,14 +8,23 @@ import java.io.Serializable;
 public class ResponsavelAluno implements  Parcelable{
     private String nome, emailMatricula, senha;
     private boolean aluno;
-    private int id;
+    private int id, idTurma;
+    //Id turma será 0 caso o usuário é um responsável
 
-    public ResponsavelAluno(String nome, String emailMatricula, String senha, boolean aluno, int id) {
+    public ResponsavelAluno(String nome, String emailMatricula, String senha, boolean aluno, int id, int idTurma) {
         this.nome = nome;
         this.emailMatricula = emailMatricula;
         this.senha = senha;
         this.aluno = aluno;
         this.id = id;
+
+        if (aluno){
+            this.idTurma=idTurma;
+        }
+        else{
+            this.idTurma=0;
+        }
+        //System.out.println("TURMA: "+this.idTurma+" ALUNO: "+aluno);
     }
 
 
@@ -25,6 +34,7 @@ public class ResponsavelAluno implements  Parcelable{
         senha = in.readString();
         aluno = in.readByte() != 0;
         id = in.readInt();
+        idTurma = in.readInt();
     }
 
     public static final Creator<ResponsavelAluno> CREATOR = new Creator<ResponsavelAluno>() {
@@ -54,6 +64,7 @@ public class ResponsavelAluno implements  Parcelable{
     public int getId() {
         return id;
     }
+    public int getIdTurma() { return idTurma; }
 
     public void setSenha(String senha) {
         this.senha = senha;
@@ -82,5 +93,6 @@ public class ResponsavelAluno implements  Parcelable{
         dest.writeString(senha);
         dest.writeByte((byte) (aluno ? 1 : 0));
         dest.writeInt(id);
+        dest.writeInt(idTurma);
     }
 }

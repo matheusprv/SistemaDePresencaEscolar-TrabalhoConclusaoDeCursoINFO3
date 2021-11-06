@@ -63,13 +63,16 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 BancoDeDados bd;
                 bd = new BancoDeDados(MainActivity.this);
+                bd.insereTurma();
+                bd.insereDisciplina();
+                bd.inserirHorarioAula();
                 bd.insereResponsavel();
                 bd.insereAluno();
 
                 Toast.makeText(MainActivity.this, bd.getDatabaseName(), Toast.LENGTH_SHORT).show();
 
                 ResponsavelAluno teste = bd.pesquisarResponsavelLogin("matheus@email.com", "123");
-                System.out.println(teste.toString());
+                //System.out.println(teste.toString());
             }
         });
 

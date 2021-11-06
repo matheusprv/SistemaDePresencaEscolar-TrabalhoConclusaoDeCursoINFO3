@@ -20,7 +20,7 @@ public class faltas extends AppCompatActivity {
     private Button horariosBtn, usuarioBtn;
     private ImageButton sairBtn, anteriorBtn, proximoBtn;
     private ListView listaPresenca;
-    private TextView nomeUsuario, nomeAluno, numeroMatricula;
+    private TextView nomeUsuario, nomeAluno, numeroMatricula, turma;
 
     private ArrayList<Disciplina> disciplinas;
     private ArrayList<ResponsavelAluno> alunos;
@@ -44,6 +44,7 @@ public class faltas extends AppCompatActivity {
         proximoBtn = (ImageButton) findViewById(R.id.proximoBtn);
         nomeAluno = (TextView) findViewById(R.id.nomeAlunoTxt);
         numeroMatricula= (TextView) findViewById(R.id.matriculaTxt);
+        turma = (TextView) findViewById(R.id.turmaTxt);
 
         nomeUsuario = (TextView) findViewById(R.id.nomeUsuario);
         //Pegando dados dos usuario vindos do login e colocando o nome no canto superior direito
@@ -117,12 +118,12 @@ public class faltas extends AppCompatActivity {
     private void carregaDisciplinasFaltas(){
         disciplinas = new ArrayList<>();
         //Dados gerados para teste da lista de disciplinas e faltas
-        disciplinas.add(new Disciplina ("Matemática", 0));
-        disciplinas.add(new Disciplina ("Português", 1));
-        disciplinas.add(new Disciplina ("História", 2));
-        disciplinas.add(new Disciplina ("Geografia", 0));
-        disciplinas.add(new Disciplina ("Inglês", 1));
-        disciplinas.add(new Disciplina ("Filosofia", 2));
+        disciplinas.add(new Disciplina (0,"Matemática", 0));
+        disciplinas.add(new Disciplina (0,"Português", 1));
+        disciplinas.add(new Disciplina (0,"História", 2));
+        disciplinas.add(new Disciplina (0,"Geografia", 0));
+        disciplinas.add(new Disciplina (0,"Inglês", 1));
+        disciplinas.add(new Disciplina (0,"Filosofia", 2));
 
         adapter = new lista_presenca_disciplina(getApplicationContext(), disciplinas);
         listaPresenca.setAdapter(adapter);
@@ -136,6 +137,7 @@ public class faltas extends AppCompatActivity {
         if(usuario.isAluno()){
             nomeAluno.setText(usuario.getNome());
             numeroMatricula.setText(usuario.getEmailMatricula());
+            turma.setText(usuario.getIdTurma()+"");
         }
 
         else{
@@ -143,8 +145,14 @@ public class faltas extends AppCompatActivity {
             alunos = bd.alunosDoResponsvel(usuario.getId());
             totalDeAlunos = alunos.size()-1;
             nomeAluno.setText(alunos.get(0).getNome());
+            turma.setText(alunos.get(0).getIdTurma()+"");
             numeroMatricula.setText(alunos.get(0).getEmailMatricula());
-            proximoBtn.setVisibility(View.VISIBLE);
+
+            if(totalDeAlunos>1){
+                anteriorBtn.setVisibility(View.INVISIBLE);
+                proximoBtn.setVisibility(View.VISIBLE);
+            }
+
         }
     }
 
@@ -152,23 +160,29 @@ public class faltas extends AppCompatActivity {
         // 1 --> Próximo aluno  | -1 --> Aluno anteriror
         if(opcao==1 && alunoAtual<totalDeAlunos){
             alunoAtual++;
-            //Desativar botão ao chegar no limite
-            if (alunoAtual==totalDeAlunos){
-                proximoBtn.setVisibility(View.INVISIBLE);
-                anteriorBtn.setVisibility(View.VISIBLE);
-            }
         }
         else if (opcao==-1 && alunoAtual>0){
             alunoAtual--;
-            //Desativar botão ao chegar no limite
-            if (alunoAtual==0){
-                proximoBtn.setVisibility(View.VISIBLE);
-                anteriorBtn.setVisibility(View.INVISIBLE);
-            }
         }
+
+        //Visualizar botões de aluno anterior e próximo
+        if(alunoAtual ==0){
+            anteriorBtn.setVisibility(View.INVISIBLE);
+        }
+        else{
+            anteriorBtn.setVisibility(View.VISIBLE);
+        }
+        if(alunoAtual == totalDeAlunos){
+            proximoBtn.setVisibility(View.INVISIBLE);
+        }
+        else{
+            proximoBtn.setVisibility(View.VISIBLE);
+        }
+
 
         nomeAluno.setText(alunos.get(alunoAtual).getNome());
         numeroMatricula.setText(alunos.get(alunoAtual).getEmailMatricula());
+        turma.setText(alunos.get(alunoAtual).getIdTurma()+"");
 
     }
 

@@ -158,6 +158,34 @@
                 android:orientation="vertical"
                 android:layout_marginHorizontal="25dp">
 
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_gravity="center">
+                    <!--Dia da semana-->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:text="Turma: "
+                        android:textSize="25dp"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="10dp"
+                        android:textStyle="bold"/>
+                    <TextView
+                        android:id="@+id/turmaTxt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:text="3 Ano EM"
+                        android:textSize="25dp"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="10dp"/>
+
+                </LinearLayout>
+
+
                 <!--Dia da semana-->
                 <TextView
                     android:id="@+id/diaDaSemana"
@@ -205,6 +233,7 @@
                         android:divider="@color/black"
                         android:showDividers="middle">
                         <TextView
+                            android:id="@+id/horas1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="7:00"
@@ -228,6 +257,7 @@
                         android:divider="@color/black"
                         android:showDividers="middle">
                         <TextView
+                            android:id="@+id/horas2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="7:50"
@@ -251,6 +281,7 @@
                         android:divider="@color/black"
                         android:showDividers="middle">
                         <TextView
+                            android:id="@+id/horas3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="8:40"
@@ -274,6 +305,7 @@
                         android:divider="@color/black"
                         android:showDividers="middle">
                         <TextView
+                            android:id="@+id/horas4"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="9:30"
@@ -297,6 +329,7 @@
                         android:divider="@color/black"
                         android:showDividers="middle">
                         <TextView
+                            android:id="@+id/horas5"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="9:50"
@@ -315,7 +348,7 @@
                             android:textSize="20dp"/>
                     </TableRow>
 
-                    <!--Sexta Linha-->
+                    <!--Sexta Linha
                     <TableRow
                         android:divider="@color/black"
                         android:showDividers="middle">
@@ -337,7 +370,7 @@
                             android:padding="10sp"
                             android:textSize="20dp"/>
                     </TableRow>
-
+                    -->
                 </TableLayout>
 
             </LinearLayout>
@@ -351,6 +384,33 @@
                 android:layout_gravity="center_vertical"
                 android:layout_marginTop="25dp"/>
 
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center"
+            android:layout_marginTop="40px"
+            android:paddingLeft="50dp"
+            android:paddingRight="50dp">
+            <Button
+                android:id="@+id/anteriorAlunoBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Anterior"
+                android:layout_weight="1"
+                android:layout_marginRight="10dp"
+                android:textColor="@android:color/white"/>
+            <Button
+                android:id="@+id/proximoAlunoBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Próximo"
+                android:layout_weight="1"
+                android:layout_marginLeft="10dp"
+                android:textColor="@android:color/white"/>
         </LinearLayout>
 
 

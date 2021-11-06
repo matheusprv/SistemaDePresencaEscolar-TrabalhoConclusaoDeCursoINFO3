@@ -2,9 +2,10 @@ package objetos;
 
 public class Disciplina {
     private String nome;
-    private int faltas;
+    private int faltas, idDisciplina;
 
-    public Disciplina(String nome, int faltas) {
+    public Disciplina(int idDisciplina, String nome, int faltas) {
+        this.idDisciplina = idDisciplina;
         this.nome = nome;
         this.faltas = faltas;
     }
@@ -17,6 +18,10 @@ public class Disciplina {
         return faltas;
     }
 
+    public int getIdDisciplina() {
+        return idDisciplina;
+    }
+
     public void setNome(String nome) {
         this.nome = nome;
     }
@@ -25,3 +30,5 @@ public class Disciplina {
         this.faltas = faltas;
     }
 }
+
+
