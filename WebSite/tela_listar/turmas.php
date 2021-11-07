@@ -82,8 +82,10 @@
                                 <?php echo $exibir["ano"]?>
                             </td>
                             <td>
-                                <input type="submit" value="Editar" class="botaoEditar editarDeletar">
+                                
+                                <a href="../tela_editar/editarTurma.php?idTurma=<?php echo $exibir["idTurma"]?>"><input type="submit" value="Editar" class="botaoEditar editarDeletar"></a>
                                 <input type="submit" value="Deletar"  class="botaoDeletar editarDeletar" onclick="confirmarExclusao('<?php echo $exibir["idTurma"]?>', '<?php echo $exibir["nome"]?>')">
+
                             </td>
                         </tr>
                         <?php

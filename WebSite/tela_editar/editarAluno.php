@@ -26,7 +26,7 @@
 
 <body>
     <?php
-        include_once("../cabecalho/cabecalho_criar.php");
+        include_once("../cabecalho/cabecalho_listar.php");
 
         //Buscar dados do objeto a ser editado no banco
         if(isset($_GET["matricula"])){

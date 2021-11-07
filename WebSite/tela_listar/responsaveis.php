@@ -82,7 +82,8 @@
                                 <?php echo $exibir["email"]?>
                             </td>
                             <td>
-                                <input type="submit" value="Editar" class="botaoEditar editarDeletar">
+                                
+                                <a href="../tela_editar/editarResponsavel.php?id=<?php echo $exibir["id"]?>"><input type="submit" value="Editar" class="botaoEditar editarDeletar"></a>
                                 <input type="submit" value="Deletar"  class="botaoDeletar editarDeletar" onclick="confirmarExclusao('<?php echo $exibir["id"]?>', '<?php echo $exibir["email"]?>','<?php echo $exibir["nome"]?>')">
                             </td>
                         </tr>

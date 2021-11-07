@@ -23,7 +23,7 @@
 
 <body style="margin: 0;">
     <?php
-        if(session_status() == PHP_SESSION_ACTIVE){
+        if($logged){
             include_once("../cabecalho/cabecalho_listar.php");
         }
         else{
