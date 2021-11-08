@@ -31,7 +31,7 @@
 
     <h1 style="text-align: center; margin-top: 20px;"><?php echo "{$_SESSION['usuario']}"; ?></h1>
     <br>
-    <form action="">
+    <form action="../php_atualizar/atualizarUsuario.php" method="POST">
         <div class="divCentralizada" style="width: 750px;">
             <label for="txtNome">Nome:</label>
             <!--<input type="text" name="txtNome" id="txtNome" class="input-text" required value="<?php echo "{$_SESSION['usuario']}"; ?>">-->
@@ -80,11 +80,11 @@
     </div>
     
     <script>
-        const senhaAtual = document.querySelector("#txtSenhaAtual");
-        const senha1 = document.querySelector("#txtSenha");
-        const senha2 = document.querySelector("#txtSenhaConfirmar");
-        const respostaSenha = document.querySelector(".respostasSenha");
-        const btn = document.querySelector("#botaoSalvar");
+        var senhaAtual = document.querySelector("#txtSenhaAtual");
+        var senha1 = document.querySelector("#txtSenha");
+        var senha2 = document.querySelector("#txtSenhaConfirmar");
+        var respostaSenha = document.querySelector(".respostasSenha");
+        var btn = document.querySelector("#botaoSalvar");
 
         //verifica se as senhas possuem os mesmos valores 
         function verificarSenhas(){
@@ -109,7 +109,6 @@
             }
         }
 
-
         //Ver senha
         var state = false;
         function toggle(){
@@ -122,6 +121,13 @@
                 document.getElementById("txtSenha").setAttribute("type", "text");
                 document.getElementById("eye").style.color="#5887ef";
                 state = true;
+            }
+        }
+
+        //Alterar senha
+        function alterarSenha(){
+            if(senhaAtual== <?php echo $_SESSION['senha'] ?> && senha1 == senha2){
+                window.location = "../php_atualizar/atualizarUsuario.php?senha="+senha1;
             }
         }
     </script>

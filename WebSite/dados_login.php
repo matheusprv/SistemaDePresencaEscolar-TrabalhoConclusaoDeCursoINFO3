@@ -40,6 +40,7 @@
                 
             </script>
             <?php
+            session_destroy();
             header("Location: index.php?exibirErro=1");
             exit();
             
