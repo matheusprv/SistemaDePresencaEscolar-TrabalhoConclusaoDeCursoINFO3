@@ -156,35 +156,35 @@
     $sql = "INSERT INTO Aula 
         (Disciplina_idDisciplina, Turma_idTurma, horasInicio, horaFim, diaSemana) 
         VALUES 
-        ($segunda1, $turma, '$inicio1', ' $fim0', 1),
-        ($terca1, $turma, '$inicio1', ' $fim0', 2),
-        ($quarta1, $turma, '$inicio1', ' $fim0', 3),
-        ($quinta1, $turma, '$inicio1', ' $fim0', 4),
-        ($sexta1, $turma, '$inicio1', ' $fim0', 5),
+        ($segunda1, $turma, '$inicio1', ' $fim1', 1),
+        ($terca1, $turma, '$inicio1', ' $fim1', 2),
+        ($quarta1, $turma, '$inicio1', ' $fim1', 3),
+        ($quinta1, $turma, '$inicio1', ' $fim1', 4),
+        ($sexta1, $turma, '$inicio1', ' $fim1', 5),
 
-        ($segunda2, $turma, '$inicio2', ' $fim1', 1),
-        ($terca2, $turma, '$inicio2', ' $fim1', 2),
-        ($quarta2, $turma, '$inicio2', ' $fim1', 3),
-        ($quinta2, $turma, '$inicio2', ' $fim1', 4),
-        ($sexta2, $turma, '$inicio2', ' $fim1', 5),
+        ($segunda2, $turma, '$inicio2', ' $fim2', 1),
+        ($terca2, $turma, '$inicio2', ' $fim2', 2),
+        ($quarta2, $turma, '$inicio2', ' $fim2', 3),
+        ($quinta2, $turma, '$inicio2', ' $fim2', 4),
+        ($sexta2, $turma, '$inicio2', ' $fim2', 5),
 
-        ($segunda3, $turma, '$inicio3', ' $fim2', 1),
-        ($terca3, $turma, '$inicio3', ' $fim2', 2),
-        ($quarta3, $turma, '$inicio3', ' $fim2', 3),
-        ($quinta3, $turma, '$inicio3', ' $fim2', 4),
-        ($sexta3, $turma, '$inicio3', ' $fim2', 5),
+        ($segunda3, $turma, '$inicio3', ' $fim3', 1),
+        ($terca3, $turma, '$inicio3', ' $fim3', 2),
+        ($quarta3, $turma, '$inicio3', ' $fim3', 3),
+        ($quinta3, $turma, '$inicio3', ' $fim3', 4),
+        ($sexta3, $turma, '$inicio3', ' $fim3', 5),
 
-        ($segunda4, $turma, '$inicio4', ' $fim3', 1),
-        ($terca4, $turma, '$inicio4', ' $fim3', 2),
-        ($quarta4, $turma, '$inicio4', ' $fim3', 3),
-        ($quinta4, $turma, '$inicio4', ' $fim3', 4),
-        ($sexta4, $turma, '$inicio4', ' $fim3', 5),
+        ($segunda4, $turma, '$inicio4', ' $fim4', 1),
+        ($terca4, $turma, '$inicio4', ' $fim4', 2),
+        ($quarta4, $turma, '$inicio4', ' $fim4', 3),
+        ($quinta4, $turma, '$inicio4', ' $fim4', 4),
+        ($sexta4, $turma, '$inicio4', ' $fim4', 5),
 
-        ($segunda5, $turma, '$inicio5', ' $fim4', 1),
-        ($terca5, $turma, '$inicio5', ' $fim4', 2),
-        ($quarta5, $turma, '$inicio5', ' $fim4', 3),
-        ($quinta5, $turma, '$inicio5', ' $fim4', 4),
-        ($sexta5, $turma, '$inicio5', ' $fim4', 5) ;";
+        ($segunda5, $turma, '$inicio5', ' $fim5', 1),
+        ($terca5, $turma, '$inicio5', ' $fim5', 2),
+        ($quarta5, $turma, '$inicio5', ' $fim5', 3),
+        ($quinta5, $turma, '$inicio5', ' $fim5', 4),
+        ($sexta5, $turma, '$inicio5', ' $fim5', 5) ;";
 
     //Executando o comando sql
     if($conn -> query($sql) === TRUE ){

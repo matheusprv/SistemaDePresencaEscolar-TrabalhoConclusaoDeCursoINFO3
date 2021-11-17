@@ -155,6 +155,8 @@
             </table>
         </div>    
 
+        <a href="../tela_criar/presencaParaAluno.php">Adicionar presença</a>
+
 </body>
 
 
