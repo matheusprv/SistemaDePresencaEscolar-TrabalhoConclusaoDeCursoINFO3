@@ -14,3 +14,5 @@ https://www.youtube.com/watch?v=wqlxbPJV_NM&ab_channel=CodingNepal (28/09/2021)
 Saber se a sessão está logada
 https://stackoverflow.com/questions/6249707/check-if-php-session-has-already-started (21/10/2021)
 
+Preencher vetor com dados nulo
+https://stackoverflow.com/questions/5560103/in-php-how-do-i-set-the-size-of-an-array (17/11/2021)

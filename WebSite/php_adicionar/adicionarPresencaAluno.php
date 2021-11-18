@@ -23,11 +23,12 @@
     $aulas = $conn->query($aulasSQL);
     while($rowAulas = $aulas->fetch_assoc()){
         $horario[] = $rowAulas["idAula"];
+        $idDisciplina[] = $rowAulas["Disciplina_idDisciplina"];
     }
 
     $todosDadosInseridos =TRUE;
     for($i=0; $i<5; $i++){
-        $inserirPresenca = "INSERT INTO Presenca (Aluno_matricula, Aula_idAula, data) values ($aluno, $horario[$i], '$dataAula') ";
+        $inserirPresenca = "INSERT INTO Presenca (Aluno_matricula, Aula_idAula, data, Disciplina_idDisciplina) values ($aluno, $horario[$i], '$dataAula', $idDisciplina[$i]) ";
         
         if($conn -> query($inserirPresenca) === FALSE ){
             $todosDadosInseridos = FALSE;
