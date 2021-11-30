@@ -88,7 +88,7 @@
             <br><br>
 
             <div style="text-align: center;">
-                <input type="submit" value="Salvar" class="formBtn adicionar">
+                <input type="submit" value="Editar" class="formBtn adicionar">
                 <input type="reset" value="Limpar" class="formBtn limpar">
             </div>
             

@@ -64,7 +64,13 @@
         <div class="resultados">
         </div>
 
+        <br>
+
         <a href="../tela_criar/presencaParaAluno.php">Adicionar presença</a>
+        
+        <br><br>
+
+        <a href="../tela_criar/removerPresencaParaAluno.php">Remover presença</a>
 
 </body>
 
