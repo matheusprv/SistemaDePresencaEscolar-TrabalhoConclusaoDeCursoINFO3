@@ -25,22 +25,62 @@
 <body>
     <?php
         include_once("../cabecalho/cabecalho_listar.php");
+        if(!empty($_POST["listTurma"])){
+            $idTurma=$_POST["listTurma"];
+        }
+
     ?>
     <h1 style="text-align: center; margin-top: 20px;">Alunos</h1>
     <br>
 
-    <?php
-        include_once("../filtroPesquisa/pesquisa.html");
-        echo "<br>"
-    ?>
 
     <div style="width: 1200px;  margin: 0 auto; text-align: center;">
+        <form action="alunos.php" method="POST" name="form-filtrar" id="form-filtrar">
+            <div style="margin: 0 auto;">
+                <label for="listTurma">Turma:</label>
+                <select name="listTurma" id="listTurma" required style="margin-left: 5px;" onchange="filtrar()">
+                    
+                    <option value="0" selected>Todas</option>
+                    <?php
+                        $sql = "SELECT idTurma, nome FROM Turma ORDER BY nome";
+
+                        $turma = $conn -> query($sql);
+
+                        while ($rowTurma = $turma->fetch_assoc()) {
+                            if(is_null($idTurma)){
+                                ?>
+                                    <option value="<?php echo $rowTurma["idTurma"]; ?>"><?php echo $rowTurma["nome"]; ?></option>
+                                <?php
+                            }
+                            else{
+                                ?>
+                                    <option value="<?php echo $rowTurma["idTurma"]; ?>" <?php echo($rowTurma["idTurma"] == $idTurma)?"selected":"" ?>>  <?php echo $rowTurma["nome"]; ?></option>
+                                <?php   
+                            }
+                        }
+
+                    ?>
+                </select>
+                <!--
+                <input type="submit" value="Filtrar" style=" margin-left: 15px; margin-top: 15px; font-size: 1.1em; cursor: pointer; padding: 4px;">    
+                -->
+            </div>
+
+        </form>
+
+        <!--<button style="margin-top: 15px; font-size: 1.1em; cursor: pointer; padding: 4px;" onclick="filtrar()">Filtrar</button>-->
+
         <?php
             // Determina o número de resultados por página
             $numResultadosPorPagina = 10;
 
             //Descobrir o número de dados no banco de dados
+            //Verificando se algum valor de turma foi setado
             $sql = "SELECT * FROM Aluno ";
+            if(isset($idTurma)){
+                $sql = "SELECT * FROM Aluno WHERE Turma_idTurma = $idTurma"; 
+            }
+
             $alunos = $conn->query($sql);
             $numeroDeResultados =  mysqli_num_rows($alunos);
 
@@ -61,6 +101,10 @@
 
                 //Recuperar dados para mostrar na página
                 $sql = "SELECT * FROM Aluno ORDER BY nome LIMIT " . $primeiroResultadoDaPagina. ',' . $numResultadosPorPagina;
+                //Verificar se existe um filtro de turma para pesquisar somente com ela 
+                if(isset($idTurma)){
+                    $sql = "SELECT * FROM Aluno WHERE Turma_idTurma = $idTurma ORDER BY nome LIMIT " . $primeiroResultadoDaPagina. ',' . $numResultadosPorPagina; 
+                }
                 $alunos = $conn->query($sql);
 
                 ?>
@@ -151,6 +195,11 @@
                 window.location = "../php_deletar/deletarAluno.php?matricula=" + matricula;
             }
         }
+
+        function filtrar(){
+            document.getElementById('form-filtrar').submit();
+        }
+
     </script>
 
 </body>
