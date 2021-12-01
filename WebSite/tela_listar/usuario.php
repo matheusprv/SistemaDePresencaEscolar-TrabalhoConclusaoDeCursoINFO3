@@ -57,14 +57,14 @@
             <label for="" style="font-size: medium; font-weight: bold;">Tamano máximo: 10 caracteres</label>
             <!--<input type="password" name="txtSenha" id="txtSenha" class="input-text" style="width: 100%;" required value="<?php echo "{$_SESSION['senha']}"; ?>">-->
             <div class="wrapper">        
-                <input type="password" name="txtSenha" id="txtSenha" class="input-text" style="width: 100%;" required value="" onkeyup="senha1Escrita(); verificarSenhas()" maxlength="10">
+                <input type="password" name="txtSenha" id="txtSenha" class="input-text" style="width: 100%;" required value="" onkeyup="verificarSenhas()" maxlength="10">
                 <span>
                     <i class="fa fa-eye" aria-hidden="true" id="eye" onclick="toggle()"></i>
                 </span>
             </div>
                         
             <div class="txtSenhaConfirmar" >
-                <label for="txtSenha">Confirmar senha:</label>
+                <label for="txtSenhaConfirmar">Confirmar senha:</label>
                 <!--<input type="password" name="txtSenha" id="txtSenha" class="input-text" style="width: 100%;" required value="<?php echo "{$_SESSION['senha']}"; ?>">-->
                 <input type="password" name="txtSenhaConfirmar" id="txtSenhaConfirmar" class="input-text" style="width: 100%;" required value="" onkeyup="verificarSenhas()">
                 <br><br>
@@ -77,6 +77,8 @@
         </div>
         
     </form>
+
+
     </div>
     
     <script>
@@ -126,7 +128,8 @@
 
         //Alterar senha
         function alterarSenha(){
-            if(senhaAtual== <?php echo $_SESSION['senha'] ?> && senha1 == senha2){
+            if((senhaAtual == <?php echo $_SESSION['senha'] ?>) && (senha1 == senha2)){
+                $_SESSION['senha'] = senhaAtual;
                 window.location = "../php_atualizar/atualizarUsuario.php?senha="+senha1;
             }
         }

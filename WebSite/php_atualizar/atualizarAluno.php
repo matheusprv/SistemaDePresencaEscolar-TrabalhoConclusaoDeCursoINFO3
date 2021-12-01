@@ -13,8 +13,7 @@
     if($conn->query($sql)== TRUE){
         ?>
             <script>
-                alert("Registro atualizado com sucesso")
-                window.location= "../tela_listar/alunos.php"
+                window.location = "../tela_listar/alunos.php?respostaAdicionarAluno=1";
             </script>
         <?php
     }
@@ -22,7 +21,7 @@
         echo $sql;
         ?>
             <script>
-                alert("Erro ao atualizar dados do aluno")
+                window.location = "../tela_listar/alunos.php?respostaAdicionarAluno=2";
             </script>
         <?php
     }

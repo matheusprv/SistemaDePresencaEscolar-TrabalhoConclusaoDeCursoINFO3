@@ -17,8 +17,7 @@
     if($conn -> query($sql) === TRUE ){
         ?>
         <script>
-            alert("Registro salvo com sucesso");
-            window.location = "../tela_listar/alunos.php";
+            window.location = "../tela_listar/alunos.php?respostaAdicionarAluno=1";
         </script>
 
         <?php
@@ -27,8 +26,7 @@
         
         ?>
         <script>
-            alert("Erro ao inserir registro");
-            window.location = "../tela_listar/alunos.php";
+            window.location = "../tela_listar/alunos.php?respostaAdicionarAluno=2";
         </script>
         
         <?php

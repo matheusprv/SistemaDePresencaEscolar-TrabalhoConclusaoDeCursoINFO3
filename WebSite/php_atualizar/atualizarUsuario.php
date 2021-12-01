@@ -7,24 +7,29 @@
     $senhaAtual = $_POST["txtSenhaAtual"];
     $novaSenha = $_POST["txtSenha"];
     $senhaConfirmada = $_POST["txtSenhaConfirmar"];
-
-
+    /*
+    echo $email;
+    echo "<br>";
     echo $senhaAtual;
     echo "<br>";
     echo  $_SESSION['senha'];
+    echo "<br>";
+    echo $novaSenha;
+    echo "<br>";
+    */
     //Verificar se a senha atual está correta
     if($senhaAtual == $_SESSION['senha']){
         
         //Executar sql
         $sql = "UPDATE Funcionario SET senha = '$novaSenha' WHERE email = '$email'";
-
+        //echo $sql;
         //Executando o comando sql
         if($conn -> query($sql) === TRUE ){
             $_SESSION['senha'] = $novaSenha;
             ?>
                 <script>
                     alert("Senha alterada com sucesso");
-                    window.history.back();
+                    //window.history.back();
                 </script>
             <?php
             //header("Location: ../tela_listar/usuario.php");
@@ -33,7 +38,7 @@
             ?>
             <script>
                 alert("Erro ao inserir registro");
-                window.history.back();
+                //window.history.back();
             </script>
             
             <?php
@@ -43,7 +48,7 @@
         ?>
         <script>
             alert("Senha atual incorreta");
-            window.history.back();
+            //window.history.back();
         </script>
         <?php
     }

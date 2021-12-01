@@ -73,17 +73,19 @@
                 if($resposta==1){
                     ?>
                         <br>
-                        <div class="respostaAdicionar" name="Sucesso" id="Sucesso" style="background-color: #d7f8dc; padding: 15px;" >
-                            <div style="margin-bottom: 5px; font-weight: bold;">Ação feita com sucesso</div>
+                        <div class="respostaAdicionar" name="adicionadoSucesso" id="adicionadoSucesso" style="background-color: #d7f8dc; padding: 15px;" >
+                            <div style="margin-bottom: 10px; font-weight: bold;">Aluno adicionado com sucesso</div>
+                            <div style="margin-bottom: 10px;">Nome: </div>
+                            <div>Turma: </div>
                         </div>
                     <?php
                 }
                 else{
                     ?>
                         <br>
-                        <div class="respostaAdicionar" name="Erro" id="Erro" style="background-color: #f8d7da; padding: 15px;" >
-                            <div style="margin-bottom: 10px; font-weight: bold;">Erro</div>
-                            Verifique se os dados estão cadastrados em outras áreas e tente novamente mais tarde<br>
+                        <div class="respostaAdicionar" name="adicionadoErro" id="adicionadoErro" style="background-color: #f8d7da; padding: 15px;" >
+                            <div style="margin-bottom: 10px; font-weight: bold;">Erro ao adicionar aluno</div>
+                            Verifique os dados e tente novamente mais tarde<br>
                         </div>
                     <?php
                 }
@@ -213,7 +215,7 @@
     
 
     <script>
-        //Esconder a mensagem que diz se a requisição foi feita com sucesso ou se teve algum erro
+        //Esconder a mensagem que diz se o aluno foi adicionado com sucesso ou se teve algum erro
         function esconderAdicao(){
             
             <?php
@@ -224,18 +226,18 @@
                         <?php
                             if($resposta == 1){
                                 ?>
-                                    esconder = document.getElementById("Sucesso");
+                                    esconder = document.getElementById("adicionadoSucesso");
                                 <?php
                             }
                             else{
                                 ?>
-                                    esconder = document.getElementById("Erro");
+                                    esconder = document.getElementById("adicionadoErro");
                                 <?php
                             }
                         ?>
                         setTimeout(function () {
                             esconder.style.display = "none";
-                        }, 8000);
+                        }, 10000);
                     <?php
                 }
             ?>
