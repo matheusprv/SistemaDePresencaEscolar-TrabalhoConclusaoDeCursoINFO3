@@ -39,7 +39,7 @@
             }
             
             else{
-                header("Location: ../tela_listar/funcionarios.php");
+                header("Location: ../tela_listar/funcionarios.php?resposta=1");
             }
 
         }

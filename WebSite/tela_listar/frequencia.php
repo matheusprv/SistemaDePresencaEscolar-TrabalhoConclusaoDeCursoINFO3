@@ -41,6 +41,7 @@
         <div style="margin: 0 auto;">
             <label for="listTurma">Turma:</label>
             <select name="listTurma" id="listTurma" required style="margin-left: 5px;" onchange="pesquisar()">
+                <option value="" selected disabled hidden>Selecionar</option>
                 <?php
                     
                     $sql = "SELECT idTurma, nome FROM Turma ORDER BY nome";
@@ -66,11 +67,9 @@
 
         <br>
 
-        <a href="../tela_criar/presencaParaAluno.php">Adicionar presença</a>
-        
-        <br><br>
+        <a href="../tela_criar/presencaParaAluno.php" style="margin-right:20px; font-size: 1.2em">Adicionar presença</a>
 
-        <a href="../tela_criar/removerPresencaParaAluno.php">Remover presença</a>
+        <a href="../tela_criar/removerPresencaParaAluno.php" style="font-size: 1.2em">Remover presença</a>
 
 </body>
 

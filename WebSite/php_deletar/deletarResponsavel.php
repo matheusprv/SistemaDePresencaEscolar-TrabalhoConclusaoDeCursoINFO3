@@ -9,16 +9,14 @@
         if($conn->query($sql)== TRUE){
             ?>
                 <script>
-                    alert("Registro excluído com sucesso")
-                    window.location= "../tela_listar/responsaveis.php"
+                    window.location= "../tela_listar/responsaveis.php?resposta=5"
                 </script>
             <?php
         }
         else{
             ?>
                 <script>
-                    alert("Erro ao excluir o registro\n\nVerifique se há algum aluno relacionado a esse responsável")
-                    window.location= "../tela_listar/responsaveis.php"
+                    window.location= "../tela_listar/responsaveis.php?resposta=6"
                 </script>
             <?php
         }

@@ -22,13 +22,12 @@
 
     //Executando o comando sql
     if($conn -> query($sql) === TRUE ){
-        header("Location: ../tela_listar/funcionarios.php");
+        header("Location: ../tela_listar/funcionarios.php?resposta=3");
     }
     else{
         ?>
         <script>
-            alert("Erro ao inserir registro");
-            window.history.back();
+            header("Location: ../tela_listar/funcionarios.php?resposta=4");
         </script>
         
         <?php

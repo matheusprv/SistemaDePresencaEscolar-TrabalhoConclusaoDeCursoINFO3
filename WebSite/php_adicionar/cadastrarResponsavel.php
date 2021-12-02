@@ -33,8 +33,7 @@
         if($conn -> query($sql) === TRUE ){
             ?>
             <script>
-                alert("Registro salvo com sucesso");
-                window.location = "../tela_listar/responsaveis.php";
+                window.location = "../tela_listar/responsaveis.php?resposta=1";
             </script>
 
             <?php
@@ -42,8 +41,7 @@
         else{
             ?>
             <script>
-                alert("Erro ao inserir registro");
-                window.location = "../tela_listar/responsaveis.php";
+                window.location = "../tela_listar/responsaveis.php?resposta=2";
             </script>
             
             <?php

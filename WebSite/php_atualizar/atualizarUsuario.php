@@ -28,17 +28,15 @@
             $_SESSION['senha'] = $novaSenha;
             ?>
                 <script>
-                    alert("Senha alterada com sucesso");
-                    //window.history.back();
+                    //alert("Senha alterada com sucesso");
+                    window.location = "../tela_listar/usuario.php?resposta=1";
                 </script>
             <?php
-            //header("Location: ../tela_listar/usuario.php");
         }
         else{
             ?>
             <script>
-                alert("Erro ao inserir registro");
-                //window.history.back();
+                window.location = "../tela_listar/usuario.php?resposta=3";
             </script>
             
             <?php
@@ -47,7 +45,8 @@
     else{
         ?>
         <script>
-            alert("Senha atual incorreta");
+            //alert("Senha atual incorreta");
+            window.location = "../tela_listar/usuario.php?resposta=2";
             //window.history.back();
         </script>
         <?php

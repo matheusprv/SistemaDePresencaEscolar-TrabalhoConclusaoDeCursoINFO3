@@ -99,6 +99,14 @@
                     ?>
                 </select>  
             </div>
+
+            <div style="width: 1200px;  margin: 0 auto; text-align: center;">
+                <?php
+                    include_once("respostasServicos.php");
+                ?>
+            </div>
+
+
             <div class="scrollHorizontal">
                 <table class="table-bordered" id="tabelaHorarios"style="width: 98%; margin-left: 15px;">
                     <thead class="thead-dark">

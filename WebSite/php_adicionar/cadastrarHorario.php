@@ -190,8 +190,7 @@
     if($conn -> query($sql) === TRUE ){
         ?>
         <script>
-            alert("Registro salvo com sucesso");
-            window.location = "../tela_listar/horarios.php?idTurma=<?php echo $turma ?>";
+            window.location = "../tela_listar/horarios.php?idTurma=<?php echo $turma ?>&resposta=1";
         </script>
 
         <?php
@@ -200,8 +199,7 @@
         echo $sql;
         ?>
         <script>
-            alert("Erro ao inserir registro");
-            window.location = "../tela_listar/horarios.php";
+            window.location = "../tela_listar/horarios.php?resposta=2";
         </script>
         
         <?php

@@ -22,7 +22,7 @@
         
 </head>
 
-<body onload="esconderAdicao()">
+<body>
     <?php
         include_once("../cabecalho/cabecalho_listar.php");
         //Verificar se existe algum filtro para a turma
@@ -67,29 +67,7 @@
         </form>
 
         <?php
-            //Exibir mensagem de erro ou sucesso da inserção de um aluno
-            if(isset($_GET["respostaAdicionarAluno"])){
-                $resposta = $_GET["respostaAdicionarAluno"];
-                if($resposta==1){
-                    ?>
-                        <br>
-                        <div class="respostaAdicionar" name="Sucesso" id="Sucesso" style="background-color: #d7f8dc; padding: 15px;" >
-                            <div style="margin-bottom: 5px; font-weight: bold;">Ação feita com sucesso</div>
-                        </div>
-                    <?php
-                }
-                else{
-                    ?>
-                        <br>
-                        <div class="respostaAdicionar" name="Erro" id="Erro" style="background-color: #f8d7da; padding: 15px;" >
-                            <div style="margin-bottom: 10px; font-weight: bold;">Erro</div>
-                            Verifique se os dados estão cadastrados em outras áreas e tente novamente mais tarde<br>
-                        </div>
-                    <?php
-                }
-            }
-
-
+            include_once("respostasServicos.php");
         ?>
         
 
@@ -213,36 +191,6 @@
     
 
     <script>
-        //Esconder a mensagem que diz se a requisição foi feita com sucesso ou se teve algum erro
-        function esconderAdicao(){
-            
-            <?php
-                if(isset($_GET["respostaAdicionarAluno"])){
-                    $resposta = $_GET["respostaAdicionarAluno"];
-                    ?>
-                        let esconder;
-                        <?php
-                            if($resposta == 1){
-                                ?>
-                                    esconder = document.getElementById("Sucesso");
-                                <?php
-                            }
-                            else{
-                                ?>
-                                    esconder = document.getElementById("Erro");
-                                <?php
-                            }
-                        ?>
-                        setTimeout(function () {
-                            esconder.style.display = "none";
-                        }, 8000);
-                    <?php
-                }
-            ?>
-
-            
-            
-        }
 
         function confirmarExclusao(matricula, nome){
             if(window.confirm("Deseja realmente excluir o registro: \nMatrícula: "+matricula+"\nNome: " + nome)){

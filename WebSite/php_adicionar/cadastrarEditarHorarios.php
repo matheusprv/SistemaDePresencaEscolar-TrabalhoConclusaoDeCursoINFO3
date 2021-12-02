@@ -13,7 +13,6 @@
     if($conn -> query($sql) === TRUE ){
         ?>
         <script>
-            alert("Registro salvo com sucesso");
             //Envia para outra página
             window.location = "../DisciplinasCadastro.html";
         </script>
@@ -23,7 +22,6 @@
     else{
         ?>
         <script>
-            alert("Erro ao inserir registro");
             window.location = "../DisciplinasCadastro.html";
         </script>
         

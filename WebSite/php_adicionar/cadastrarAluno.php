@@ -17,7 +17,7 @@
     if($conn -> query($sql) === TRUE ){
         ?>
         <script>
-            window.location = "../tela_listar/alunos.php?respostaAdicionarAluno=1";
+            window.location = "../tela_listar/alunos.php?resposta=1";
         </script>
 
         <?php
@@ -26,7 +26,7 @@
         
         ?>
         <script>
-            window.location = "../tela_listar/alunos.php?respostaAdicionarAluno=2";
+            window.location = "../tela_listar/alunos.php?resposta=2";
         </script>
         
         <?php

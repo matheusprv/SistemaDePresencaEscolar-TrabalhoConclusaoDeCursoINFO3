@@ -12,15 +12,14 @@
             ?>
                 <script>
                     //alert("Funcionário aprovado com sucesso")
-                    window.location= "../tela_listar/funcionariosAprovar.php"
+                    window.location= "../tela_listar/funcionariosAprovar.php?resposta=1"
                 </script>
             <?php
         }
         else{
-            echo $sql;
             ?>
                 <script>
-                    alert("Erro ao aprovar funcionário")
+                    window.location= "../tela_listar/funcionariosAprovar.php?resposta=2"
                     //window.location= "../tela_listar/funcionarios.php"
                     //window.history.back();
                 </script>

@@ -33,19 +33,19 @@
     <br>
     <form action="../php_atualizar/atualizarUsuario.php" method="POST">
         <div class="divCentralizada" style="width: 750px;">
+
+            
+
             <label for="txtNome">Nome:</label>
-            <!--<input type="text" name="txtNome" id="txtNome" class="input-text" required value="<?php echo "{$_SESSION['usuario']}"; ?>">-->
             <input type="text" name="txtNome" id="txtNome" class="input-text" required value="<?php echo "{$_SESSION['usuario']}"; ?>" readonly>
             <br><br>
 
             <label for="txtEmail">Email:</label>
-            <!--<input type="email" name="txtEmail" id="txtEmail" class="input-text" required value="<?php echo "{$_SESSION['email']}"; ?>">-->
             <input type="email" name="txtEmail" id="txtEmail" class="input-text" required value="<?php echo "{$_SESSION['email']}"; ?>" readonly>
             <br><br>
 
 
             <label for="txtSenhaAtual">Senha atual:</label><br>
-            <!--<input type="password" name="txtSenha" id="txtSenha" class="input-text" style="width: 100%;" required value="<?php echo "{$_SESSION['senha']}"; ?>">-->
             <div class="wrapper">        
                 <input type="password" name="txtSenhaAtual" id="txtSenhaAtual" class="input-text" style="width: 100%;" required value="" onkeyup="verificarSenhas()" maxlength="10" placeholder="Digite sua senha atual para alterá-la">
             </div>
@@ -53,9 +53,13 @@
 
             <div class="respostasSenha" style="width: 102%;">O usuário saberá se a senha está correta<br></div>
 
+            <?php
+                include_once("respostasServicosAlterarSenha.php");
+                echo "<br>";
+            ?>
+
             <label for="txtSenha">Nova senha:</label><br>
             <label for="" style="font-size: medium; font-weight: bold;">Tamano máximo: 10 caracteres</label>
-            <!--<input type="password" name="txtSenha" id="txtSenha" class="input-text" style="width: 100%;" required value="<?php echo "{$_SESSION['senha']}"; ?>">-->
             <div class="wrapper">        
                 <input type="password" name="txtSenha" id="txtSenha" class="input-text" style="width: 100%;" required value="" onkeyup="verificarSenhas()" maxlength="10">
                 <span>
@@ -65,14 +69,12 @@
                         
             <div class="txtSenhaConfirmar" >
                 <label for="txtSenhaConfirmar">Confirmar senha:</label>
-                <!--<input type="password" name="txtSenha" id="txtSenha" class="input-text" style="width: 100%;" required value="<?php echo "{$_SESSION['senha']}"; ?>">-->
                 <input type="password" name="txtSenhaConfirmar" id="txtSenhaConfirmar" class="input-text" style="width: 100%;" required value="" onkeyup="verificarSenhas()">
                 <br><br>
             </div>
 
             <div style="text-align: center;">
                 <input type="submit" value="Salvar" class="formBtn adicionar" disabled id="botaoSalvar">
-                <!--<input type="reset" value="Limpar" class="formBtn limpar">-->
             </div>
         </div>
         

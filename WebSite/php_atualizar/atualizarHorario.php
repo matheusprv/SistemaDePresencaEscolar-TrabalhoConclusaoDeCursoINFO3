@@ -99,8 +99,7 @@
     if($todosValoresAtualizados){
         ?>
         <script>
-            alert("Registro salvo com sucesso");
-            window.location = "../tela_listar/horarios.php?idTurma=<?php echo $turma ?>";
+            window.location = "../tela_listar/horarios.php?idTurma=<?php echo $turma ?>&resposta=3";
         </script>
 
         <?php
@@ -109,8 +108,7 @@
         echo $sql;
         ?>
         <script>
-            alert("Erro ao inserir registro");
-            window.location = "../tela_listar/horarios.php?idTurma=<?php echo $turma ?>";
+            window.location = "../tela_listar/horarios.php?idTurma=<?php echo $turma ?>&resposta=4";
         </script>
         
         <?php

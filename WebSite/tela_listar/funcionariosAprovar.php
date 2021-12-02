@@ -28,13 +28,11 @@
     <h1 style="text-align: center; margin-top: 20px;"> Aprovar funcionários</h1>
     <br>
 
-    <?php
-        include_once("../filtroPesquisa/pesquisa.html");
-        echo "<br>"
-    ?>
-
     <div style="width: 1200px;  margin: 0 auto; text-align: center;">
         <?php
+            //Importando quadro de respostas do CRUD
+            include_once("respostasServicos.php");
+
             // Determina o número de resultados por página
             $numResultadosPorPagina = 10;
 

@@ -12,25 +12,19 @@
         if($conn->query($sql)== TRUE){
             //Se o valor for 1, vai para a tela de aprovar funcionários
             if($telaAprovar == 1){
-                header("Location: ../tela_listar/funcionariosAprovar.php");
+                header("Location: ../tela_listar/funcionariosAprovar.php?resposta=5");
             }
             else{
-                header("Location: ../tela_listar/funcionarios.php");
+                header("Location: ../tela_listar/funcionarios.php?resposta=5");
             }
         }
         else{
-            echo $sql;
-            ?>
-                <script>
-                    alert("Erro ao excluir o registro")
-                </script>
-            <?php
             //Se o valor for 1, vai para a tela de aprovar funcionários
             if($telaAprovar == 1){
-                header("Location: ../tela_listar/funcionariosAprovar.php");
+                header("Location: ../tela_listar/funcionariosAprovar.php?resposta=6");
             }
             else{
-                header("Location: ../tela_listar/funcionarios.php");
+                header("Location: ../tela_listar/funcionarios.php?resposta=6");
             }
         }
     }

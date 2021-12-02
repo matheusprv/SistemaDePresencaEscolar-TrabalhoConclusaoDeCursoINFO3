@@ -9,7 +9,6 @@
         if($conn->query($sql)== TRUE){
             ?>
                 <script>
-                    alert("Registro excluído com sucesso")
                     window.location= "../tela_listar/turmas.php"
                 </script>
             <?php
@@ -17,7 +16,6 @@
         else{
             ?>
                 <script>
-                    alert("Erro ao excluir o registro\n\nVerifique se a turma posssui um horário definido e alunos conectados")
                     window.location= "../tela_listar/turmas.php"
                 </script>
             <?php

@@ -12,8 +12,7 @@
         ?>
         <script>
             //Envia para outra página
-            alert("Registro salvo com sucesso");
-            window.location = "../FuncionarioLiberarAcesso.php";
+            window.location = "../FuncionarioLiberarAcesso.php?resposta=1";
         </script>
 
         <?php
@@ -21,8 +20,7 @@
     else{
         ?>
         <script>
-            alert("Erro ao inserir registro");
-            window.location = "../FuncionarioLiberarAcesso.php";
+            window.location = "../FuncionarioLiberarAcesso.php?resposta=2";
         </script>
         
         <?php

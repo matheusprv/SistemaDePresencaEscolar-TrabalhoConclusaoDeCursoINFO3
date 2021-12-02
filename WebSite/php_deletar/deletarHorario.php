@@ -10,7 +10,7 @@
             ?>
                 <script>
                     alert("Registro excluído com sucesso")
-                    window.location= "../tela_listar/horarios.php"
+                    window.location= "../tela_listar/horarios.php?resposta=5"
                 </script>
             <?php
         }
@@ -18,8 +18,7 @@
             echo $sql;
             ?>
                 <script>
-                    alert("Erro ao excluir o registro")
-                    //window.location= "../tela_listar/horarios.php"
+                    window.location= "../tela_listar/horarios.php?resposta=6"
                 </script>
             <?php
         }

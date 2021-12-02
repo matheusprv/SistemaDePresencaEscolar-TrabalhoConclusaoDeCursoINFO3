@@ -13,15 +13,14 @@
     if($conn->query($sql)== TRUE){
         ?>
             <script>
-                window.location = "../tela_listar/alunos.php?respostaAdicionarAluno=1";
+                window.location = "../tela_listar/alunos.php?resposta=3";
             </script>
         <?php
     }
     else{
-        echo $sql;
         ?>
             <script>
-                window.location = "../tela_listar/alunos.php?respostaAdicionarAluno=2";
+                window.location = "../tela_listar/alunos.php?resposta=4";
             </script>
         <?php
     }

@@ -13,9 +13,8 @@
     if($conn -> query($sql) === TRUE ){
         ?>
         <script>
-            alert("Registro salvo com sucesso");
             //Envia para outra página
-            window.location = "../tela_listar/disciplinas.php";
+            window.location = "../tela_listar/disciplinas.php?resposta=1";
         </script>
 
         <?php
@@ -23,8 +22,7 @@
     else{
         ?>
         <script>
-            alert("Erro ao inserir registro");
-            window.location = "../tela_listar/disciplinas.php";
+            window.location = "../tela_listar/disciplinas.php?resposta=2";
         </script>
         
         <?php
