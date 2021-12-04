@@ -16,3 +16,10 @@ https://stackoverflow.com/questions/6249707/check-if-php-session-has-already-sta
 
 Preencher vetor com dados nulo
 https://stackoverflow.com/questions/5560103/in-php-how-do-i-set-the-size-of-an-array (17/11/2021)
+
+
+
+Arduino:
+https://www.youtube.com/watch?v=URtIbITbGbU&list=WL&index=8&ab_channel=BrincandocomIdeias (03/12/2021)
+https://www.youtube.com/watch?v=uBoPqsAq-oY&ab_channel=IOT-INTERNETOFTHINGS2021 (04/12/2021)
+https://www.youtube.com/watch?v=662x7gC4Obw&ab_channel=DudsTecnologia (04/12/2021)
