@@ -1,3 +1,4 @@
+#include <iostream>
 #include <ESP8266WiFi.h>
 #ifndef STASSID
 #define STASSID "Matheus"  //Nome da rede WiFi
@@ -11,7 +12,12 @@ const char* host = "192.168.1.13"; //Conexão IP do computador
 
 int repeticoes =0;
 
+#define verde 5
+#define vermelho 4
+
 void setup() {
+  pinMode(verde, OUTPUT);
+  pinMode(vermelho, OUTPUT);
   Serial.begin(9600);
 
   //Conectando no WiFi
@@ -84,8 +90,19 @@ void loop() {
   // Exibir a resposta do servidor sobre os inserts
   Serial.println("Recebendo resposta do servidor: ");
   while (client.available()) {
-    char ch = static_cast<char>(client.read());
-    Serial.print(ch);
+    //char ch = static_cast<char>(client.read());
+    //string ch = static_cast<string>(client.read());
+    //Serial.print(ch);
+
+    String line = client.readStringUntil('\r');
+    if(line.indexOf("sucesso") != -1){
+      digitalWrite(verde, HIGH);
+      Serial.println("Sucesso");
+    }
+    if(line.indexOf("erro") != -1){
+      digitalWrite(vermelho, HIGH);
+      Serial.println("Erro");
+    }
   }
 
   // Fechar conexão
@@ -93,8 +110,8 @@ void loop() {
   Serial.println("Conexão fechada");
   client.stop();
 
-  if (wait) {
-    delay(4000); 
-  }
-  wait = true;
+  delay(30000);
+  digitalWrite(vermelho, LOW);
+  digitalWrite(verde, LOW);
+
 }
