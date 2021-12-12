@@ -81,7 +81,7 @@
                 <option value="" selected disabled hidden>Selecionar</option>
                 <?php
                     
-                    $sql = "SELECT * FROM cartoesDisponivel WHERE disponivel = 1";
+                    $sql = "SELECT * FROM Cartao WHERE disponivel = 1";
 
                     $dadosCartoes = $conn -> query($sql);
 
@@ -94,6 +94,7 @@
                     }                    
 
                 ?>
+                <option value="0" >Nenhum cartão</option>
             </select>
             <br><br>
 

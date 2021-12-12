@@ -89,22 +89,30 @@
 
             <label for="cartaoRFID">Cartões disponíveis</label>
             <select name="cartaoRFID" id="cartaoRFID" style="width: 100%;">
-                <option value="" selected disabled hidden>Selecionar</option>
+                <option value="0" selected  hidden>Selecionar</option>
                 <?php
                     
-                    $sql = "SELECT * FROM cartoesDisponivel WHERE disponivel = 1";
+                    $sql = "SELECT * FROM Cartao WHERE disponivel = 1 OR matriculaAluno = $matricula";
 
                     $dadosCartoes = $conn -> query($sql);
 
                     if(mysqli_num_rows($dadosCartoes)>0){
                         while ($cartoes = $dadosCartoes->fetch_assoc()) {
-                            ?>
-                                <option value="<?php echo $cartoes["uid"]; ?>"><?php echo $cartoes["uid"]; ?></option>
-                            <?php
+                            if($cartoes["matriculaAluno"] == $matricula){
+                                ?>
+                                    <option value="<?php echo $cartoes["uid"]; ?>" selected><?php echo $cartoes["uid"]; ?></option>
+                                <?php
+                            }
+                            else{
+                                ?>
+                                    <option value="<?php echo $cartoes["uid"]; ?>"><?php echo $cartoes["uid"]; ?></option>
+                                <?php
+                            }
+                            
                         }
                     }                    
-
                 ?>
+                <option value="0">Remover cartão</option>
             </select>
             <br><br>
 

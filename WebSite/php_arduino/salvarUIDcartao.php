@@ -4,7 +4,7 @@
     $uid = $_GET["uid"];
 
 
-    $sql = "INSERT INTO cartoesDisponivel (uid, disponivel) values ('$uid', 1) ";
+    $sql = "INSERT INTO Cartao (uid, disponivel) values ('$uid', 1) ";
     
     //Executando o comando sql
     if($conn -> query($sql) === TRUE ){
