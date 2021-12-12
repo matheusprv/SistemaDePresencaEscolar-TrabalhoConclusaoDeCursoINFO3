@@ -7,8 +7,15 @@
     $turma = $_POST["listTurma"];
     $responsavel = $_POST["txtResponsavel"];
     
+    if(isset($_POST["cartaoRFID"])){
+        $cartao = $_POST["cartaoRFID"];
+        $sql = "UPDATE Aluno SET nome = '$nome', Turma_idTurma = '$turma', Responsavel_id = '$responsavel', uidCartao = '$cartao' WHERE matricula = $matricula";
+    }
+    else{
+        $sql = "UPDATE Aluno SET nome = '$nome', Turma_idTurma = '$turma', Responsavel_id = '$responsavel' WHERE matricula = $matricula";
+    }
 
-    $sql = "UPDATE Aluno SET nome = '$nome', Turma_idTurma = '$turma', Responsavel_id = '$responsavel' WHERE matricula = $matricula";
+    
 
     if($conn->query($sql)== TRUE){
         ?>

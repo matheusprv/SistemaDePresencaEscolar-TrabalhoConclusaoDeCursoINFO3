@@ -8,7 +8,7 @@
 const char* ssid     = STASSID;
 const char* password = STAPSK;
 
-const char* host = "192.168.1.13"; //Conexão IP do computador
+const char* host = "192.168.1.11"; //Conexão IP do computador
 
 int repeticoes =0;
 

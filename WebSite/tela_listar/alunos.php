@@ -116,6 +116,7 @@
                             <th>Nº Matrícula</th>
                             <th>Turma</th>
                             <th>Responsável</th>
+                            <th>Cartão RFID</th>
                             <th>Ações</th>
                         </tr>
                     </thead>
@@ -153,6 +154,16 @@
                                         $exibirResponsavel = $responsavel->fetch_assoc();
 
                                         echo $exibirResponsavel["nome"];
+                                    ?>
+                                </td>
+                                <td>
+                                    <?php 
+                                        if(empty($exibir["uidCartao"])){
+                                            echo "Não possui";
+                                        }
+                                        else{
+                                            echo $exibir["uidCartao"];
+                                        }
                                     ?>
                                 </td>
                                 <td>

@@ -76,6 +76,28 @@
             </select>
             <br><br>
 
+            <label for="cartaoRFID">Cartões disponíveis</label>
+            <select name="cartaoRFID" id="cartaoRFID" style="width: 100%;">
+                <option value="" selected disabled hidden>Selecionar</option>
+                <?php
+                    
+                    $sql = "SELECT * FROM cartoesDisponivel WHERE disponivel = 1";
+
+                    $dadosCartoes = $conn -> query($sql);
+
+                    if(mysqli_num_rows($dadosCartoes)>0){
+                        while ($cartoes = $dadosCartoes->fetch_assoc()) {
+                            ?>
+                                <option value="<?php echo $cartoes["uid"]; ?>"><?php echo $cartoes["uid"]; ?></option>
+                            <?php
+                        }
+                    }                    
+
+                ?>
+            </select>
+            <br><br>
+
+
             <div style="text-align: center;">
                 <input type="submit" value="Adicionar" class="formBtn adicionar">
                 <input type="reset" value="Limpar" class="formBtn limpar">

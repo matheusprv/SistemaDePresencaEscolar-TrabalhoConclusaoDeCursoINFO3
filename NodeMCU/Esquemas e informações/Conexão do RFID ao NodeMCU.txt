@@ -1,0 +1,13 @@
+Porta RFID     Porta NodeMCU      GPIO da porta
+   RST               D3                0
+   SDA               D8                15  
+   MOSI              D7  
+   MISO              D6
+   SCK               D5
+   3.3V              3V
+   GND               G
+
+
+Lin da biblioteca:
+MRFC522-spi-i2c-uart-async
+https://github.com/makerspaceleiden/rfid

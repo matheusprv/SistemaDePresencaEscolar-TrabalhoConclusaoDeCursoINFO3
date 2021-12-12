@@ -11,7 +11,14 @@
     $senha = substr(str_shuffle($string),0,10);
 
     //Inserindo valores no banco
-    $sql = "INSERT INTO Aluno (Responsavel_id, Turma_idTurma, nome, senha) VALUES ($responsavel, $turma, '$nome', ' $senha')";
+    //Verificando se vai ter dados de cartão para inserir no banco
+    if(isset($_POST["cartaoRFID"])){
+        $cartao = $_POST["cartaoRFID"];
+        $sql = "INSERT INTO Aluno (Responsavel_id, Turma_idTurma, nome, senha, uidCartao) VALUES ($responsavel, $turma, '$nome', ' $senha', '$cartao')";
+    }
+    else{
+        $sql = "INSERT INTO Aluno (Responsavel_id, Turma_idTurma, nome, senha) VALUES ($responsavel, $turma, '$nome', ' $senha')";
+    }
 
     //Executando o comando sql
     if($conn -> query($sql) === TRUE ){
