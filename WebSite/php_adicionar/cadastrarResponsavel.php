@@ -31,9 +31,17 @@
 
         //Executando o comando sql
         if($conn -> query($sql) === TRUE ){
+
+            $resposta = 1;
+
+            //Enviar email com acesso ao aplicativo
+            $destinatario = $email;
+            $enviarDadosResponsavel = TRUE; //TRUE envia para responsável e FALSE envia para Aluno
+            include('../enviarEmail/enviarEmail.php');
+
             ?>
             <script>
-                window.location = "../tela_listar/responsaveis.php?resposta=1";
+                window.location = "../tela_listar/responsaveis.php?resposta="+ <?php echo $resposta ?>;
             </script>
 
             <?php

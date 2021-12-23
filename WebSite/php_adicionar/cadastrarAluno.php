@@ -24,7 +24,7 @@
         }
     }
     else{
-        $sql = "INSERT INTO Aluno (Responsavel_id, Turma_idTurma, nome, senha) VALUES ($responsavel, $turma, '$nome', ' $senha')";
+        $sql = "INSERT INTO Aluno (Responsavel_id, Turma_idTurma, nome, senha) VALUES ($responsavel, $turma, '$nome', '$senha')";
         if($conn -> query($sql) === TRUE ){
             $sqlCorretas = TRUE;
         }
@@ -34,9 +34,24 @@
 
     //Executando o comando sql
     if($sqlCorretas){
+
+        $matricula = $conn->insert_id;
+
+        //Enviar email para o responsavel
+        $sqlProcurarResponsavel = "SELECT * FROM Responsavel WHERE id = $responsavel";
+        $dadosResponsavel = $conn->query($sqlProcurarResponsavel);
+        while($rowResponsavel = $dadosResponsavel->fetch_assoc()){
+            $destinatario = $rowResponsavel["email"];
+            $nomeResponsavel = $rowResponsavel["nome"];
+        }
+
+        $enviarDadosResponsavel = FALSE; //TRUE envia para responsável e FALSE envia para Aluno
+
+        include('../enviarEmail/enviarEmail.php');
+
         ?>
         <script>
-            //window.location = "../tela_listar/alunos.php?resposta=1";
+            window.location = "../tela_listar/alunos.php?resposta=1";
         </script>
 
         <?php
@@ -45,7 +60,7 @@
         
         ?>
         <script>
-           // window.location = "../tela_listar/alunos.php?resposta=2";
+           window.location = "../tela_listar/alunos.php?resposta=2";
         </script>
         
         <?php

@@ -62,6 +62,15 @@
                 </div>
             <?php
         }
+        else if($resposta==7){
+            ?>
+                <br>
+                <div class="respostaAdicionar" name="adicionadoErro" id="adicionadoErro" style="background-color: #f8d7da; padding: 15px;" >
+                    <div style="margin-bottom: 10px; font-weight: bold;">Erro ao enviar email</div>
+                    Remova os dados do usuário cadastrado e tente novamente<br>
+                </div>
+            <?php
+        }
         ?>
         <script>
                 //Esconder a mensagem que diz se o aluno foi adicionado com sucesso ou se teve algum erro

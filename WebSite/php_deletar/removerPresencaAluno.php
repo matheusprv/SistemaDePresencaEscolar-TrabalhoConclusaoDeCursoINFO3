@@ -28,9 +28,7 @@
     $sqlDeletarPresenca[] = array();
 
     for($disciplinasRemover = 0; $disciplinasRemover<mysqli_num_rows($dadosDisciplinas); $disciplinasRemover++){
-        //if($disciplinasRemover == (mysqli_num_rows($dadosDisciplinas)-1)){
-            $sqlDeletarPresenca[$disciplinasRemover] = "DELETE FROM Presenca WHERE Aluno_matricula = $aluno AND Aula_idAula = $idAula[$disciplinasRemover] AND data = '$data'";
-        //}
+        $sqlDeletarPresenca[$disciplinasRemover] = "DELETE FROM Presenca WHERE Aluno_matricula = $aluno AND Aula_idAula = $idAula[$disciplinasRemover] AND data = '$data'";
     }
 
 
