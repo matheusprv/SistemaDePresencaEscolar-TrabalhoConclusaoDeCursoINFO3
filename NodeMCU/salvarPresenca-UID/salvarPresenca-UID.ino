@@ -27,8 +27,7 @@ https://github.com/makerspaceleiden/rfid
 #define RST_PIN 0
 
 #define LD_wifi 02 //Porta D4
-#define LD_erro 16 //Porta D0
-#define LD_sucesso 01 //Porta TX
+#define LED_sucesso 16 //Porta D0
 
 #define LD_1 04 //Porta D2
 #define LD_2 05 //Porta D1
@@ -60,11 +59,11 @@ String cliente; // O que será enviado para o servidor fazer
 void setup() {
   pinMode(LD_1, OUTPUT);
   pinMode(LD_2, OUTPUT);
+  pinMode(LED_sucesso, OUTPUT);
   pinMode(LD_wifi, OUTPUT);
-  pinMode(LD_erro, OUTPUT);
-  pinMode(LD_sucesso, OUTPUT);
 
   Serial.begin(9600);
+  Serial.println("Programa iniciado");
   SPI.begin(); // Init SPI bus
   
   mfrc522.PCD_Init(); // Init MFRC522 
@@ -74,7 +73,6 @@ void setup() {
   }
 
   //Conectando no WiFi
-  Serial.println();
   Serial.println();
   Serial.print("Conectando com a rede");
 
@@ -88,9 +86,16 @@ void setup() {
 
   Serial.println("");
   Serial.println("WiFi conectado");
-  Serial.println("Endereço IP: ");
+  Serial.print("Endereço IP: ");
   Serial.println(WiFi.localIP());
+  Serial.println();
   digitalWrite(LD_wifi, 1);
+
+  tensao = analogRead(EA_1);
+  verificarAcao();
+
+  Serial.println();
+  Serial.println("Lendo cartões");
 }
 
 void loop() {
@@ -107,8 +112,8 @@ void loop() {
       numeroCartao += mfrc522.uid.uidByte[1] << 16;
       numeroCartao += mfrc522.uid.uidByte[2] <<  8;
       numeroCartao += mfrc522.uid.uidByte[3];
-      mfrc522.PICC_HaltA(); // Stop reading
-      Serial.print("Cartão detectado, UID: ");
+      mfrc522.PICC_HaltA(); // Parar de ler
+      Serial.print("Cartão detectado: ");
       Serial.println(numeroCartao);
       Serial.print("Ação: ");
       Serial.println(acao);
@@ -152,7 +157,14 @@ void verificarAcao(){
       acao = 2;
     }
     Serial.print("Ação: ");
-    Serial.println(acao);
+    Serial.print(acao);
+    if(acao==1){
+      Serial.print(" Salvando novo cartão");
+    }
+    else{
+      Serial.print(" Marcando presença para o aluno.");
+    }
+    Serial.println();
     tensaoAnterior = tensao;
     delay(1000);
 }
@@ -160,10 +172,8 @@ void verificarAcao(){
 
 
 void enviarDados(){
-  Serial.print("Conectando com ");
-  Serial.print(host);
-  Serial.print(':');
-  Serial.println(80);
+  //Serial.print("Conectando com ");
+  //Serial.print(host);
 
   //Conectadno com o Servidor
   const int httpPort = 80;
@@ -189,28 +199,27 @@ void enviarDados(){
   }
 
   // Exibir a resposta do servidor sobre os inserts
-  Serial.println("Recebendo resposta do servidor: ");
+  Serial.print("Recebendo resposta do servidor: ");
   while (client.available()) {
     String line = client.readStringUntil('\r');
     if(line.indexOf("sucesso") != -1){
-      digitalWrite(LD_sucesso, HIGH);
       Serial.println("Sucesso");
+      digitalWrite(LED_sucesso, HIGH);
       
     }
     if(line.indexOf("erro") != -1){
-      digitalWrite(LD_erro, HIGH);
       Serial.println("Erro");
     }
   }
-
-  // Fechar conexão
   Serial.println();
-  Serial.println("Conexão fechada");
+
   client.stop();
 
   delay(5000);
-  digitalWrite(LD_erro, LOW);
-  digitalWrite(LD_sucesso, LOW);
+  
+  verificarAcao();
+  Serial.println("Lendo cartões");
+  digitalWrite(LED_sucesso, LOW);
 
   possuiDadosParaEnviar =0;
 

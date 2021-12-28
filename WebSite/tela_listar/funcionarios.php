@@ -18,7 +18,11 @@
     <link rel="icon" href="../imagens/icone_PrefeituraOuroBranco.png">
     
     <link rel="stylesheet" href="../css/style.css">
-    
+    <style>
+        tr:hover{
+            background-color: #f2f2f2;
+        }
+    </style>
 </head>
 
 <body>

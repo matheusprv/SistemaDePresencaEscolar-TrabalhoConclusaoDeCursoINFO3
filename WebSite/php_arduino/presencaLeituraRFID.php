@@ -18,30 +18,20 @@
     $dataAula = date('Y-m-d');
     //1 - Segunda | 2 - Terça | 3 - Quarta | 4 -Quinta | 5 - Sexta
     $diaSemana = date("N");
-    $horas = date("h:i:sa");
-
-    //echo $dataAula;
-    //echo "<br>";
-    
+    $horas = date("H:i:sa");  
 
     //Verificar se o aluno já teve sua presença computada no dia. Caso tenha, remover a presença dos próximos horários
     $presencaMarcadaSQL = "SELECT * FROM Presenca WHERE Aluno_matricula = $aluno AND data = '$dataAula'";
     $aulasMarcadas = $conn->query($presencaMarcadaSQL);
     $possuiAulas = mysqli_num_rows($aulasMarcadas);
-/*
-    echo $presencaMarcadaSQL;
-    echo "<br>";
 
-    echo $possuiAulas;
-    echo "<br>";
-
-    $sqlExecutadas =TRUE;
-*/
+    $sqlExecutadas=TRUE;
     //Remover presenças
     if($possuiAulas>0){
-        //echo "remover presença";
         //Buscar quais disciplinas deverão ser removidas
         $sqlDisciplinas = "SELECT * FROM Aula WHERE diaSemana = $diaSemana AND horasInicio > '$horas' AND Turma_idTurma= $turma";
+
+
 
         $dadosDisciplinas = $conn -> query($sqlDisciplinas);
 
@@ -49,24 +39,26 @@
             $idDisciplinas[] = $disciplinas["Disciplina_idDisciplina"];
             $idAula[] = $disciplinas["idAula"];
         }
-
-        //Deletar a presença da tabela
-        $sqlDeletarPresenca[] = array();
-
-        for($disciplinasRemover = 0; $disciplinasRemover<mysqli_num_rows($dadosDisciplinas); $disciplinasRemover++){
-            $sqlDeletarPresenca[$disciplinasRemover] = "DELETE FROM Presenca WHERE Aluno_matricula = $aluno AND Aula_idAula = $idAula[$disciplinasRemover] AND data = '$dataAula'";
-        }
+       
+        $sqlDeletarPresenca= "DELETE FROM Presenca WHERE Aluno_matricula = $aluno AND data = '$dataAula' AND (";
 
         for($disciplinasRemover = 0; $disciplinasRemover<mysqli_num_rows($dadosDisciplinas); $disciplinasRemover++){
-            if($conn->query($sqlDeletarPresenca[$disciplinasRemover]) == FALSE){
-                $sqlExecutadas = FALSE;
-            }        
+            if($disciplinasRemover == (mysqli_num_rows($dadosDisciplinas)-1)){
+                $sqlDeletarPresenca .= " Aula_idAula = $idAula[$disciplinasRemover] )";
+            }
+            else{
+                $sqlDeletarPresenca .= " Aula_idAula = $idAula[$disciplinasRemover] OR";
+            }  
         }
+
+        if($conn->query($sqlDeletarPresenca) == FALSE){
+            $sqlExecutadas = FALSE;
+        }   
         
+
     }
     
     else{
-        //echo "Adicionar presença";
         //Adicionar presenças
 
         //Pegar as aulas do dia no Banco de dados

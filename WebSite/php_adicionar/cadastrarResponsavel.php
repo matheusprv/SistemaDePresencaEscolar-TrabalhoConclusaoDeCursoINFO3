@@ -37,7 +37,7 @@
             //Enviar email com acesso ao aplicativo
             $destinatario = $email;
             $enviarDadosResponsavel = TRUE; //TRUE envia para responsável e FALSE envia para Aluno
-            include('../enviarEmail/enviarEmail.php');
+            //include('../enviarEmail/enviarEmail.php');
 
             ?>
             <script>

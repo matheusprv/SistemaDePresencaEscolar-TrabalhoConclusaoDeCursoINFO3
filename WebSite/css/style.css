@@ -37,6 +37,7 @@ table, th, td{
     padding: 10px;
     text-align: center;
 }
+
 table{
     margin-top: 20px;
     margin-bottom: 20px;
@@ -154,3 +155,6 @@ input[type=reset]:hover{
     padding: 15px;
     font-size: 1.2em;
 }
+
+
+
