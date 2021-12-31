@@ -26,11 +26,11 @@ https://github.com/makerspaceleiden/rfid
 #define SS_PIN 15
 #define RST_PIN 0
 
-#define LD_wifi 02 //Porta D4
 #define LED_sucesso 16 //Porta D0
+#define LED_LendoCartao 02 // Porta D4
 
-#define LD_1 04 //Porta D2
-#define LD_2 05 //Porta D1
+#define LD_acao1 04 //Porta D2
+#define LD_acao2 05 //Porta D1
 #define EA_1 A0
 float tensao; 
 float tensaoAnterior =0;
@@ -57,10 +57,10 @@ String enderecoIP = String(host);
 String cliente; // O que será enviado para o servidor fazer
 
 void setup() {
-  pinMode(LD_1, OUTPUT);
-  pinMode(LD_2, OUTPUT);
+  pinMode(LD_acao1, OUTPUT);
+  pinMode(LD_acao2, OUTPUT);
   pinMode(LED_sucesso, OUTPUT);
-  pinMode(LD_wifi, OUTPUT);
+  pinMode(LED_LendoCartao, OUTPUT);
 
   Serial.begin(9600);
   Serial.println("Programa iniciado");
@@ -89,13 +89,13 @@ void setup() {
   Serial.print("Endereço IP: ");
   Serial.println(WiFi.localIP());
   Serial.println();
-  digitalWrite(LD_wifi, 1);
 
   tensao = analogRead(EA_1);
   verificarAcao();
 
   Serial.println();
   Serial.println("Lendo cartões");
+  digitalWrite(LED_LendoCartao, HIGH);
 }
 
 void loop() {
@@ -113,6 +113,7 @@ void loop() {
       numeroCartao += mfrc522.uid.uidByte[2] <<  8;
       numeroCartao += mfrc522.uid.uidByte[3];
       mfrc522.PICC_HaltA(); // Parar de ler
+      digitalWrite(LED_LendoCartao, LOW);
       Serial.print("Cartão detectado: ");
       Serial.println(numeroCartao);
       Serial.print("Ação: ");
@@ -146,14 +147,14 @@ void loop() {
 
 
 void verificarAcao(){
-  if(tensao >= 512) {
-      digitalWrite(LD_1, 0);
-      digitalWrite(LD_2, 1);
+  if(tensao <= 512) {
+      digitalWrite(LD_acao1, 1);
+      digitalWrite(LD_acao2, 0);
       acao = 1;
     }
     else {
-      digitalWrite(LD_1, 1);
-      digitalWrite(LD_2, 0);
+      digitalWrite(LD_acao1, 0);
+      digitalWrite(LD_acao2, 1);
       acao = 2;
     }
     Serial.print("Ação: ");
@@ -181,6 +182,10 @@ void enviarDados(){
   if (!client.connect(host, httpPort)) {
     Serial.println("Falha na conexão");
     delay(3000);
+    possuiDadosParaEnviar =0;
+    digitalWrite(LED_LendoCartao, HIGH);
+    Serial.println();
+    Serial.println("Lendo cartões");
     return;
   }
 
@@ -220,6 +225,7 @@ void enviarDados(){
   verificarAcao();
   Serial.println("Lendo cartões");
   digitalWrite(LED_sucesso, LOW);
+  digitalWrite(LED_LendoCartao, HIGH);
 
   possuiDadosParaEnviar =0;
 
