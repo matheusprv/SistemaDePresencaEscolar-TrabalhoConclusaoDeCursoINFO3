@@ -8,7 +8,12 @@
 
     //Criar senha aleatoria
     $string = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    //o valor de senha será criptografado para enviar ao banco
     $senha = substr(str_shuffle($string),0,10);
+    $senhaEnviar = $senha;
+
+    //Criptografar senha
+    include_once("../criptografarSenha/criptografarSenha.php");
 
     //Inserindo valores no banco
     //Verificando se vai ter dados de cartão para inserir no banco
@@ -45,8 +50,8 @@
             $nomeResponsavel = $rowResponsavel["nome"];
         }
 
+        //Enviar email com acesso ao aplicativo
         $enviarDadosResponsavel = FALSE; //TRUE envia para responsável e FALSE envia para Aluno
-
         //include('../enviarEmail/enviarEmail.php');
 
         ?>

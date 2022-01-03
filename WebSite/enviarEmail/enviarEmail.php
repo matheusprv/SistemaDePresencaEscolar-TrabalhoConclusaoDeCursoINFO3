@@ -36,7 +36,7 @@
                     
                 <div style="margin-top: 50px;">
                     <p><b>Email:</b> ' . $email .'</p>
-                    <p><b>Senha:</b> ' . $senha .'</p>
+                    <p><b>Senha:</b> ' . $senhaEnviar .'</p>
                 </div>
             </div>
             ';
@@ -51,7 +51,7 @@
                     
                 <div style="margin-top: 50px;">
                     <p><b>Matricula:</b> '. $matricula .'</p>
-                    <p><b>Senha:</b> '. $senha .'</p>
+                    <p><b>Senha:</b> '. $senhaEnviar .'</p>
                 </div>
             </div>
             

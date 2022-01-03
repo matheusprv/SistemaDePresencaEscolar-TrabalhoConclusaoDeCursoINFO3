@@ -9,6 +9,11 @@
     $usuario = $_POST['txtUsuario'] ?? NULL;
     $senha = $_POST['txtSenha'] ?? NULL;
 
+    if(isset($senha)){
+        include_once("criptografarSenha/criptografarSenha.php");
+    }
+    
+
     
     //Procurar usuário no banco de dados
     if(isset($_POST['Entrar'])){
@@ -27,19 +32,6 @@
             exit();
         }
         else{
-            ?>
-            <script>
-                /*
-                const errorElement = document.getElementById('error');
-
-                let messages = []
-                messages.push(' Email ou senha inválidos')
-                e.preventDefault();
-                errorElement.innerText = messages.join(', ');
-                */
-                
-            </script>
-            <?php
             session_destroy();
             header("Location: index.php?exibirErro=1");
             exit();

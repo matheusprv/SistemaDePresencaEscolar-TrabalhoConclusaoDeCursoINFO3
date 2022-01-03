@@ -4,19 +4,10 @@
     include_once("../dados_login.php");
 
     $email = $_POST["txtEmail"];
-    $senhaAtual = $_POST["txtSenhaAtual"];
-    $novaSenha = $_POST["txtSenha"];
-    $senhaConfirmada = $_POST["txtSenhaConfirmar"];
-    /*
-    echo $email;
-    echo "<br>";
-    echo $senhaAtual;
-    echo "<br>";
-    echo  $_SESSION['senha'];
-    echo "<br>";
-    echo $novaSenha;
-    echo "<br>";
-    */
+    $senhaAtual = criptografarSenha($_POST["txtSenhaAtual"]);
+    $novaSenha = criptografarSenha($_POST["txtSenha"]);
+    $senhaConfirmada = criptografarSenha($_POST["txtSenhaConfirmar"]);
+
     //Verificar se a senha atual está correta
     if($senhaAtual == $_SESSION['senha']){
         
@@ -53,7 +44,47 @@
     }
 
 
+    function criptografarSenha($senhaParaCriptografar){
+        $caracteresASC  = array();
+        $caracteresASC[0] = " ";
+        for($i = 33; $i<=126; $i++){
+            $caracteresASC[($i-33)+1] = chr($i);
+        }
     
+        $textoParaCodificar = $senhaParaCriptografar;
+        $caracteres = str_split($textoParaCodificar);
+    
+        $posicoes = array();
+        for($i=0; $i<count($caracteres); $i++){
+            //Buscar posição do caracter no caracteresASC
+            for($x = 0; $x < count($caracteresASC); $x++){
+                if($caracteres[$i] == $caracteresASC[$x]){
+                    array_push($posicoes, $x);
+                    $x = count($caracteresASC);
+                }
+            }
+        }
+    
+        //Codificar
+        for($i=0; $i<count($caracteres); $i++){
+            //Caso a posição do caracter supere o tamanho do vetor de caracteresASC, devemos voltar para o inicio dele e somar com o resto
+            if( ($posicoes[$i]+13) > count($caracteresASC)){
+                $posicoes[$i] = ($posicoes[$i]+13)-count($caracteresASC);
+            }
+            else{
+                $posicoes[$i] += 13;
+            }
+            $caracteres[$i] = $caracteresASC[$posicoes[$i]];
+        }
+    
+        //Juntando todos os caracteres em uma única String
+        $senha = "";
+        for($i=0; $i<count($caracteres); $i++){
+            $senha .= $caracteres[$i];
+        }
+        return $senha;
+    }
+  
 
 
 ?>

@@ -84,14 +84,15 @@
     </div>
     
     <script>
-        var senhaAtual = document.querySelector("#txtSenhaAtual");
-        var senha1 = document.querySelector("#txtSenha");
-        var senha2 = document.querySelector("#txtSenhaConfirmar");
-        var respostaSenha = document.querySelector(".respostasSenha");
-        var btn = document.querySelector("#botaoSalvar");
-
+        
         //verifica se as senhas possuem os mesmos valores 
         function verificarSenhas(){
+            var senhaAtual = document.querySelector("#txtSenhaAtual");
+            var senha1 = document.querySelector("#txtSenha");
+            var senha2 = document.querySelector("#txtSenhaConfirmar");
+            var respostaSenha = document.querySelector(".respostasSenha");
+            var btn = document.querySelector("#botaoSalvar");
+
             if(senha2.value.length >= 1){
                 if(senha1.value == senha2.value){
                     //Habilita o botão de adicionar
@@ -128,13 +129,6 @@
             }
         }
 
-        //Alterar senha
-        function alterarSenha(){
-            if((senhaAtual == <?php echo $_SESSION['senha'] ?>) && (senha1 == senha2)){
-                $_SESSION['senha'] = senhaAtual;
-                window.location = "../php_atualizar/atualizarUsuario.php?senha="+senha1;
-            }
-        }
     </script>
 
 </body>

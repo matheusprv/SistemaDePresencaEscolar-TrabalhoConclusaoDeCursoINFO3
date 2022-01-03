@@ -27,6 +27,8 @@
         <?php
     }
     else{
+        include_once("../criptografarSenha/criptografarSenha.php");
+
         //Inserindo valores no banco
         $sql = "INSERT INTO Funcionario (Nome, email, senha) VALUES ('$nome', '$email', '$senha')";
 

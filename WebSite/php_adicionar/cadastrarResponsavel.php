@@ -8,7 +8,10 @@
     //Criar senha aleatoria
     $string = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
     $senha = substr(str_shuffle($string),0,10);
+    $senhaEnviar = $senha;
 
+    //Criptografar senha
+    include_once("../criptografarSenha/criptografarSenha.php");
 
     //verificar se o emai já está cadastrado
     $sql = "SELECT * FROM Responsavel WHERE email = '$email' ";
@@ -20,8 +23,6 @@
             <script>
                 alert("ERRO! \nEmail já cadastrado");
                 window.history.back();
-                //const email = document.querySelector("#emailValidacao");
-                //email.style.display = "block";
             </script>
         <?php
     }
