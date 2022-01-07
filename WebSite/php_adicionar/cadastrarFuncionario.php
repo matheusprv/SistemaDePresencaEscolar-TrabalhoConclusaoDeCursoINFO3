@@ -12,9 +12,8 @@
     $senha = $_POST["txtSenha"];
 
 
-    //verificar se o emai já está cadastrado
+    //verificar se o email já está cadastrado
     $sql = "SELECT * FROM Funcionario WHERE email = '$email' ";
-    //$sql = "SELECT * FROM Funcionario WHERE verificado = 0";
     $funcionarios = $conn->query($sql);
     $numeroDeResultados =  mysqli_num_rows($funcionarios);
 
@@ -28,9 +27,12 @@
     }
     else{
         include_once("../criptografarSenha/criptografarSenha.php");
-
-        //Inserindo valores no banco
-        $sql = "INSERT INTO Funcionario (Nome, email, senha) VALUES ('$nome', '$email', '$senha')";
+        if(session_status() === PHP_SESSION_NONE){
+            $sql = "INSERT INTO Funcionario (Nome, email, senha, ) VALUES ('$nome', '$email', '$senha')";
+        }
+        else{
+            $sql = "INSERT INTO Funcionario (Nome, email, senha, verificado) VALUES ('$nome', '$email', '$senha', 1)";
+        }      
 
         //Executando o comando sql
         if($conn -> query($sql) === TRUE ){
