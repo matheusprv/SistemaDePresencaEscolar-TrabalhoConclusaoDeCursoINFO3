@@ -1,10 +1,10 @@
 <?php
-    include_once("../conexao.php");
-    include_once ('../dados_login.php');
-    $logged = $_SESSION['logged'] ?? null;
-    if(!$logged){
-        die(header("Location: ../index.php"));
-    }
+include_once("../conexao.php");
+include_once('../dados_login.php');
+$logged = $_SESSION['logged'] ?? null;
+if (!$logged) {
+    die(header("Location: ../index.php"));
+}
 ?>
 
 <!DOCTYPE html>
@@ -21,47 +21,58 @@
     <link rel="icon" href="../imagens/icone_PrefeituraOuroBranco.png">
 
     <link rel="stylesheet" href="../css/style.css">
-        
+
 </head>
 
 <body>
     <?php
-        include_once("../cabecalho/cabecalho_listar.php");
+    include_once("../cabecalho/cabecalho_listar.php");
     ?>
     <h1 style="text-align: center; margin-top: 20px;">Frequência</h1>
     <br>
 
     <?php
-        //include_once("../pesquisa/pesquisa.html");
-        //echo "<br>";
+    //include_once("../pesquisa/pesquisa.html");
+    //echo "<br>";
     ?>
 
     <div style="margin: 20px; text-align: center;">
 
-        <div style="margin: 0 auto;">
+        <form action="" id="form-pesquisa" method="post">
+            
+
             <label for="listTurma">Turma:</label>
-            <select name="listTurma" id="listTurma" required style="margin-left: 5px;" onchange="pesquisar()">
-                <option value="" selected disabled hidden>Selecionar</option>
+            <select name="listTurma" id="listTurma" required style="margin-left: 5px;" onchange="listarRegistros(1)">
                 <?php
-                    
-                    $sql = "SELECT idTurma, nome FROM Turma ORDER BY nome";
+                $sql = "SELECT idTurma, nome FROM Turma ORDER BY nome";
 
-                    $turma = $conn -> query($sql);
+                $turma = $conn->query($sql);
 
-                    while ($rowTurma = $turma->fetch_assoc()) {
-                        ?>
-                            <option value="<?php echo $rowTurma["idTurma"]; ?>"><?php echo $rowTurma["nome"]; ?></option>
-                        <?php
+                while ($rowTurma = $turma->fetch_assoc()) {
+                    if (is_null($idTurma)) {
+                ?>
+                        <option value="<?php echo $rowTurma["idTurma"]; ?>"><?php echo $rowTurma["nome"]; ?></option>
+                    <?php
+                    } else {
+                    ?>
+                        <option value="<?php echo $rowTurma["idTurma"]; ?>" <?php echo ($rowTurma["idTurma"] == $idTurma) ? "selected" : "" ?>> <?php echo $rowTurma["nome"]; ?></option>
+                <?php
                     }
+                }
 
                 ?>
             </select>
-        </div>
+            <br><br>
+            <input type="text" name="pesquisa" id="pesquisa" placeholder="Nome do aluno" style="padding: 3px;">
+            <input type="submit" name="enviar" value="Pesquisar" style="cursor: pointer; padding: 3px;">
 
+        </form>
+
+        <!--
         <div id="avisoPresenca">
-            <p style="color: red; margin-top: 10px; margin-bottom: 20px; font-size: 20px;" >Selecione uma turma para pesquisar a presença dos alunos</p>
+            <p style="color: red; margin-top: 10px; margin-bottom: 20px; font-size: 20px;">Selecione uma turma para pesquisar a presença dos alunos</p>
         </div>
-
+        -->
         <div class="resultados">
         </div>
 
@@ -74,22 +85,50 @@
 </body>
 
 <script>
-    function pesquisar(){
+    $(document).ready(function() {
+
+        var pagina = 1;
+
+        listarRegistros(pagina); // Chamar a função assim que carregar a página
+
+        $("#form-pesquisa").submit(function(evento) {
+            evento.preventDefault();
+            listarRegistros(pagina); //Chamar a função ao clicar no botão de pesquisa
+        })
+
+    });
+
+    function listarRegistros(pagina) {
+        let pesquisa = $("#pesquisa").val();
+        let turma = $("#listTurma").val();
+        let dados = {
+            pesquisa: pesquisa,
+            pagina: pagina,
+            turma: turma
+        }
+
+        $.post("pesquisaDeDados/pesquisarFrequencia.php", dados, function(retorna) {
+            $(".resultados").html(retorna);
+        });
+
+    }
+
+
+    function pesquisar() {
 
         let turma = document.getElementById("listTurma");
         let pesquisa = turma.options[turma.selectedIndex].value;
 
         let dados = {
-            pesquisa : pesquisa
+            pesquisa: pesquisa
         }
 
-        $.post("frequenciaPesquisarDados.php", dados, function(retorna){
+        $.post("pesquisaDeDados/pesquisarFrequencia.php", dados, function(retorna) {
             $(".resultados").html(retorna);
         });
 
         document.getElementById("avisoPresenca").style.display = "none";
     }
-      
 </script>
 
 

@@ -16,105 +16,70 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aprovar funcionários</title>
     <link rel="icon" href="../imagens/icone_PrefeituraOuroBranco.png">
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="../css/style.css">
-        
+    <style>
+        tr:hover{
+            background-color: #f2f2f2;
+        }
+    </style>
 </head>
 
 <body>
     <?php
         include_once("../cabecalho/cabecalho_listar.php");
     ?>
-    <h1 style="text-align: center; margin-top: 20px;"> Aprovar funcionários</h1>
+    <h1 style="text-align: center; margin-top: 20px;">Aprovar funcionários</h1>
     <br>
 
     <div style="width: 1200px;  margin: 0 auto; text-align: center;">
         <?php
             //Importando quadro de respostas do CRUD
             include_once("respostasServicos.php");
-
-            // Determina o número de resultados por página
-            $numResultadosPorPagina = 10;
-
-            //Descobrir o número de dados no banco de dados
-            $sql = "SELECT * FROM Funcionario WHERE verificado = 0";
-            $funcionarios = $conn->query($sql);
-            $numeroDeResultados =  mysqli_num_rows($funcionarios);
-
-            if($numeroDeResultados>0){
-                //Determinar o total de páginas disponíveis 
-                $numeroDePaginas = ceil($numeroDeResultados/$numResultadosPorPagina);
-                
-                //Determinar qual página o usuário está
-                if (!isset($_GET['pagina'])) {
-                    $pagina =1;
-                }
-                else{
-                    $pagina = $_GET['pagina'];
-                }
-
-                //Determinar o limite inicial de dados mostrados na página
-                $primeiroResultadoDaPagina = ($pagina-1)*$numResultadosPorPagina;
-
-                //Recuperar dados para mostrar na página
-                $sql = "SELECT * FROM Funcionario WHERE verificado = 0 ORDER BY Nome LIMIT " . $primeiroResultadoDaPagina. ',' . $numResultadosPorPagina;
-                $funcionarios = $conn->query($sql);
-
-                ?>
-                <table class="table table-bordered">
-                <thead class="thead-dark">
-                    <tr>
-                        <th>Nome</th>
-                        <th>Email</th>
-                        <th>Ações</th>
-                    </tr>
-                </thead>
-                <?php    
-                    while($exibir = $funcionarios->fetch_assoc()){
-                        ?>
-                        <tr>
-                            <td>
-                                <?php echo $exibir["Nome"]?>
-                            </td>
-                            <td>
-                                <?php echo $exibir["email"]?>
-                            </td>
-                            <td>
-                                <input type="submit" value="Aprovar" class="botaoEditar editarDeletar" onclick="confirmarAprovação('<?php echo $exibir["id"]?>', '<?php echo $exibir["email"]?>', '<?php echo $exibir["Nome"]?>')">
-                                <input type="submit" value="Deletar"  class="botaoDeletar editarDeletar" onclick="confirmarExclusao('<?php echo $exibir["id"]?>', '<?php echo $exibir["email"]?>', '<?php echo $exibir["Nome"]?>')">
-                            </td>
-                        </tr>
-                        <?php
-                    }
-                    
-                ?>
-                </thead>
-            </table>
-            <?php
-            //Mostrar os links entre as páginas
-            for ($pagina=1; $pagina <= $numeroDePaginas; $pagina++) { 
-                ?>
-                <a class="nums-paginacao" href="<?php echo 'funcionarios.php?pagina='.$pagina; ?>"> <?php echo $pagina;?></a>
-                <?php
-            }
-            }
-            else{
-                ?>
-                    <h2 style="color: red;">Nenhum dado encontrado</h2>
-                <?php
-            }   
-
-            
         ?>
 
-        
+        <form action="" id="form-pesquisa" method="post">
+            <input type="text" name="pesquisa" id="pesquisa" placeholder="Nome ou email" style="padding: 3px;"> 
+            <input type="submit" name="enviar" value="Pesquisar" style="cursor: pointer; padding: 3px;">
+        </form>
+
+        <div class="resultados"></div>
+
         <div class="divBotaoCadastro">
             <a href="funcionarios.php" class="botaoCadastro" style="margin-right: 15px;">Lista de funcionários</a>
             <a href="../tela_criar/cadastrarFuncionario.php" class="botaoCadastro">Adicionar funcionário</a>
         </div>
-    </div>
 
+
+    </div>
     <script>
+
+        $(document).ready(function(){
+
+            var pagina = 1;
+
+            listarRegistros(pagina); // Chamar a função assim que carregar a página
+
+            $("#form-pesquisa").submit(function(evento){
+                evento.preventDefault();
+                listarRegistros(pagina); //Chamar a função ao clicar no botão de pesquisa
+            })
+            
+        });
+
+        function listarRegistros(pagina ){
+            let pesquisa = $("#pesquisa").val();
+            let dados ={
+                pesquisa : pesquisa,
+                pagina : pagina,
+            }
+
+            $.post("pesquisaDeDados/pesqusiarFuncionariosAprovar.php", dados, function(retorna){
+                $(".resultados").html(retorna);
+            });
+
+        }
+
         function confirmarExclusao(id, email, nome){
             if(window.confirm("Deseja realmente excluir o registro: \nEmail: "+email+"\nNome: " + nome)){
                 window.location = "../php_deletar/deletarFuncionario.php?id=" + id +"&telaAprovar=1";
@@ -128,5 +93,6 @@
     </script>
 
 </body>
+
 
 </html>

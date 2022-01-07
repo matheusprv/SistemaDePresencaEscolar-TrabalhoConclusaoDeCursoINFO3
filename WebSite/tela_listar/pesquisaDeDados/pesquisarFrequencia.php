@@ -1,8 +1,9 @@
 <?php
-    include_once("../conexao.php");
+    include_once("../../conexao.php");
     session_start();
 
-    $idTurmaTESTE = $_POST["pesquisa"];
+    $idTurmaTESTE = $_POST["turma"];
+    $nomePesquisa = $_POST["pesquisa"];
 
     //Pegando os Id's das disciplinas que estão cadastradas no horário da turma
     $sqlIdDisciplinas = "SELECT DISTINCT Disciplina_idDisciplina FROM Aula WHERE Turma_idTurma = $idTurmaTESTE";
@@ -40,7 +41,7 @@
     }
 
     //Pegando os dados dos alunos
-    $sqlAlunos = "SELECT * FROM Aluno WHERE Turma_idTurma = $idTurmaTESTE ORDER BY nome";
+    $sqlAlunos = "SELECT * FROM Aluno WHERE Turma_idTurma = $idTurmaTESTE AND nome like '%$nomePesquisa%' ORDER BY nome";
     $dadosAlunos = $conn -> query($sqlAlunos);
     $numeroAlunos = mysqli_num_rows($dadosAlunos);
     //echo $numeroAlunos;
@@ -146,6 +147,6 @@
     }
     else{
         ?>
-        <p style="color: red; margin-top: 10px; margin-bottom: 20px; font-size: 20px;" >Não há dados cadastrados para essa turma</p>
+        <p style="color: red; margin-top: 25px; margin-bottom: 20px; font-size: 20px;" >Não há dados cadastrados para essa turma</p>
         <?php
     }
