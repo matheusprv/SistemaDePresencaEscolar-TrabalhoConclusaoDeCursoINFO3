@@ -4,15 +4,10 @@
     include_once("../conexao.php");
 
     $primeiroIdAula = $_GET["idAula1"];
-    print_r($primeiroIdAula);
 
     $ultimoValorIdAulas = $_GET["idAulaFim"];
-    echo "<br>";
-    print_r($ultimoValorIdAulas);
     
-    echo "<br>";
     $diferenca = $ultimoValorIdAulas-$primeiroIdAula;
-    echo "($diferenca)";
 
 
     $turma = $_POST["listTurma"];
@@ -95,23 +90,14 @@
         }
     }
 
-    //Executando o comando sql
+    //Executando o comando sql e exibe a resposta
     if($todosValoresAtualizados){
-        ?>
-        <script>
-            window.location = "../tela_listar/horarios.php?idTurma=<?php echo $turma ?>&resposta=3";
-        </script>
-
-        <?php
+        $resposta  = 3;
     }
     else{
-        echo $sql;
-        ?>
-        <script>
-            window.location = "../tela_listar/horarios.php?idTurma=<?php echo $turma ?>&resposta=4";
-        </script>
-        
-        <?php
+        $resposta = 4;
     }
+
+    include_once("../tela_listar/respostasHorarios.php");
 
 ?>

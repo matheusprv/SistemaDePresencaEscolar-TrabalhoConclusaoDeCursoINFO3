@@ -35,8 +35,6 @@
         }
     }
 
-    echo $sql;
-
     //Executando o comando sql
     if($sqlCorretas){
 

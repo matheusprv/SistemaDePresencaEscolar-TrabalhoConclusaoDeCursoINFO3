@@ -41,7 +41,27 @@ if (!$logged) {
         ?>
 
         <form action="" id="form-pesquisa" method="post">
-            <input type="text" name="pesquisa" id="pesquisa" placeholder="Nome ou ano" style="padding: 3px;">
+
+            <label for="listAnoTurma">Ano:</label>
+            <select name="listAnoTurma" id="listAnoTurma" required style="margin-right: 10px;" onchange="listarRegistros(1)">
+
+
+                <?php
+                $sql = "SELECT distinct ano from Turma ORDER BY ano DESC;";
+
+                $turma = $conn->query($sql);
+
+                while ($rowTurma = $turma->fetch_assoc()) {
+                    ?>
+                        <option value="<?php echo $rowTurma["ano"]; ?>"><?php echo $rowTurma["ano"]; ?></option>
+                    <?php
+                }
+
+                ?>
+            </select>
+
+
+            <input type="text" name="pesquisa" id="pesquisa" placeholder="Nome" style="padding: 3px;">
             <input type="submit" name="enviar" value="Pesquisar" style="cursor: pointer; padding: 3px;">
         </form>
 
@@ -67,9 +87,12 @@ if (!$logged) {
 
         function listarRegistros(pagina) {
             let pesquisa = $("#pesquisa").val();
+            let ano = $('#listAnoTurma').val();
+            console.log("Ano: "+ ano);
             let dados = {
                 pesquisa: pesquisa,
                 pagina: pagina,
+                anoTurma : ano
             }
 
             $.post("pesquisaDeDados/pesquisarTurmas.php", dados, function(retorna) {

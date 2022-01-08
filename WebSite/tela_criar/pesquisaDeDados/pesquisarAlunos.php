@@ -1,5 +1,5 @@
 <?php
-    include_once("../conexao.php");
+    include_once("../../conexao.php");
     session_start();
 
     $turmaPesquisa = $_POST["pesquisa"];

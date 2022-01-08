@@ -17,7 +17,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastrar Aluno</title>
     <link rel="icon" href="../imagens/icone_PrefeituraOuroBranco.png">
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="../css/style.css">
         
 </head>
@@ -38,24 +38,35 @@
             <input type="text" name="txtNome" id="txtNome" class="input-text" required>
             <br><br>
 
-            <label for="listTurma">Turma do aluno:</label>
-            <select name="listTurma" id="listTurma" required style="width: 100%;">
-                <option value="" selected disabled hidden>Selecionar</option>
-                <?php
-                    
-                    $sql = "SELECT idTurma, nome FROM Turma ORDER BY nome";
+            <div>
+                <ul>
+                    <li style="display: inline-block; width: 20%; margin-right: 15px;" >
+                        <label for="listAnoTurma">Ano:</label> <br>
+                        <select name="listAnoTurma" id="listAnoTurma" required style="width: 100%;" onchange="listarRegistros()">
+                            <?php
+                                
+                                $sql = "SELECT distinct ano from Turma ORDER BY ano DESC;";
 
-                    $turma = $conn -> query($sql);
+                                $turma = $conn->query($sql);
 
-                    while ($rowTurma = $turma->fetch_assoc()) {
-                        ?>
-                            <option value="<?php echo $rowTurma["idTurma"]; ?>"><?php echo $rowTurma["nome"]; ?></option>
-                        <?php
-                    }
+                                while ($rowTurma = $turma->fetch_assoc()) {
+                                    ?>
+                                        <option value="<?php echo $rowTurma["ano"]; ?>"><?php echo $rowTurma["ano"]; ?></option>
+                                    <?php
+                                }
 
-                ?>
-            </select>
-            <br><br>
+                            ?>
+                        </select>
+                    </li>
+                    <li style="display: inline-block; width: 77%;">
+                        <div class="resultados"></div>
+                    </li>
+                </ul>
+
+            </div>
+
+            
+            <br>
 
             <label for="txtResponsavel">Responsável</label>
             <select name="txtResponsavel" id="txtResponsavel" style="width: 100%;" required>
@@ -110,6 +121,22 @@
     </div>
 
 </body>
+<script>
+    $(document).ready(function(){
+        listarRegistros(); // Chamar a função assim que carregar a página
+    });
 
+    function listarRegistros() {
+        let ano = $('#listAnoTurma').val();
+        let dados = {
+            anoTurma : ano
+        }
+
+        $.post("pesquisaDeDados/pesquisarTurmas.php", dados, function(retorna) {
+            $(".resultados").html(retorna);
+        });
+
+    }
+</script>
 
 </html>

@@ -2,8 +2,7 @@
     include_once '../dados_login.php';
 ?>
 <link rel="stylesheet" href="../cabecalho/styleCabecalho.css">
-<link rel="stylesheet" href="cabecalho/styleCabecalho.css">
-<link rel="stylesheet" href="styleCabecalho.css">
+
 
 <body>
         <nav id="navCabecalho">

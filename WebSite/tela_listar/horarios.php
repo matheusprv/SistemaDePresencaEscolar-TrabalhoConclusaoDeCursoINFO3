@@ -16,7 +16,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Horários</title>
     <link rel="icon" href="../imagens/icone_PrefeituraOuroBranco.png">
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="../css/style.css">
 
 </head>
@@ -28,172 +28,199 @@
     <h1 style="text-align: center; margin-top: 20px;">Horários</h1>
     <br>
 
-    <?php
-    //include_once("../filtroPesquisa/pesquisa.html");
-    //echo "<br>";
-    ?>
 
     <div style="margin: 20px; text-align: center;">
+        <div style="width: 1200px;  margin: 0 auto; text-align: center;">
+            <div class="resposta"> </div>
+            <?php
+                include_once("respostasServicos.php");
+                $atualizar =0; //0-> Salvar um novo horário || 1-> Atualizar horário atual
+            ?>
+        </div>
 
         
+        <!--
+        <form action= <?php echo ($atualizar==0)?"../php_adicionar/cadastrarHorario.php":"../php_atualizar/atualizarHorario.php?idAula1=$primeiroValorIdAulas&idAulaFim=$ultimoValorIdAulas" ?> method="POST" id="salvarHorarios">
+-->
+        <form action="" method="POST" id="salvarHorarios">
 
-        <?php
-            //Procurar as Disciplinas no banco de dados para adicionar em um vetor que será lido em todos os campos da tabela
-            $sql = "SELECT idDisciplina, nome FROM Disciplina ORDER BY nome";
-            $disciplina = $conn->query($sql);
-            while ($rowDisciplina = $disciplina->fetch_assoc()) {
-                $vetor[] = (object) $rowDisciplina;
-            }
-
-            //Saber se a página se adaptará para editar algum horário ou irá adicionar algum no BD
-            $atualizar = 0;
-
-            //Buscar horários no banco caso tenha sido passado algum id de turma
-            if(isset($_GET["idTurma"])){
-                $idTurma = $_GET["idTurma"];
-                $sql = "SELECT * FROM Aula WHERE Turma_idTurma = $idTurma ";
-                $resultados = $conn->query($sql);
-                //Verifica se o ID passado já possui dados no sistema, se sim, adapta a página para editar o conteúdo
-                $numeroDeResultados =  mysqli_num_rows($resultados);
-                if($numeroDeResultados>0){
-                    while ($rowAulas = $resultados->fetch_assoc()) {
-                        $exibirDisciplina[] = $rowAulas["Disciplina_idDisciplina"];
-                        $exibirHorarioInicio[] = $rowAulas["horasInicio"];
-                        $exibirHorarioFim[] = $rowAulas["horaFim"];
-                        $idAulas[] = $rowAulas["idAula"];
-                    }
-                    $primeiroValorIdAulas = $idAulas[0];
-                    $ultimoValorIdAulas = end($idAulas);
-                    $atualizar = 1;
-                }
-                
-            }
-            
-        ?>
-
-        <form action= <?php echo ($atualizar==0)?"../php_adicionar/cadastrarHorario.php":"../php_atualizar/atualizarHorario.php?idAula1=$primeiroValorIdAulas&idAulaFim=$ultimoValorIdAulas" ?> method="POST">
             <!--Selecionar turma-->
-            <div style="margin: 0 auto;">
-                <label for="listTurma">Turma:</label>
-                <select name="listTurma" id="listTurma" required style="margin-left: 5px;" onchange="pegarTurma()">
-                    <option value="" selected disabled hidden>Selecionar</option>
-                    <?php
-
-                    $sql = "SELECT idTurma, nome FROM Turma ORDER BY nome ";
-                    $turma = $conn->query($sql);
-                    while ($rowTurma = $turma->fetch_assoc()) {
-                        //Verifica se algum valor foi dado para o idTurma. Se estiver nulo, define um valor default pedindo ao usuário que selecione uma turma
-                        if(is_null($idTurma)){
-                            ?>
-                                <option value="<?php echo $rowTurma["idTurma"]; ?>"><?php echo $rowTurma["nome"]; ?></option>
-                            <?php
-                        }
-                        else{
-                            ?>
-                                <option value="<?php echo $rowTurma["idTurma"]; ?>" <?php echo($rowTurma["idTurma"] == $idTurma)?"selected":"" ?>>  <?php echo $rowTurma["nome"]; ?></option>
-                            <?php   
-                        }
-                                         
-                    }
-
-                    ?>
-                </select>  
-            </div>
-
-            <div style="width: 1200px;  margin: 0 auto; text-align: center;">
-                <?php
-                    include_once("respostasServicos.php");
-                ?>
-            </div>
-
-
-            <div class="scrollHorizontal">
-                <table class="table-bordered" id="tabelaHorarios"style="width: 98%; margin-left: 15px;">
-                    <thead class="thead-dark">
-                        <tr>
-                            <th colspan="2">Horários</th>
-                            <th colspan="5">Dias da semana</th>
-                        </tr>
-                        <tr>
-                            <th>Horário Inicio</th>
-                            <th>Horário Fim</th>
-                            <th>Segunda-feira</th>
-                            <th>Terça-feira</th>
-                            <th>Quarta-feira</th>
-                            <th>Quinta-feira</th>
-                            <th>Sexta-feira</th>
-                        </tr>
-                        
+            <ul>
+                <li style="display: inline-block; margin-right: 15px;" >
+                    <label for="listAnoTurma">Ano:</label>
+                    <select name="listAnoTurma" id="listAnoTurma" required onchange="listarRegistrosTurmas()" style="margin-right: 15px;">
                         <?php
-                            $horasInicioPadrao = array ('07:00:00', '07:50:00', '08:40:00', '09:50:00', '10:40:00');
-                            $horasFinalPadrao = array ('07:50:00', '08:40:00', '09:30:00', '10:40:00', '11:30:00');
-                            $repeticoes = 0;
-                            for ($i=1; $i <= 5 ; $i++) { 
+                            
+                            $sql = "SELECT distinct ano from Turma ORDER BY ano DESC;";
+
+                            $turma = $conn->query($sql);
+
+                            while ($rowTurma = $turma->fetch_assoc()) {
                                 ?>
-                                <tr>
-                                <?php
-                                    if($atualizar==1){
-                                        ?>
-                                            <td><input type="time" value="<?php echo $exibirHorarioInicio[$repeticoes] ?>" id="inicio<?php echo $i ?>" name="inicio<?php echo $i ?>"></td>
-                                            <td><input type="time" value="<?php echo $exibirHorarioFim[$repeticoes] ?>" id="fim<?php echo $i ?>" name="fim<?php echo $i ?>"></td>
-                                        <?php
-                                    }
-                                    else{
-                                        ?>
-                                            <td><input type="time" value="<?php echo $horasInicioPadrao[$i-1] ?>" id="inicio<?php echo $i ?>" name="inicio<?php echo $i ?>"></td>
-                                            <td><input type="time" value="<?php echo $horasFinalPadrao[$i-1] ?>" id="fim<?php echo $i ?>" name="fim<?php echo $i ?>"></td>
-                                        <?php
-                                    }
-                                    for ($cont=1; $cont <= 5 ; $cont++) { 
-                                        ?>
-                                        <td>
-                                            <select name="disciplinaEscolhida<?php echo $repeticoes ?>" id="disciplinaEscolhida<?php echo $repeticoes ?>" style="font-size: 1em; ">
-                                                <option value="" selected disabled hidden>Selecionar</option>
-                                                <?php
-                                                    foreach ($vetor as $key => $val) {
-                                                        if($atualizar==0){
-                                                            ?>
-                                                                <option value="<?php print($vetor[$key]->idDisciplina) ?>"><?php print($vetor[$key]->nome) ?></option>
-                                                            <?php
-                                                        }
-                                                        else{
-                                                            ?>
-                                                                <option value="<?php print($vetor[$key]->idDisciplina) ?>" <?php echo($vetor[$key]->idDisciplina == $exibirDisciplina[$repeticoes])?"selected":"" ?>><?php print($vetor[$key]->nome) ?></option>
-                                                            <?php
-                                                        }
-                                                    }
-                                                ?>
-                                            </select>
-                                        </td>
-                                        <?php
-                                        $repeticoes = $repeticoes +1;
-                                    }
-                                    ?>
-                                </tr>
+                                    <option value="<?php echo $rowTurma["ano"]; ?>"><?php echo $rowTurma["ano"]; ?></option>
                                 <?php
                             }
+
                         ?>
-                    </thead>
+                    </select>
+                </li>
+                <li style="display: inline-block; margin-right: 15px;" >
+                    <div class="resultados-turmas"></div>   
+                </li>
+            </ul>
 
-                </table>
-            </div>
+            <br>
 
-            <div style="text-align: center;">
-                <input type="submit" value="<?php echo ($atualizar==1)?'Atualizar':'Adicionar' ?>" class="formBtn adicionar" onclick="recuperarDadosTabela()">
-                <input type="reset" value="Deletar" class="formBtn limpar" onclick="deletarHorario()"> 
-            </div>
+            <div class="resultados"></div>
+            
         </form>
     </div>
 
 </body>
 
 <script>
-    function pegarTurma(){
+    $(document).ready(function() {
+        listarRegistrosTurmas(); // Chamar a função assim que carregar a página
+       
+        $("#salvarHorarios").submit(function(evento) {
+            evento.preventDefault();
+            salvarDados(); //Chamar a função ao clicar no botão de pesquisa
+        })
+
+    });
+
+    function listarRegistrosTurmas() {
+        let ano = $("#listAnoTurma").val();
+        let dados = {
+            ano: ano
+        }
+
+        $.post("pesquisaDeDados/pesquisarHorarios-Turmas.php", dados, function(retorna) {
+            $(".resultados-turmas").html(retorna);
+            listarRegistros();
+        });
+        
+
+    }
+
+    function listarRegistros() {
+        
+        let turma = $("#listTurma").val();
+        let dados = {
+            idTurma: turma
+        }
+
+        $.post("pesquisaDeDados/pesquisarHorario.php", dados, function(retorna) {
+            $(".resultados").html(retorna);
+        });
+
+    }
+
+
+    function salvarDados(){
+        let valorAtualizacao = document.getElementById('valorAtualizacao').textContent;
+        console.log("Atualizar: "+valorAtualizacao);
+
         let turma = document.getElementById("listTurma");
         let opcaoTurma = turma.options[turma.selectedIndex].value;
-        let nomeTurma = turma.options[turma.selectedIndex].text;
-        if(window.confirm("Deseja ir para os dados da turma "+nomeTurma+"?\n\n OBS: Todos os dados não salvos serão perdidos.")){
-            window.location = "horarios.php?idTurma="+opcaoTurma;
+        
+
+        let disciplinaEscolhida0 = document.getElementById('disciplinaEscolhida0').value;
+        let disciplinaEscolhida1 = document.getElementById('disciplinaEscolhida1').value;
+        let disciplinaEscolhida2 = document.getElementById('disciplinaEscolhida2').value;
+        let disciplinaEscolhida3 = document.getElementById('disciplinaEscolhida3').value;
+        let disciplinaEscolhida4 = document.getElementById('disciplinaEscolhida4').value;
+        let disciplinaEscolhida5 = document.getElementById('disciplinaEscolhida5').value;
+        let disciplinaEscolhida6 = document.getElementById('disciplinaEscolhida6').value;
+        let disciplinaEscolhida7 = document.getElementById('disciplinaEscolhida7').value;
+        let disciplinaEscolhida8 = document.getElementById('disciplinaEscolhida8').value;
+        let disciplinaEscolhida9 = document.getElementById('disciplinaEscolhida9').value;
+        let disciplinaEscolhida10 = document.getElementById('disciplinaEscolhida10').value;
+        let disciplinaEscolhida11 = document.getElementById('disciplinaEscolhida11').value;
+        let disciplinaEscolhida12 = document.getElementById('disciplinaEscolhida12').value;
+        let disciplinaEscolhida13 = document.getElementById('disciplinaEscolhida13').value;
+        let disciplinaEscolhida14 = document.getElementById('disciplinaEscolhida14').value;
+        let disciplinaEscolhida15 = document.getElementById('disciplinaEscolhida15').value;
+        let disciplinaEscolhida16 = document.getElementById('disciplinaEscolhida16').value;
+        let disciplinaEscolhida17 = document.getElementById('disciplinaEscolhida17').value;
+        let disciplinaEscolhida18 = document.getElementById('disciplinaEscolhida18').value;
+        let disciplinaEscolhida19 = document.getElementById('disciplinaEscolhida19').value;
+        let disciplinaEscolhida20 = document.getElementById('disciplinaEscolhida20').value;
+        let disciplinaEscolhida21 = document.getElementById('disciplinaEscolhida21').value;
+        let disciplinaEscolhida22 = document.getElementById('disciplinaEscolhida22').value;
+        let disciplinaEscolhida23 = document.getElementById('disciplinaEscolhida23').value;
+        let disciplinaEscolhida24 = document.getElementById('disciplinaEscolhida24').value;
+
+        let inicio1 = document.getElementById('inicio1').value;
+        let inicio2 = document.getElementById('inicio2').value;
+        let inicio3 = document.getElementById('inicio3').value;
+        let inicio4 = document.getElementById('inicio4').value;
+        let inicio5 = document.getElementById('inicio5').value;
+
+        let fim1 = document.getElementById('fim1').value;
+        let fim2 = document.getElementById('fim2').value;
+        let fim3 = document.getElementById('fim3').value;
+        let fim4 = document.getElementById('fim4').value;
+        let fim5 = document.getElementById('fim5').value;
+
+
+
+        let dados ={
+            listTurma : opcaoTurma,
+
+            disciplinaEscolhida0 : disciplinaEscolhida0,
+            disciplinaEscolhida1 : disciplinaEscolhida1,
+            disciplinaEscolhida2 : disciplinaEscolhida2,
+            disciplinaEscolhida3 : disciplinaEscolhida3,
+            disciplinaEscolhida4 : disciplinaEscolhida4,
+            disciplinaEscolhida5 : disciplinaEscolhida5,
+            disciplinaEscolhida6 : disciplinaEscolhida6,
+            disciplinaEscolhida7 : disciplinaEscolhida7,
+            disciplinaEscolhida8 : disciplinaEscolhida8,
+            disciplinaEscolhida9 : disciplinaEscolhida9,
+            disciplinaEscolhida10 : disciplinaEscolhida10,
+            disciplinaEscolhida11 : disciplinaEscolhida11 ,
+            disciplinaEscolhida12 : disciplinaEscolhida12,
+            disciplinaEscolhida13 : disciplinaEscolhida13,
+            disciplinaEscolhida14 : disciplinaEscolhida14,
+            disciplinaEscolhida15 : disciplinaEscolhida15,
+            disciplinaEscolhida16 : disciplinaEscolhida16,
+            disciplinaEscolhida17 : disciplinaEscolhida17,
+            disciplinaEscolhida18 : disciplinaEscolhida18,
+            disciplinaEscolhida19 : disciplinaEscolhida19,
+            disciplinaEscolhida20 : disciplinaEscolhida20,
+            disciplinaEscolhida21 : disciplinaEscolhida21,
+            disciplinaEscolhida22 : disciplinaEscolhida22,
+            disciplinaEscolhida23 : disciplinaEscolhida23,
+            disciplinaEscolhida24 : disciplinaEscolhida24,
+            
+            inicio1 : inicio1,
+            inicio2 : inicio2,
+            inicio3 : inicio3,
+            inicio4 : inicio4,
+            inicio5 : inicio5,
+
+            fim1 : fim1,
+            fim2 : fim2,
+            fim3 : fim3,
+            fim4 : fim4,
+            fim5 : fim5,
+            
+        }
+
+        if(valorAtualizacao == 0){
+            $.post("../php_adicionar/cadastrarHorario.php", dados, function(retorna) {
+                $(".resposta").html(retorna);
+                listarRegistros();
+            });
+        }
+        else{
+            let primeiroValorIdAulas = document.getElementById('primeiroValorIdAulas').textContent;
+            let ultimoValorIdAulas = document.getElementById('ultimoValorIdAulas').textContent;
+            //alert("Primeiro valor: "+primeiroValorIdAulas+"\nÚltimo valor: "+ultimoValorIdAulas);
+            $.post("../php_atualizar/atualizarHorario.php?idAula1="+primeiroValorIdAulas+"&idAulaFim="+ultimoValorIdAulas+"", dados, function(retorna) {
+                $(".resposta").html(retorna);
+        });
         }
     }
 

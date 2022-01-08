@@ -31,8 +31,6 @@
         //Buscar quais disciplinas deverão ser removidas
         $sqlDisciplinas = "SELECT * FROM Aula WHERE diaSemana = $diaSemana AND horasInicio > '$horas' AND Turma_idTurma= $turma";
 
-
-
         $dadosDisciplinas = $conn -> query($sqlDisciplinas);
 
         while($disciplinas = $dadosDisciplinas->fetch_assoc()){
@@ -60,19 +58,19 @@
     
     else{
         //Adicionar presenças
-
         //Pegar as aulas do dia no Banco de dados
         $aulasSQL = "SELECT * FROM Aula WHERE Turma_idTurma = $turma AND diaSemana = $diaSemana AND horasInicio >= '$horas'";
-        //$aulasSQL = "SELECT * FROM Aula WHERE Turma_idTurma = $turma AND diaSemana = $diaSemana";
+        //$aulasSQL = "SELECT * FROM Aula WHERE Turma_idTurma = $turma AND diaSemana = 1 AND horasInicio >= '$horas'";
         $aulas = $conn->query($aulasSQL);
         while($rowAulas = $aulas->fetch_assoc()){
             $horario[] = $rowAulas["idAula"];
             $idDisciplina[] = $rowAulas["Disciplina_idDisciplina"];
         }
 
-        $numHorarios = count($horario);
+        $numHorarios = mysqli_num_rows($aulas);
         for($i=0; $i<$numHorarios; $i++){
-            $inserirPresenca = "INSERT INTO Presenca (Aluno_matricula, Aula_idAula, data, Disciplina_idDisciplina) values ($aluno, $horario[$i], '$dataAula', $idDisciplina[$i]) ";
+            echo "aaa";
+            $inserirPresenca = "INSERT INTO Presenca (Aluno_matricula, Aula_idAula, data, Disciplina_idDisciplina, Turma_idTurma) values ($aluno, $horario[$i], '$dataAula', $idDisciplina[$i], $turma) ";
             
             if($conn -> query($inserirPresenca) === FALSE ){
                 $sqlExecutadas = FALSE;
@@ -85,6 +83,7 @@
         echo "sucesso";
     }
     else{
+        echo "<br>";
         echo "erro";
     }
 

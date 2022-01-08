@@ -32,31 +32,43 @@
     <h1 style="text-align: center; margin-top: 20px;">Adicionar presença para o aluno</h1>
     <br>
 
-
-
+    
     <div class="divCentralizada" style="width: 750px;">
+
+    <?php
+        include_once("../tela_listar/respostasServicos.php");
+    ?>
 
         <form action="../php_adicionar/adicionarPresencaAluno.php" method="POST">
             
-            <label for="listTurma">Turma do aluno:</label>
-            <select name="listTurma" id="listTurma" required style="width: 100%;" onchange="pesquisar()">
-                <option value="" selected disabled hidden>Selecionar</option>
-                <?php
-                    
-                    $sql = "SELECT idTurma, nome FROM Turma ORDER BY nome";
+            <div>
+                <ul>
+                    <li style="display: inline-block; width: 20%; margin-right: 15px;" >
+                        <label for="listAnoTurma">Ano:</label> <br>
+                        <select name="listAnoTurma" id="listAnoTurma" required style="width: 100%;" onchange="listarRegistros()">
+                            <?php
+                                
+                                $sql = "SELECT distinct ano from Turma ORDER BY ano DESC;";
 
-                    $turma = $conn -> query($sql);
+                                $turma = $conn->query($sql);
 
-                    while ($rowTurma = $turma->fetch_assoc()) {
-                        ?>
-                            <option value="<?php echo $rowTurma["idTurma"]; ?>"><?php echo $rowTurma["nome"]; ?></option>
-                        <?php
-                    }
+                                while ($rowTurma = $turma->fetch_assoc()) {
+                                    ?>
+                                        <option value="<?php echo $rowTurma["ano"]; ?>"><?php echo $rowTurma["ano"]; ?></option>
+                                    <?php
+                                }
 
-                ?>
-            </select>
+                            ?>
+                        </select>
+                    </li>
+                    <li style="display: inline-block; width: 77%;">
+                        <div class="resultados-Turmas"></div>
+                    </li>
+                </ul>
 
-            <br><br>
+            </div>
+
+            <br>
 
             <label for="DiaSemana"><b>Dia da semana:</b></label><br>
 
@@ -117,17 +129,33 @@
         let turma = document.getElementById("listTurma");
         let pesquisa = turma.options[turma.selectedIndex].value;
 
-        //let pesquisa = $("#listTurma").val();
         let dados = {
             pesquisa : pesquisa
         }
 
-        $.post("buscaAlunos.php", dados, function(retorna){
+        $.post("pesquisaDeDados/pesquisarAlunos.php", dados, function(retorna){
             $(".resultados").html(retorna);
         });
 
         document.getElementById("avisoAluno").style.display = "none";
     }
+
+    function listarRegistros() {
+        let ano = $('#listAnoTurma').val();
+        let dados = {
+            anoTurma : ano
+        }
+
+        $.post("pesquisaDeDados/pesquisarTurmas-Presenca.php", dados, function(retorna) {
+            $(".resultados-Turmas").html(retorna);
+        });
+
+    }
+
+    $(document).ready(function(){
+        listarRegistros(); // Chamar a função assim que carregar a página
+    });
+
       
 </script>
 

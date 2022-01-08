@@ -9,13 +9,11 @@
         if($conn->query($sql)== TRUE){
             ?>
                 <script>
-                    alert("Registro excluído com sucesso")
                     window.location= "../tela_listar/horarios.php?resposta=5"
                 </script>
             <?php
         }
         else{
-            echo $sql;
             ?>
                 <script>
                     window.location= "../tela_listar/horarios.php?resposta=6"

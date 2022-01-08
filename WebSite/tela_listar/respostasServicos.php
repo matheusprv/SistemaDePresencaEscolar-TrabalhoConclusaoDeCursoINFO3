@@ -1,8 +1,9 @@
-<body onload="esconderResposta()"> 
-<?php
 
+<?php
+    
     //Exibir mensagem de erro ou sucesso da inserção de um aluno
     if(isset($_GET["resposta"])){
+        echo '<body onload="esconderResposta()"> ';
         $resposta = $_GET["resposta"];
         /*
           AÇÃO      SUCESSO   INSUCESSO
@@ -15,7 +16,7 @@
             ?>
                 <br>
                 <div class="respostaAdicionar" name="adicionadoSucesso" id="adicionadoSucesso" style="background-color: #d7f8dc; padding: 15px;" >
-                    <div style="margin-bottom: 0px; font-weight: bold;">Adição de dados bem sucedida</div>
+                    <div style="margin-bottom: 0px; font-weight: bold; text-align: center;">Adição de dados bem sucedida</div>
                 </div>
             <?php
         }
@@ -23,7 +24,7 @@
             ?>
                 <br>
                 <div class="respostaAdicionar" name="adicionadoErro" id="adicionadoErro" style="background-color: #f8d7da; padding: 15px;" >
-                    <div style="margin-bottom: 0px; font-weight: bold;">Erro ao adicionar dados</div>
+                    <div style="margin-bottom: 0px; font-weight: bold; text-align: center;">Erro ao adicionar dados</div>
                     Verifique os dados e tente novamente mais tarde<br>
                 </div>
             <?php
@@ -95,11 +96,12 @@
                 }
             </script>
         <?php
+        echo '</body>';
     }
 
 ?>
 
-</body>
+
 
 
 

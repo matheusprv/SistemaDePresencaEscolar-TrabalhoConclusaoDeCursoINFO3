@@ -12,7 +12,7 @@
 
     $numeroDeDisciplinas = mysqli_num_rows($idDisciplinasBanco);
 
-    if($numeroDeDisciplinas){
+    if($numeroDeDisciplinas>0){
 
         while($rowIdDisciplinas = $idDisciplinasBanco->fetch_assoc()){
             $idDisciplinas[] = $rowIdDisciplinas["Disciplina_idDisciplina"];
@@ -38,22 +38,49 @@
             $nomeDisciplinas[] = $rowDisciplina["nome"];
             $idDisciplinasTabela[] = $rowDisciplina["idDisciplina"];
         }
+
+
+
+
+
     }
 
-    //Pegando os dados dos alunos
-    $sqlAlunos = "SELECT * FROM Aluno WHERE Turma_idTurma = $idTurmaTESTE AND nome like '%$nomePesquisa%' ORDER BY nome";
-    $dadosAlunos = $conn -> query($sqlAlunos);
-    $numeroAlunos = mysqli_num_rows($dadosAlunos);
-    //echo $numeroAlunos;
+    //Pegar matriculas dos alunos de determinada turma
+    $sqlAlunosDaTurma = "SELECT distinct Aluno_matricula FROM Presenca WHERE Turma_idTurma = $idTurmaTESTE";
+    $dadosMatriculas = $conn -> query($sqlAlunosDaTurma);
+    while($rowDadosMatriculas = $dadosMatriculas->fetch_assoc()){
+        $matriculas[] = $rowDadosMatriculas["Aluno_matricula"];
+    }
+    $numeroAlunos = mysqli_num_rows($dadosMatriculas);
 
     if($numeroAlunos>0){
+        //Pegar dados dos alunos que recebemos a matricula
+        $sqlAlunos = "SELECT * FROM Aluno WHERE (";
+        for($i=0; $i<count($matriculas); $i++){
+            if($i==0){
+                $sqlAlunos .= " matricula =".$matriculas[$i]." ";
+            }
+            else{
+                $sqlAlunos .= " OR matricula =".$matriculas[$i]." ";
+            }
+        }
+        $sqlAlunos .= " ) AND nome like '%$nomePesquisa%' ORDER BY nome";
+
+        $dadosAlunos = $conn -> query($sqlAlunos);
+        $numeroAlunos = mysqli_num_rows($dadosAlunos);
+    }
         ?>     
+    
         <div class="scrollHorizontal">
             <table class="table-bordered" style="width: 98%; margin-left: 15px;">
                 <thead class="thead-dark">
                     <!--Linha com o nome das disciplinas-->
                     <tr>
-                        <th>Nome</th>
+                        <?php
+                        if($numeroAlunos>0){
+                            echo "<th>Nome</th>";
+                        }
+                        ?>
                         <?php
                         for($i=0; $i<$numeroDeDisciplinas;$i++){
                             ?>
@@ -76,7 +103,7 @@
 
                             //Pegando todos os dados de presença do aluno
                             for($i=0; $i<$numeroAlunos; $i++){
-                                $sqlPresenca = "SELECT * FROM Presenca WHERE Aluno_matricula = $matriculaAluno[$i]";
+                                $sqlPresenca = "SELECT * FROM Presenca WHERE Aluno_matricula = $matriculaAluno[$i] AND Turma_idTurma = $idTurmaTESTE";
                                 $dadosPresencaAlunoBanco = $conn -> query($sqlPresenca);
 
                                 //Exibindo o nome do aluno
@@ -144,9 +171,11 @@
             </table>
         </div>  
         <?php
-    }
+        
+    /*
     else{
         ?>
-        <p style="color: red; margin-top: 25px; margin-bottom: 20px; font-size: 20px;" >Não há dados cadastrados para essa turma</p>
+        <p style="color: red; margin-top: 25px; margin-bottom: 20px; font-size: 20px;" >Não há dados cadastrados para essa turma.<br> Verifique se os horários estão inseridos, se há alunos nessa turma e se eles já marcaram presença alguma vez</p>
         <?php
     }
+*/

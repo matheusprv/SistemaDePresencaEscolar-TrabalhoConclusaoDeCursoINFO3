@@ -39,40 +39,44 @@ if (!$logged) {
     <div style="margin: 20px; text-align: center;">
 
         <form action="" id="form-pesquisa" method="post">
+
+            <ul>
+                <li style="display: inline-block; margin-right: 15px;" >
+                    <label for="listAnoTurma">Ano:</label>
+                    <select name="listAnoTurma" id="listAnoTurma" required onchange="listarRegistrosTurmas()" style="margin-right: 15px;">
+                        <?php
+                            
+                            $sql = "SELECT distinct ano from Turma ORDER BY ano DESC;";
+
+                            $turma = $conn->query($sql);
+
+                            while ($rowTurma = $turma->fetch_assoc()) {
+                                ?>
+                                    <option value="<?php echo $rowTurma["ano"]; ?>"><?php echo $rowTurma["ano"]; ?></option>
+                                <?php
+                            }
+
+                        ?>
+                    </select>
+                </li>
+                <li style="display: inline-block; margin-right: 15px;" >
+                    <div class="resultados-turmas"></div>   
+                </li>
+            </ul>
+
+            <br>
+
             
-
-            <label for="listTurma">Turma:</label>
-            <select name="listTurma" id="listTurma" required style="margin-left: 5px;" onchange="listarRegistros(1)">
-                <?php
-                $sql = "SELECT idTurma, nome FROM Turma ORDER BY nome";
-
-                $turma = $conn->query($sql);
-
-                while ($rowTurma = $turma->fetch_assoc()) {
-                    if (is_null($idTurma)) {
-                ?>
-                        <option value="<?php echo $rowTurma["idTurma"]; ?>"><?php echo $rowTurma["nome"]; ?></option>
-                    <?php
-                    } else {
-                    ?>
-                        <option value="<?php echo $rowTurma["idTurma"]; ?>" <?php echo ($rowTurma["idTurma"] == $idTurma) ? "selected" : "" ?>> <?php echo $rowTurma["nome"]; ?></option>
-                <?php
-                    }
-                }
-
-                ?>
-            </select>
-            <br><br>
+            
             <input type="text" name="pesquisa" id="pesquisa" placeholder="Nome do aluno" style="padding: 3px;">
             <input type="submit" name="enviar" value="Pesquisar" style="cursor: pointer; padding: 3px;">
 
         </form>
 
-        <!--
-        <div id="avisoPresenca">
-            <p style="color: red; margin-top: 10px; margin-bottom: 20px; font-size: 20px;">Selecione uma turma para pesquisar a presença dos alunos</p>
-        </div>
-        -->
+        <br>
+        <button id="baixarDados" style="cursor: pointer; font-size: 1em; padding: 5px;"> Baixar dados</button>
+        <br>
+
         <div class="resultados">
         </div>
 
@@ -89,7 +93,7 @@ if (!$logged) {
 
         var pagina = 1;
 
-        listarRegistros(pagina); // Chamar a função assim que carregar a página
+        listarRegistrosTurmas(); // Chamar a função assim que carregar a página
 
         $("#form-pesquisa").submit(function(evento) {
             evento.preventDefault();
@@ -97,6 +101,20 @@ if (!$logged) {
         })
 
     });
+
+    function listarRegistrosTurmas() {
+        let ano = $("#listAnoTurma").val();
+        let dados = {
+            ano: ano
+        }
+
+        $.post("pesquisaDeDados/pesquisarFrequencia-Turmas.php", dados, function(retorna) {
+            $(".resultados-turmas").html(retorna);
+            listarRegistros(1);
+        });
+        
+
+    }
 
     function listarRegistros(pagina) {
         let pesquisa = $("#pesquisa").val();
@@ -129,6 +147,58 @@ if (!$logged) {
 
         document.getElementById("avisoPresenca").style.display = "none";
     }
+
+
+
+    //https://yourblogcoach.com/export-html-table-to-csv-using-javascript/
+    document.getElementById("baixarDados").addEventListener("click", function () {
+        var html = document.querySelector("table").outerHTML;
+        exportarDados(html, "students.csv");
+    });
+
+    //Baixar os dados da tabela em uma planilha CSV
+    function exportarDados(html, filename){
+        var data = [];
+        var rows = document.querySelectorAll("table tr");
+                
+        //Recuperando todos os <tr> que serão as linhas da planilha
+        for (var i = 0; i < rows.length; i++) {
+            var row = [], cols = rows[i].querySelectorAll("td, th");
+                    
+            for (var j = 0; j < cols.length; j++) {
+                    row.push(cols[j].innerText);
+            }
+                    
+            data.push(row.join(",")); 		
+        }
+
+        downloadCSVFile(data.join("\n"), filename);
+    }
+    function downloadCSVFile(csv, filename) {
+        var csv_file, download_link;
+
+        csv_file = new Blob([csv], {type: "text/csv"});
+
+        download_link = document.createElement("a");
+
+        let turma = document.getElementById("listTurma");
+        let nomeTurma = turma.options[turma.selectedIndex].text;
+        let nomeArquivo = "Freuquência - " + nomeTurma;
+
+        download_link.download = nomeArquivo;
+
+        download_link.href = window.URL.createObjectURL(csv_file);
+
+        download_link.style.display = "none";
+
+        document.body.appendChild(download_link);
+
+        download_link.click();
+    }
+
+    
+
+
 </script>
 
 

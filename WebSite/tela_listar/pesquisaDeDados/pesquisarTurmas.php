@@ -4,12 +4,13 @@
 
     $pesquisa = $_POST["pesquisa"];
     $pagina = $_POST["pagina"];
+    $anoTurma = $_POST["anoTurma"];
 
     // Determina o número de resultados por página
     $numResultadosPorPagina = 10;
 
     //Descobrir o número de dados no banco de dados
-    $sql = "SELECT * FROM Turma WHERE nome like '%$pesquisa%' OR ano like '%$pesquisa%' ";
+    $sql = "SELECT * FROM Turma WHERE ano = $anoTurma AND (nome like '%$pesquisa%') ";
     $turmas = $conn->query($sql);
     $numeroDeResultados =  mysqli_num_rows($turmas);
 
@@ -21,7 +22,7 @@
         $primeiroResultadoDaPagina = ($pagina - 1) * $numResultadosPorPagina;
 
         //Recuperar dados para mostrar na página
-        $sql = "SELECT * FROM Turma WHERE nome like '%$pesquisa%' OR ano like '%$pesquisa%' ORDER BY nome LIMIT " . $primeiroResultadoDaPagina . ',' . $numResultadosPorPagina;
+        $sql = "SELECT * FROM Turma WHERE ano = $anoTurma AND (nome like '%$pesquisa%') ORDER BY nome LIMIT " . $primeiroResultadoDaPagina . ',' . $numResultadosPorPagina;
         $turmas = $conn->query($sql);
 
     ?>

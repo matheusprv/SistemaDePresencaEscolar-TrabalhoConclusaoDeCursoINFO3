@@ -38,25 +38,34 @@
 
         <form action="../php_deletar/removerPresencaAluno.php" method="POST">
             
-            <label for="listTurma">Turma do aluno:</label>
-            <select name="listTurma" id="listTurma" required style="width: 100%;" onchange="pesquisar()">
-                <option value="" selected disabled hidden>Selecionar</option>
-                <?php
-                    
-                    $sql = "SELECT idTurma, nome FROM Turma ORDER BY nome";
+            <div>
+                <ul>
+                    <li style="display: inline-block; width: 20%; margin-right: 15px;" >
+                        <label for="listAnoTurma">Ano:</label> <br>
+                        <select name="listAnoTurma" id="listAnoTurma" required style="width: 100%;" onchange="listarRegistros()">
+                            <?php
+                                
+                                $sql = "SELECT distinct ano from Turma ORDER BY ano DESC;";
 
-                    $turma = $conn -> query($sql);
+                                $turma = $conn->query($sql);
 
-                    while ($rowTurma = $turma->fetch_assoc()) {
-                        ?>
-                            <option value="<?php echo $rowTurma["idTurma"]; ?>"><?php echo $rowTurma["nome"]; ?></option>
-                        <?php
-                    }
+                                while ($rowTurma = $turma->fetch_assoc()) {
+                                    ?>
+                                        <option value="<?php echo $rowTurma["ano"]; ?>"><?php echo $rowTurma["ano"]; ?></option>
+                                    <?php
+                                }
 
-                ?>
-            </select>
+                            ?>
+                        </select>
+                    </li>
+                    <li style="display: inline-block; width: 77%;">
+                        <div class="resultados-Turmas"></div>
+                    </li>
+                </ul>
 
-            <br><br>
+            </div>
+
+            <br>
 
             <input type="time" value="09:30" id="horas" name="horas" style="font-size: 1.3em; margin-right: 15px;" required>
 
@@ -108,12 +117,28 @@
             pesquisa : pesquisa
         }
 
-        $.post("buscaAlunos.php", dados, function(retorna){
+        $.post("pesquisaDeDados/pesquisarAlunos.php", dados, function(retorna){
             $(".resultados").html(retorna);
         });
 
         document.getElementById("avisoAluno").style.display = "none";
     }
+
+    function listarRegistros() {
+        let ano = $('#listAnoTurma').val();
+        let dados = {
+            anoTurma : ano
+        }
+
+        $.post("pesquisaDeDados/pesquisarTurmas-Presenca.php", dados, function(retorna) {
+            $(".resultados-Turmas").html(retorna);
+        });
+
+    }
+
+    $(document).ready(function(){
+        listarRegistros(); // Chamar a função assim que carregar a página
+    });
       
 </script>
 

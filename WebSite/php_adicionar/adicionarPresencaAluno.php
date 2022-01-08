@@ -28,7 +28,7 @@
 
     $todosDadosInseridos =TRUE;
     for($i=0; $i<5; $i++){
-        $inserirPresenca = "INSERT INTO Presenca (Aluno_matricula, Aula_idAula, data, Disciplina_idDisciplina) values ($aluno, $horario[$i], '$dataAula', $idDisciplina[$i]) ";
+        $inserirPresenca = "INSERT INTO Presenca (Aluno_matricula, Aula_idAula, data, Disciplina_idDisciplina, Turma_idTurma) values ($aluno, $horario[$i], '$dataAula', $idDisciplina[$i], $turma) ";
         
         if($conn -> query($inserirPresenca) === FALSE ){
             $todosDadosInseridos = FALSE;
@@ -40,8 +40,7 @@
     if($todosDadosInseridos){
         ?>
         <script>
-            alert("Registro salvo com sucesso");
-            window.location = "../tela_criar/presencaParaAluno.php";
+            window.location = "../tela_criar/presencaParaAluno.php?resposta=1";
         </script>
 
         <?php
@@ -51,7 +50,7 @@
         ?>
         <script>
             alert("Verifique se os horários estão cadastrados para essa turma");
-            window.location = "../tela_criar/presencaParaAluno.php";
+            window.location = "../tela_criar/presencaParaAluno.php?resposta=2";
         </script>
         
         <?php
