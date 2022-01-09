@@ -45,6 +45,7 @@ if (!$logged) {
         <?php
         include_once("respostasServicos.php");
         ?>
+        <div class="resultadoEmail"></div>
 
         <form action="" id="form-pesquisa" method="post">
             
@@ -119,6 +120,21 @@ if (!$logged) {
             if (window.confirm("Deseja realmente excluir o registro: \nMatrícula: " + matricula + "\nNome: " + nome)) {
                 window.location = "../php_deletar/deletarAluno.php?matricula=" + matricula;
             }
+        }
+
+        function acessoAPP(matricula, nome, emailResponsavel, nomeResponsavel){
+            let enviarDadosResponsavel = 0;
+            let dados = {
+                enviarDadosResponsavel : enviarDadosResponsavel,
+                matricula: matricula,
+                nome: nome,
+                emailResponsavel : emailResponsavel,
+                nomeResponsavel : nomeResponsavel
+            }
+
+            $.post("pesquisaDeDados/pesquisarEmail.php", dados, function(retorna) {
+                $(".resultadoEmail").html(retorna);
+            });
         }
         
     </script>

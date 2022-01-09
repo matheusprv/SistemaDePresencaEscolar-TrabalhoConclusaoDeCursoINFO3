@@ -5,6 +5,10 @@
     $nome = $_POST["txtNome"];
     $turma = $_POST["listTurma"];
     $responsavel = $_POST["txtResponsavel"];
+    $enviarEmailAcesso = 0;
+    if(isset($_POST["enviarEmail"])){
+        $enviarEmailAcesso = 1;
+    }
 
     //Criar senha aleatoria
     $string = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
@@ -13,7 +17,7 @@
     $senhaEnviar = $senha;
 
     //Criptografar senha
-    include_once("../criptografarSenha/criptografarSenha.php");
+    include("../criptografarSenha/criptografarSenha.php");
 
     //Inserindo valores no banco
     //Verificando se vai ter dados de cartão para inserir no banco
@@ -40,17 +44,21 @@
 
         $matricula = $conn->insert_id;
 
-        //Enviar email para o responsavel
-        $sqlProcurarResponsavel = "SELECT * FROM Responsavel WHERE id = $responsavel";
-        $dadosResponsavel = $conn->query($sqlProcurarResponsavel);
-        while($rowResponsavel = $dadosResponsavel->fetch_assoc()){
-            $destinatario = $rowResponsavel["email"];
-            $nomeResponsavel = $rowResponsavel["nome"];
-        }
-
+        
         //Enviar email com acesso ao aplicativo
-        $enviarDadosResponsavel = FALSE; //TRUE envia para responsável e FALSE envia para Aluno
-        //include('../enviarEmail/enviarEmail.php');
+        if($enviarEmailAcesso == 1){
+            //Enviar email para o responsavel
+            $sqlProcurarResponsavel = "SELECT * FROM Responsavel WHERE id = $responsavel";
+            $dadosResponsavel = $conn->query($sqlProcurarResponsavel);
+            while($rowResponsavel = $dadosResponsavel->fetch_assoc()){
+                $destinatario = $rowResponsavel["email"];
+                $nomeResponsavel = $rowResponsavel["nome"];
+            }
+
+            $enviarDadosResponsavel = FALSE; //TRUE envia para responsável e FALSE envia para Aluno
+
+            include('../enviarEmail/enviarEmail.php');
+        }
 
         ?>
         <script>

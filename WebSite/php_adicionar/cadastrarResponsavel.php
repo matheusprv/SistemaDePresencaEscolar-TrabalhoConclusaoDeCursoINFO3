@@ -4,14 +4,18 @@
 
     $nome = $_POST["txtNome"];
     $email = $_POST["txtEmail"];
-
+    $enviarEmailAcesso = 0;
+    if(isset($_POST["enviarEmail"])){
+        $enviarEmailAcesso = 1;
+    }
+    
     //Criar senha aleatoria
     $string = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
     $senha = substr(str_shuffle($string),0,10);
     $senhaEnviar = $senha;
 
     //Criptografar senha
-    include_once("../criptografarSenha/criptografarSenha.php");
+    include("../criptografarSenha/criptografarSenha.php");
 
     //verificar se o emai já está cadastrado
     $sql = "SELECT * FROM Responsavel WHERE email = '$email' ";
@@ -38,7 +42,10 @@
             //Enviar email com acesso ao aplicativo
             $destinatario = $email;
             $enviarDadosResponsavel = TRUE; //TRUE envia para responsável e FALSE envia para Aluno
-            //include('../enviarEmail/enviarEmail.php');
+            if($enviarEmailAcesso == 1){
+                include('../enviarEmail/enviarEmail.php');
+            }
+            
 
             ?>
             <script>

@@ -46,6 +46,7 @@
 
                         <a href="../tela_editar/editarResponsavel.php?id=<?php echo $exibir["id"] ?>"><input type="submit" value="Editar" class="botaoEditar editarDeletar"></a>
                         <input type="submit" value="Deletar" class="botaoDeletar editarDeletar" onclick="confirmarExclusao('<?php echo $exibir["id"] ?>', '<?php echo $exibir["email"] ?>','<?php echo $exibir["nome"] ?>')">
+                        <input type="submit" value="Acesso APP" onclick="acessoAPP('<?php echo $exibir["email"]?>', '<?php echo $exibir["nome"]?>')">
                     </td>
                 </tr>
             <?php

@@ -62,6 +62,9 @@
         if(!$mail->send()) {
             $resposta = 7;
         } 
+        else{
+            $resposta = 8;
+        }
 
 
     }catch(Exception $ex){

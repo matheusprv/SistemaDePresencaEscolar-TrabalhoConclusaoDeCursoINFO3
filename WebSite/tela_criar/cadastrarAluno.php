@@ -107,6 +107,10 @@
                 ?>
                 <option value="0" >Nenhum cartão</option>
             </select>
+
+            <br><br>
+            <input type="checkbox" id="enviarEmail" name="enviarEmail">
+            <label for="enviarEmail" style="font-size: 1em;">Enviar email de acesso ao app</label>
             <br><br>
 
 

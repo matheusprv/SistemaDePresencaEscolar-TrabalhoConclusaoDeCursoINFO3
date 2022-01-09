@@ -10,7 +10,7 @@
     $nome = $_POST["txtNome"];
     $email = $_POST["txtEmail"];
     $senha = $_POST["txtSenha"];
-
+    include("../criptografarSenha/criptografarSenha.php");
 
     //verificar se o email já está cadastrado
     $sql = "SELECT * FROM Funcionario WHERE email = '$email' ";
@@ -25,10 +25,9 @@
             </script>
         <?php
     }
-    else{
-        include_once("../criptografarSenha/criptografarSenha.php");
-        if(session_status() === PHP_SESSION_NONE){
-            $sql = "INSERT INTO Funcionario (Nome, email, senha, ) VALUES ('$nome', '$email', '$senha')";
+    else{      
+        if (!$logged) {
+            $sql = "INSERT INTO Funcionario (Nome, email, senha ) VALUES ('$nome', '$email', '$senha')";
         }
         else{
             $sql = "INSERT INTO Funcionario (Nome, email, senha, verificado) VALUES ('$nome', '$email', '$senha', 1)";
@@ -37,7 +36,7 @@
         //Executando o comando sql
         if($conn -> query($sql) === TRUE ){
             //Envia para a pagina inicial ao criar uma conta nova, se não está logado
-            if(session_status() === PHP_SESSION_NONE){
+            if (!$logged) {
                 header("Location: ../index.php");
                 exit();
             }

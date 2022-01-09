@@ -53,7 +53,10 @@
                     ?>
                     <tr>
                         <td>
-                            <?php echo $exibir["nome"]?>
+                            <?php 
+                                $nomeAluno = $exibir["nome"];
+                                echo $exibir["nome"];
+                            ?>
                         </td>
                         <td>
                             <?php echo $exibir["matricula"]?>
@@ -74,12 +77,13 @@
                         <td>
                             <?php
                                 $idDoResponsavel = $exibir ['Responsavel_id'];
-                                $sqlResponsavel = "SELECT nome FROM Responsavel WHERE id = $idDoResponsavel ";
+                                $sqlResponsavel = "SELECT * FROM Responsavel WHERE id = $idDoResponsavel ";
 
                                 $responsavel = $conn->query($sqlResponsavel);
 
                                 $exibirResponsavel = $responsavel->fetch_assoc();
-
+                                $emailResponsavel = $exibirResponsavel["email"];
+                                $nomeResponsavel = $exibirResponsavel["nome"];
                                 echo $exibirResponsavel["nome"];
                             ?>
                         </td>
@@ -96,6 +100,7 @@
                         <td>
                             <a href="../tela_editar/editarAluno.php?matricula=<?php echo $exibir["matricula"]?>"><input type="submit" value="Editar" class="botaoEditar editarDeletar"></a>
                             <input type="submit" value="Deletar"  class="botaoDeletar editarDeletar" onclick="confirmarExclusao('<?php echo $exibir["matricula"]?>', '<?php echo $exibir["nome"]?>')">
+                            <input type="submit" value="Acesso APP" onclick="acessoAPP('<?php echo $exibir["matricula"]?>', '<?php echo $nomeAluno?>', '<?php echo $emailResponsavel?>', '<?php echo $nomeResponsavel?>')">
                         </td>
                     </tr>
                     <?php

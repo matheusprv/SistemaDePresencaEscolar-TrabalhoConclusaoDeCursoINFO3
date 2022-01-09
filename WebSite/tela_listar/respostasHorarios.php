@@ -8,7 +8,7 @@
     Inserção       1          2
     Atualização    3          4
     Deletar        5          6 
-
+    Email          8          7
     */
     if($resposta==1){
         ?>
@@ -70,11 +70,19 @@
             </div>
         <?php
     }
+    else if($resposta==8){
+        ?>
+            <br>
+            <div class="respostaAdicionar" name="adicionadoSucesso" id="adicionadoSucesso" style="background-color: #d7f8dc; padding: 15px;" >
+                <div style="margin-bottom: 0px; font-weight: bold;">Email enviado com sucesso para <?php echo $destinatario ?></div>
+            </div>
+        <?php
+    }
     ?>
     <script>
         //Esconder a mensagem que diz se o aluno foi adicionado com sucesso ou se teve algum erro
             <?php
-                if($resposta == 1 || $resposta == 3 || $resposta == 5){
+                if($resposta == 1 || $resposta == 3 || $resposta == 5 || $resposta == 8){
                     ?>
                         esconder = document.getElementById("adicionadoSucesso");
                     <?php

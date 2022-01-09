@@ -38,5 +38,4 @@
     for($i=0; $i<count($caracteres); $i++){
         $senha .= $caracteres[$i];
     }
-
 ?>

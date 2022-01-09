@@ -40,6 +40,7 @@ if (!$logged) {
             //Importando quadro de respostas do CRUD
             include_once("respostasServicos.php");
         ?>
+        <div class="resultadoEmail"></div>
 
         <form action="" id="form-pesquisa" method="post">
             <input type="text" name="pesquisa" id="pesquisa" placeholder="Nome ou email" style="padding: 3px;">
@@ -88,6 +89,19 @@ if (!$logged) {
             if (window.confirm("Deseja realmente excluir o registro: \nEmail: " + email + "\nNome: " + nome)) {
                 window.location = "../php_deletar/deletarResponsavel.php?id=" + id;
             }
+        }
+
+        function acessoAPP(email, nome){
+            let enviarDadosResponsavel = 1;
+            let dados = {
+                enviarDadosResponsavel : enviarDadosResponsavel,
+                nome: nome,
+                email : email,
+            }
+
+            $.post("pesquisaDeDados/pesquisarEmail.php", dados, function(retorna) {
+                $(".resultadoEmail").html(retorna);
+            });
         }
     </script>
 
