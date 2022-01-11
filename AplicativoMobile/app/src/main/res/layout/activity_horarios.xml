@@ -1,0 +1,454 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".horarios"
+    android:background="@color/white">
+
+    <!-- Layout Principal-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <!--Cabeçalho-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+                <!--Prefeitura e Usuário-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:background="@color/backgroundAzul">
+
+                    <!--Layout para definir marginTop para a imagem da prefeitura-->
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="40px"
+                        android:layout_marginBottom="40px"
+                        android:layout_marginLeft="15px"
+                        android:layout_marginRight="15px">
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="left"
+                            android:background="@mipmap/logotipo"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:id="@+id/nomeUsuario"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginRight="15dp"
+                                android:text="Nome de Usuário"
+                                android:textAlignment="viewEnd"
+                                android:textColor="@color/white"
+                                android:textSize="19dp" />
+                        </RelativeLayout>
+
+
+                        <!--Definir o botão de sair no canto inferiror direito-->
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                            <ImageButton
+                                android:id="@+id/sairBtn"
+                                android:layout_width="170px"
+                                android:layout_height="65px"
+                                android:layout_alignParentRight="true"
+                                android:layout_alignParentBottom="true"
+                                android:layout_gravity="bottom"
+                                android:layout_marginRight="15dp"
+                                android:background="@mipmap/sair" />
+                        </RelativeLayout>
+
+
+                    </LinearLayout>
+
+
+
+                </LinearLayout>
+
+                <!--Layout Faltas do Aluno e Horários-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:gravity="center">
+
+                    <Button
+                        android:id="@+id/faltasBtn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:textColor="@color/black"
+                        android:text="Faltas"
+                        android:layout_marginRight="10dp"
+                        android:textSize="15dp"/>
+
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:textColor="@color/menuSelecionado"
+                        android:text="Horários"
+                        android:layout_marginRight="10dp"
+                        android:textSize="15dp"/>
+
+                    <Button
+                        android:id="@+id/usuarioBtn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:textColor="@color/black"
+                        android:text="Usuário"
+                        android:textSize="15dp"/>
+
+                </LinearLayout>
+
+                <!--Linha separando o cabeçalho do resto da página-->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="5px"
+                    android:background="@drawable/solid_line"
+                    android:layout_marginBottom="10dp"/>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center">
+
+            <!--Conteúdo central-->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginHorizontal="25dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_gravity="center">
+                    <!--Turma-->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:text="Turma: "
+                        android:textSize="25dp"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="10dp"
+                        android:textStyle="bold"/>
+                    <TextView
+                        android:id="@+id/turmaTxt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:text="3 Ano EM"
+                        android:textSize="25dp"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="10dp"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_gravity="center">
+                    <!--Nome do Aluno-->
+
+                    <TextView
+                        android:id="@+id/nomeAlunoTxt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:text="Nome base"
+                        android:textSize="25dp"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="10dp"/>
+
+                </LinearLayout>
+
+
+                <!--Dia da semana-->
+                <TextView
+                    android:id="@+id/diaDaSemana"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:text="Segunda-Feira"
+                    android:textSize="25dp"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="10dp"/>
+
+                <!--Tabela de Horários-->
+                <TableLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:divider="@color/black"
+                    android:background="@drawable/border"
+                    android:showDividers="middle">>
+                    <!--Cabeçalho da tabela-->
+                    <TableRow
+                        android:divider="@color/black"
+                        android:showDividers="middle"
+                        android:background="@color/CabeçalhoTabela">
+                        <TextView
+                            android:background="@drawable/border"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Horário"
+                            android:textColor="@color/white"
+                            android:padding="10sp"
+                            android:textSize="20dp"/>
+                        <TextView
+                            android:background="@drawable/border"
+                            android:layout_width="250dp"
+                            android:layout_height="wrap_content"
+                            android:text="Disciplinas"
+                            android:textAlignment="center"
+                            android:textColor="@color/white"
+                            android:padding="10sp"
+                            android:textSize="20dp"/>
+                    </TableRow>
+
+                    <!--PrimeiraLinha-->
+                    <TableRow
+                        android:divider="@color/black"
+                        android:showDividers="middle">
+                        <TextView
+                            android:id="@+id/horas1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="7:00"
+                            android:textAlignment="center"
+                            android:textColor="@color/black"
+                            android:padding="10sp"
+                            android:textSize="20dp"/>
+                        <TextView
+                            android:id="@+id/horario1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAlignment="center"
+                            android:text="Null"
+                            android:textColor="@color/black"
+                            android:padding="10sp"
+                            android:textSize="20dp"/>
+                    </TableRow>
+
+                    <!--Segunda Linha-->
+                    <TableRow
+                        android:divider="@color/black"
+                        android:showDividers="middle">
+                        <TextView
+                            android:id="@+id/horas2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="7:50"
+                            android:textAlignment="center"
+                            android:textColor="@color/black"
+                            android:padding="10sp"
+                            android:textSize="20dp"/>
+                        <TextView
+                            android:id="@+id/horario2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAlignment="center"
+                            android:text="Null"
+                            android:textColor="@color/black"
+                            android:padding="10sp"
+                            android:textSize="20dp"/>
+                    </TableRow>
+
+                    <!--Terceira Linha-->
+                    <TableRow
+                        android:divider="@color/black"
+                        android:showDividers="middle">
+                        <TextView
+                            android:id="@+id/horas3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="8:40"
+                            android:textAlignment="center"
+                            android:textColor="@color/black"
+                            android:padding="10sp"
+                            android:textSize="20dp"/>
+                        <TextView
+                            android:id="@+id/horario3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAlignment="center"
+                            android:text="Null"
+                            android:textColor="@color/black"
+                            android:padding="10sp"
+                            android:textSize="20dp"/>
+                    </TableRow>
+
+                    <!--Quarta Linha-->
+                    <TableRow
+                        android:divider="@color/black"
+                        android:showDividers="middle">
+                        <TextView
+                            android:id="@+id/horas4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="9:30"
+                            android:textAlignment="center"
+                            android:textColor="@color/black"
+                            android:padding="10sp"
+                            android:textSize="20dp"/>
+                        <TextView
+                            android:id="@+id/horario4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAlignment="center"
+                            android:text="Null"
+                            android:textColor="@color/black"
+                            android:padding="10sp"
+                            android:textSize="20dp"/>
+                    </TableRow>
+
+                    <!--Quinta Linha-->
+                    <TableRow
+                        android:divider="@color/black"
+                        android:showDividers="middle">
+                        <TextView
+                            android:id="@+id/horas5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="9:50"
+                            android:textAlignment="center"
+                            android:textColor="@color/black"
+                            android:padding="10sp"
+                            android:textSize="20dp"/>
+                        <TextView
+                            android:id="@+id/horario5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAlignment="center"
+                            android:text="Null"
+                            android:textColor="@color/black"
+                            android:padding="10sp"
+                            android:textSize="20dp"/>
+                    </TableRow>
+
+                    <!--Sexta Linha
+                    <TableRow
+                        android:divider="@color/black"
+                        android:showDividers="middle">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="10:40"
+                            android:textAlignment="center"
+                            android:textColor="@color/black"
+                            android:padding="10sp"
+                            android:textSize="20dp"/>
+                        <TextView
+                            android:id="@+id/horario6"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAlignment="center"
+                            android:text="Química"
+                            android:textColor="@color/black"
+                            android:padding="10sp"
+                            android:textSize="20dp"/>
+                    </TableRow>
+                    -->
+                </TableLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center">
+                <!--Botão de anterior-->
+                <ImageButton
+                    android:id="@+id/anteriorBtn"
+                    android:layout_width="100px"
+                    android:layout_height="100px"
+                    android:background="@mipmap/anterior"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="20dp"/>
+                <!--Botão de próximo-->
+                <ImageButton
+                    android:id="@+id/proximoBtn"
+                    android:layout_width="100px"
+                    android:layout_height="100px"
+                    android:background="@mipmap/proximo"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginTop="0dp"/>
+            </LinearLayout>
+        </LinearLayout>
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center"
+            android:layout_marginTop="40px"
+            android:paddingLeft="50dp"
+            android:paddingRight="50dp">
+            <Button
+                android:id="@+id/anteriorAlunoBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Anterior"
+                android:layout_weight="1"
+                android:layout_marginRight="10dp"
+                android:textColor="@android:color/white"/>
+            <Button
+                android:id="@+id/proximoAlunoBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Próximo"
+                android:layout_weight="1"
+                android:layout_marginLeft="10dp"
+                android:textColor="@android:color/white"/>
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

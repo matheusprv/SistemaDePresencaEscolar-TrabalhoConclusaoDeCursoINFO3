@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".usuario"
+    android:background="@color/white">
+
+    <!-- Layout Principal-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <!--Cabeçalho-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <!--Prefeitura e Usuário-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="@color/backgroundAzul">
+
+                <!--Layout para definir marginTop para a imagem da prefeitura-->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40px"
+                    android:layout_marginBottom="40px"
+                    android:layout_marginLeft="15px"
+                    android:layout_marginRight="15px">
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="left"
+                        android:background="@mipmap/logotipo"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/nomeUsuario"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginRight="15dp"
+                            android:text="Nome de Usuário"
+                            android:textAlignment="viewEnd"
+                            android:textColor="@color/white"
+                            android:textSize="19dp" />
+                    </RelativeLayout>
+
+
+                    <!--Definir o botão de sair no canto inferiror direito-->
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <ImageButton
+                            android:id="@+id/sairBtn"
+                            android:layout_width="170px"
+                            android:layout_height="85px"
+                            android:layout_alignParentRight="true"
+                            android:layout_alignParentBottom="true"
+                            android:layout_gravity="bottom"
+                            android:layout_marginRight="15dp"
+                            android:background="@mipmap/sair2" />
+                    </RelativeLayout>
+
+
+                </LinearLayout>
+
+
+
+            </LinearLayout>
+
+            <!--Layout Faltas do Aluno e Horários-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:gravity="center">
+
+                <!--Faltas-->
+                <Button
+                    android:id="@+id/faltasBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:textColor="@color/black"
+                    android:layout_marginRight="10dp"
+                    android:text="Faltas "
+                    android:textSize="15dp"/>
+                <!--Horários-->
+                <Button
+                    android:id="@+id/horaiosBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:textColor="@color/black"
+                    android:layout_marginRight="10dp"
+                    android:text="Horários"
+                    android:textSize="15dp"/>
+                <!--Usuário-->
+                <Button
+                    android:id="@+id/usuarioBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:textColor="@color/menuSelecionado"
+                    android:text="Usuário"
+                    android:textSize="15dp"/>
+
+            </LinearLayout>
+
+            <!--Linha separando o cabeçalho do resto da página-->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="5px"
+                android:background="@drawable/solid_line"
+                android:layout_marginBottom="10dp"/>
+
+        </LinearLayout>
+
+        <!--Corpo da Página-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <!--Informações do aluno-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginVertical="10dp"
+                android:layout_marginHorizontal="30dp">
+
+                <!--Nome-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="30px">
+
+                    <!--
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Nome:  "
+                        android:textSize="20dp"
+                        android:textColor="@color/black"/>
+                     -->
+                    <TextView
+                        android:id="@+id/nomeTxt"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Nome de exemplo"
+                        android:textSize="20dp"
+                        android:textAlignment="center"
+                        android:textColor="@color/black"/>
+                </LinearLayout>
+
+                <!--Email-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="25px">
+                    <!--
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Email:  "
+                        android:textSize="20dp"
+                        android:textColor="@color/black"/>
+                    -->
+                    <TextView
+                        android:id="@+id/emailTxt"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="email@email.com"
+                        android:textSize="20dp"
+                        android:textAlignment="center"
+                        android:textColor="@color/black"/>
+                </LinearLayout>
+
+                <!--Senha Atual-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="20px">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Senha atual: "
+                        android:textSize="20dp"
+                        android:textColor="@color/black"/>
+
+                    <EditText
+                        android:layout_weight="1"
+                        android:id="@+id/senhaTxt"
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:inputType="textPassword"
+                        android:textColor="@color/black"
+                        android:hint="Senha"
+                        android:maxLength="10"/>
+                </LinearLayout>
+
+                <!--Nova Atual-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="20px">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Nova senha: "
+                        android:textSize="20dp"
+                        android:textColor="@color/black"/>
+
+                    <EditText
+                        android:layout_weight="1"
+                        android:id="@+id/novaSenhaTxt"
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:inputType="textPassword"
+                        android:textColor="@color/black"
+                        android:hint="Nova senha"
+                        android:maxLength="10"/>
+                </LinearLayout>
+
+                <!--Confirmar senha-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_gravity="center">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Confirmar:"
+                        android:textSize="20dp"
+                        android:textColor="@color/black"/>
+
+                    <EditText
+                        android:layout_weight="1"
+                        android:id="@+id/confirmarSenhaTxt"
+                        android:layout_width="130dp"
+                        android:layout_height="wrap_content"
+                        android:inputType="textPassword"
+                        android:textColor="@color/black"
+                        android:hint="Confirmar senha"
+                        android:maxLength="10"/>
+                </LinearLayout>
+
+
+                <Button
+                    android:id="@+id/salvarBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30px"
+                    android:layout_gravity="center"
+                    android:text="Salvar"
+                    android:backgroundTint="@color/verde"
+                    android:textSize="18dp"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
