@@ -1,4 +1,4 @@
-# TrabalhoConclusaoDeCursoINFO3
+# Sistema de Presença Escolar - Trabalho Conclusão de Curso INFO 3
 Trabalho de Conclusão de Curso para o curso Técnico em Informática do IFMG - Campus Ouro Branco 
 
   O período em que o professor realiza a chamada, para contabilizar os alunos presentes, demanda uma grande quantidade de tempo, que não é reposto.  
